@@ -20,24 +20,18 @@ OS時間:%N%n経過時間%K           %t日本時間:%JST  %n残り時間:%L    
 %N	現在の時間OS依存、時刻書式可能
 %UTC	現在の時間UTC設定、時刻書式可能
 %JST	日本時間、時刻書式可能
-%TZ	ロサンゼルスTZ現在
 %I	イベント期間、経過残書式対応
 %T	タイトル名
 %K	経過時間、経過残書式対応
 %L	残り時間、経過残書式対応
 %P	進捗%
 %Q	進捗バー
-
-%SS	ロサンゼルスTZ開始
 %SJ	イベント開始日本時間
 %SU	イベント開始utcsetteing
-%S	イベント開始時間 OS依存
-
-%EE	ロサンゼルスTZ終了
-%EJ	イベント終了日本時間
+%S	　イベント開始時間
+%EJ	　イベント終了日本時間
 %SU	イベント開始utcsetteing
-%E	イベント終了時間 OS依存
-
+%E	　イベント終了時間
 
 //時刻書式一覧
 %Y-%m-%dT%H:%M:%S%z (%a)　＝＞2020-06-02T01:52:00+0900 (Tue曜日)
@@ -134,11 +128,7 @@ psten			=0
 hotkey_id_reset     = obs.OBS_INVALID_HOTKEY_ID
 hotkey_id_pause     = obs.OBS_INVALID_HOTKEY_ID
 
---//! moment-timezone.js
---//! version : 0.5.44
---//! Copyright (c) JS Foundation and other contributors
---//! license : MIT
---//! github.com/moment/moment-timezone ロサンゼルスだけ移植（）
+
 PSTname="America/Los_Angeles"
 PSTabbrs={"PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST"}
 PSTuntils={1520762400000,1541322000000,1552212000000,1572771600000,1583661600000,1604221200000,1615716000000,1636275600000,1647165600000,1667725200000,1678615200000,1699174800000,1710064800000,1730624400000,1741514400000,1762074000000,1772964000000,1793523600000,1805018400000,1825578000000,1836468000000,1857027600000,-1}
@@ -319,7 +309,7 @@ function set_time_text()
 	local time_textj="!".. string.gsub(time_textq, "%%z", "+0900")
 	local time_textu="!".. string.gsub(time_textq, "%%z", get_tzoffset(utc*3600))
 	local time_textp="!".. string.gsub(time_textq, "%%z", get_tzoffset(pst*3600))
-	text = string.gsub(text, "%%TZ",os.date(time_textp,os.time()+pst*3600))
+	text = string.gsub(text, "%%PST",os.date(time_textp,os.time()+pst*3600))
 	text = string.gsub(text, "%%JST",os.date(time_textj,os.time()+9*3600 ))
 	text = string.gsub(text, "%%UTC",os.date(time_textu,os.time()+utc*3600 ))
 	text = string.gsub(text, "%%I", ibetime)
@@ -700,7 +690,7 @@ function script_properties()
 	
 	
 	if(false)then
---	if(true)then  --ENGLISH MODE delete if(false), use if(true)
+	--if(true)then  --ENGLISH MODE delete if(false), use if(true)
 	 p_title_text = obs.obs_properties_add_text(props, "title_text", "EVENT NAME:", obs.OBS_TEXT_DEFAULT)
 	 p_start_text = obs.obs_properties_add_text(props, "start_text", "START:ex　2020-02-26T15:00:00+09:00", obs.OBS_TEXT_DEFAULT)
 	 p_stop_text = obs.obs_properties_add_text(props, "stop_text", "END:ex　2020-02-26T21:00:00+09:00", obs.OBS_TEXT_DEFAULT)

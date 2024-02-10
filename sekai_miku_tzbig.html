@@ -133,6 +133,10 @@ function setjp(){
 document.getElementById("kuni").value="日本";
 settz()
 }
+function setks(){
+document.getElementById("kuni").value="ソウル";
+settz()
+}
 function sethz(){
 document.getElementById("kuni").value="香港";
 settz()
@@ -159,6 +163,8 @@ for(var i=0;i<tzJAP.length;i++){
  tmp+= document.gm.gm.options[i].text+"<br>";
 }}
 document.getElementById("RC").innerHTML=tmp;
+ZONE();
+
 return;
 }
 
@@ -239,6 +245,7 @@ tmp=ibemie;
 }
 document.getElementById("dere").innerHTML=tmp;
 
+ZONE();
 }
 
 function UTC(i){
@@ -337,7 +344,6 @@ ibemie=escapeHTML(data[sel][2]);
 ibekaishi= parsedate(data[sel][7]).format();
 ibeowari= parsedate(data[sel][8]).format();
 ibetime();
-
 }
 }
 function setend(){
@@ -352,14 +358,16 @@ for(var i=evnetskip-1;i<data.length;i++){
 var offset=-moment(data[i][8]).add("h",17)+moment(lastyear);
 if(offset<0){
 event=i-evnetskip+1;
-document.getElementById("kuni").value=data[i][2];
+//document.getElementById("kuni").value=data[i][2];
 break;
 }}
 document.gmm.gmm.options.selectedIndex=event;
 update();
 }
 
-
+function makeplugintz(){
+getweb("./neta/obsduration_timer_39usatz.lua");
+}
 function makeplugin(){
 getweb("./neta/OBSdere_extend.lua");
 }
@@ -393,22 +401,46 @@ function getweb(urls) {
 
 function mkjp(){
 gameselecter=0;
+var TZF= document.getElementById("TZOP").checked;
+if(TZF){
+makeplugintz();
+}
+else{
 makeplugin();
+}
 }
 
 function mkks(){
 gameselecter=1;
+var TZF= document.getElementById("TZOP").checked;
+if(TZF){
+makeplugintz();
+}
+else{
 makeplugin();
+}
 }
 
 function mkhz(){
 gameselecter=2;
+var TZF= document.getElementById("TZOP").checked;
+if(TZF){
+makeplugintz();
+}
+else{
 makeplugin();
+}
 }
 
 function mkusa(){
 gameselecter=3;
+var TZF= document.getElementById("TZOP").checked;
+if(TZF){
+makeplugintz();
+}
+else{
 makeplugin();
+}
 }
 
 
@@ -425,14 +457,50 @@ var obs=[//miritate,kori,makao,mirdere,proseka
 ""
 ];
 
-
 var rptxt=obs[5];
 var rp=rptxt.split("	");
 
 var TZF= document.getElementById("TZST").checked;
+var TZOP= document.getElementById("TZOP").checked;
+var ENG= document.getElementById("ENG").checked;
 var tzst=worldtimer[gameselecter][5];
 var difftz=worldtimer[gameselecter][4];
 var gettz=moment(worldtimer[gameselecter][2]).tz(tzst).format("z");
+
+if(TZOP){
+
+//PSTname="America/Los_Angeles"
+//PSTabbrs={"PST","PDT"}
+//PSTuntils={1520762400000,1541322000000}
+//PSToffsets={480,420}
+
+var tt=ZONE();
+data = data.replace("America/Los_Angeles",tt.name);
+data = data.replace("{PST PDT}","{"+ JSON.stringify(tt.abbrs).replace("[","").replace("]","") +"}");
+data = data.replace("{1520762400000 1541322000000}","{" + JSON.stringify(tt.untils).replace("[","").replace("]","") +"}");
+data = data.replace("{480,420}","{"+ tt.offsets +"}");
+data = data.replace(/{}/gm, "{\"\"}");
+data = data.replace(/null/gm, "nil");
+
+data = data.replace(/%TIMEZONE/gm, "%TZ %SS %EE moment-timezone-with-data-10-year-range.js " + tt.name + " のみ移植されてます(実験的)");
+
+}
+
+if(ENG){
+//進捗BARの段階(100÷X)
+//	if(false)then
+//--	if(true)then  --ENGLISH MODE delete if(false), use if(true)
+//--	return "Sets a text source to act as a timer with advanced options. Hotkeys can be set for starting/stopping and to the reset timer."
+//	return "高度なオプションを備えたタイマーとして機能するようにテキスト ソースを設定します。ホットキーは開始/停止およびリセット タイマーに設定できます。"
+
+data = data.replace("	if(false)then", "");
+data = data.replace("--	if(true)then", "	if(true)then");
+data = data.replace("進捗BARの段階(100÷X)", "PROGRESSBAR(100÷X)");
+data = data.replace("--	return \"Sets a text source", "	return \"Sets a text source");
+data = data.replace("	return \"高度なオプション", "--");
+data = data.replace("タイマー停止中(開始前/終了)","THE EVENT HAS ENDED");
+data = data.replace("のみ移植されてます(実験的))","ONLY PORTED(EXPERIMENTAL)");
+}
 
 if(TZF){
 data = data.replace("2020-04-30T12:00:00+09:00",moment(worldtimer[gameselecter][1]).tz(tzst).format("YYYY-MM-DD HH:mmz"));
@@ -463,6 +531,11 @@ data = data.replace("%Y/%m/%d %H:%M:%S","%Y-%m-%dT%H:%M:%S%z (%a)");
 }
 data = data.replace("タイマー停止中(開始前/終了)","終了しました");
 
+data = data.replace(/ロサンゼルス/gm,tzJAP[document.gm.gm.selectedIndex][0]);
+data = data.replace(/%TIMEZONE/gm, "");
+
+	
+
 
 TextDL(data,"obsduration_timer_39"+worldtimer[gameselecter][0]+".lua");
         return false;
@@ -489,6 +562,7 @@ st="<table id=\"sampleTable\" class=\"tablesorter\">"+"<thead><tr>" +header+"</t
 
 
 document.getElementById("tzzone").innerHTML = st;
+return tt;
 }
 -->
 </script>
@@ -505,8 +579,9 @@ document.getElementById("tzzone").innerHTML = st;
 <input type="Submit" value="韓国" generate"="" onclick="mkks();return false"> 
 <input type="Submit" value="香港" generate"="" onclick="mkhz();return false"> 
 <input type="Submit" value="北米" generate"="" onclick="mkusa();return false"> 
+<label for="TZOP"><input type="checkbox"  value="NEW" id="TZOP"">選択中のもめんとタイムゾーンを移植(実験的)</label>
+<label for="ENG"><input type="checkbox"  value="NEW" id="ENG"">英語メニュー<br></label><br>
 </p>
-<label for="TZST"><input type="checkbox" checked="checked" value="NEW" id="TZST"">イベント時間を現地時刻で設定(未チェックはISO8601形式)<br></label><br>
 
 イベント
 <form name="gmm">
@@ -514,8 +589,9 @@ document.getElementById("tzzone").innerHTML = st;
 <option value="">--ゲーム名--</option>
 </select>
 </form>
-<input type="Submit" value="最新" Generate" onclick="setend();return false"><br>
-<input type="Submit" value="海外で開催中" Generate" onclick="setoversea();ibetime();return false"><br>
+<input type="Submit" value="最新" Generate" onclick="setend();return false">
+<input type="Submit" value="海外で開催中" Generate" onclick="setoversea();ibetime();return false">
+<label for="TZST"><input type="checkbox" checked="checked" value="NEW" id="TZST"">イベント時間を現地時刻で設定(未チェックはISO8601形式)<br></label><br>
 
 
 <form name="tzone">
@@ -623,15 +699,15 @@ document.getElementById("tzzone").innerHTML = st;
 <select name="gm" id="sel1" onChange="ibetime();">
 </select><br>
 <input type="text" name="" value="日本" id="kuni" size="" maxlength=""><br>
-<input type="Submit" value="検索" Generate" onclick="settz();ibetime();return false"><br>
-<input type="Submit" value="日本:JST" Generate" onclick="setjp();ibetime();return false"><br>
-<input type="Submit" value="香港:HKT" Generate" onclick="sethz();ibetime();return false"><br>
+<input type="Submit" value="検索" Generate" onclick="settz();ibetime();return false">
+<input type="Submit" value="日本:JST" Generate" onclick="setjp();ibetime();return false">
+<input type="Submit" value="韓国:KST" Generate" onclick="setks();ibetime();return false">
+<input type="Submit" value="香港:HKT" Generate" onclick="sethz();ibetime();return false">
 <input type="Submit" value="北米:PST/PDT" Generate" onclick="setlos();ibetime();return false"><br>
 <span id="RC">-----</span><br>
 </form>
 
 もめんとゾーン確認<br>
-<input type="Submit" value="ZONE" Generate" onclick="ZONE();return false"><br>
 <span id="tzzone"></span>
 
 </body>
