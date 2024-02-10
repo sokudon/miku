@@ -421,7 +421,7 @@ var obs=[//miritate,kori,makao,mirdere,proseka
 "%d %hh:%mm:%ss	miriCN/TW;%L(%P％)	%Y/%m/%d %H:%M:%S",
 "%d %hh:%mm:%ss(%dsD)	ＯＳ時間:%N UTC+0000:%UTC%n経過時間:%K                 日本時間:%JST  %n残り時間:%L                開始時間:%SJ%nイベ時間:%I              終了時間:%EJ                   %n%Q%P％  %T	%Y-%m-%d(%a)%H:%M:%S(GMT%z)",
 "%d %hh:%mm:%ss(%hsH,%dsD)	OS時間:%N      UTC:%UTC%n経過時間%K                 日本時間:%JST  %n残り時間:%L                開始時間:%SJ%nイベント時間:%I          終了時間%EJ                    %T%P％%n%Q	%Y-%m-%dT%H:%M:%S%z (%a)",
-"%d %hh:%mm:%ss(%hsH,%dsD)	%K現在時間%UTC%n%K終了時間%EU%n経過時間%K%n残り時間%L%nイベント時間%I%n%T%P％%n%Q	%Y-%m-%dT%H:%M:%S%z (%a)",
+"%d %hh:%mm:%ss(%hsH,%dsD)	%%K現在時間%UTC%n%%K終了時間%EU%n経過時間%K%n残り時間%L%nイベント時間%I%n%T%P％%n%Q	%Y-%m-%dT%H:%M:%S%z (%a)",
 ""
 ];
 
@@ -452,7 +452,7 @@ difftz=-9;
 data = data.replace("\"UTC\", 0","\"UTC\", " + difftz);
 
 if(rp.length==3){
-data = data.replace("%T%n経過時間%K%n残り時間%L%nイベント時間%I%n現地時間%N%n日本時間%JST%n達成率%P%nS %S%nE %E%n%nSJ %SJ%nEJ %EJ%n%nSU %SU%nEU %EU",rp[1].replace(/%K/gm,gettz).replace(/%n/gm,"\\n"));
+data = data.replace("%T%n経過時間%K%n残り時間%L%nイベント時間%I%n現地時間%N%n日本時間%JST%n達成率%P%nS %S%nE %E%n%nSJ %SJ%nEJ %EJ%n%nSU %SU%nEU %EU",rp[1].replace(/%%K/gm,gettz).replace(/%n/gm,"\\n"));
 //worldtimer[gameselecter][3]).replace(/%n/gm,"\\n"));
 data = data.replace("%H:%m:%s",rp[0]);
 data = data.replace("%Y/%m/%d %H:%M:%S",rp[2]);
