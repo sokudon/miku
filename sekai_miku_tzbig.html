@@ -466,6 +466,7 @@ var ENG= document.getElementById("ENG").checked;
 var tzst=worldtimer[gameselecter][5];
 var difftz=worldtimer[gameselecter][4];
 var gettz=moment(worldtimer[gameselecter][2]).tz(tzst).format("z");
+var tzsupport ="";
 
 if(TZOP){
 
@@ -475,7 +476,14 @@ if(TZOP){
 //PSToffsets={480,420}
 
 var tt=ZONE();
+tzsupport= "_tz_"+tt.name.replace(/\//gm,"_");
 data = data.replace("America/Los_Angeles",tt.name);
+//rp[1] = rp[1].replace("%%K","%TZ TIMEZONE:"+ tt.name +"%n");
+rp[1] = rp[1].replace(/%%K/gm,"");
+rp[1] = rp[1].replace("%UTC","%TZ");
+rp[1] = rp[1].replace("%EU" ,"%EE");
+
+
 data = data.replace("{PST PDT}","{"+ JSON.stringify(tt.abbrs).replace("[","").replace("]","") +"}");
 data = data.replace("{1520762400000 1541322000000}","{" + JSON.stringify(tt.untils).replace("[","").replace("]","") +"}");
 data = data.replace("{480,420}","{"+ tt.offsets +"}");
@@ -499,7 +507,14 @@ data = data.replace("進捗BARの段階(100÷X)", "PROGRESSBAR(100÷X)");
 data = data.replace("--	return \"Sets a text source", "	return \"Sets a text source");
 data = data.replace("	return \"高度なオプション", "--");
 data = data.replace("タイマー停止中(開始前/終了)","THE EVENT HAS ENDED");
-data = data.replace("のみ移植されてます(実験的))","ONLY PORTED(EXPERIMENTAL)");
+data = data.replace("のみ移植されてます(実験的)","ONLY PORTED(EXPERIMENTAL)");
+//現在時間%UTC%n%%K終了時間%EU%n経過時間%K%n残り時間%L%nイベント時間
+rp[1] = rp[1].replace("現在時間",		"DATENNOW:");
+rp[1] = rp[1].replace("終了時間",		"END     :");
+rp[1] = rp[1].replace("経過時間",		"ELAPSED :");
+rp[1] = rp[1].replace("イベント時間",	"DURATION:");
+rp[1] = rp[1].replace("残り時間",		"LEFT    :");
+
 }
 
 if(TZF){
@@ -537,7 +552,7 @@ data = data.replace(/%TIMEZONE/gm, "");
 	
 
 
-TextDL(data,"obsduration_timer_39"+worldtimer[gameselecter][0]+".lua");
+TextDL(data,"obsduration_timer_39"+worldtimer[gameselecter][0]+tzsupport+".lua");
         return false;
 }
 
