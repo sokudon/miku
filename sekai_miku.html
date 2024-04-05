@@ -16,6 +16,8 @@ var ibekaishi="2020-10-09T15:00:00+09:00";
 var ibeowari ="2020-10-18T21:00:00+09:00";
 var date_fm="YYYY/MM/DD(ddd) HH:mm:ss ([JST,UTC+9:00])";
 
+var NoLeap="02-28"; // 3/1 2/27かわからないので暫定
+
 var gameselecter=0;
 var worldtimer=[
 ["jp",ibekaishi,ibeowari,"JST",9,"Asia/Tokyo"],
@@ -277,13 +279,18 @@ function get_count() {
 	st="<tr><th>OSたいむ</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
 	st=st.replace("日本版",moment(ts).format() +"～" +moment(tt).format());
 	
+	worldtimer[0][1]=ts;
+	worldtimer[0][2]=tt;
+	
+	
+	tt=NextYearNoLeap(tt);
+	ts=NextYearNoLeap(ts);
+
 	var kst  =  (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
 	var ken =   (parseInt(moment(tt).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
 	var Pst=  (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD HH:mm:ss");
 	var Ptt=  (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD HH:mm:ss");
 	
-	worldtimer[0][1]=ts;
-	worldtimer[0][2]=tt;
 	
 	worldtimer[1][1]=moment(kst).format(); 
 	worldtimer[1][2]=moment(ken).format();
@@ -336,6 +343,13 @@ function get_count() {
 }
 
 
+function NextYearNoLeap(date){
+if(moment([moment(date).utc().add("h",9).format("YYYY")]).isLeapYear()){
+if(moment(date).utc().add("h",9).format("MMDD")=="0229"){
+date =moment(date).utc().add("h",9).format("YYYY-" + NoLeap +"[T]HH:mm:ss+09:00");
+}}
+ return date;
+}
 
 function update(){
 var sel=document.gmm.gmm.options.selectedIndex+evnetskip-1;
@@ -586,7 +600,7 @@ return tt;
 
 <label for="OF"><input type="checkbox" checked="checked" value="NEW" id="OF" onChange="ibetime();">ISO8601形式で表示<br></label><div id="end"></div><br>
 
-<span class="black">海外のイベント予想時間　開始時刻(START)～終了時刻(END)、日本版JST,韓国版KST,香港版HKT,北米版PST/PDT</span>;
+<span class="black">海外のイベント予想時間　開始時刻(START)～終了時刻(END)、日本版JST,韓国版KST,香港版HKT,北米版PST/PDT<br>※うるう年2月29日の来年がない場合暫定で2月28日に処理しています（）</span>;
 <span id="tt"></span>
 
 <p><b>OBSタイマープラグイン生成:</b><br>
