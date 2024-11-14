@@ -282,14 +282,18 @@ function get_count() {
 	worldtimer[0][1]=ts;
 	worldtimer[0][2]=tt;
 	
-	
-	tt=NextYearNoLeap(tt);
-	ts=NextYearNoLeap(ts);
+	var tsbk= ts;
+	//tt=NextYearNoLeap(tt);
+	//ts=NextYearNoLeap(ts);
 
-	var kst  =  (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
-	var ken =   (parseInt(moment(tt).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
-	var Pst=  (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD HH:mm:ss");
-	var Ptt=  (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD HH:mm:ss");
+	var kst= moment(ts).utc().add("h",9).add("y",1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
+	var ken= moment(tt).utc().add("h",9).add("y",1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
+	var Pst=  moment(ts).utc().add("h",9).add("y",1).format("YYYY-MM-DD HH:mm:ss");
+	var Ptt=  moment(tt).utc().add("h",9).add("y",1).format("YYYY-MM-DD HH:mm:ss");
+	//var kst= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
+	//var ken= (parseInt(moment(tt).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
+	//var Pst= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD HH:mm:ss");
+	//var Ptt= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD HH:mm:ss");
 	
 	
 	worldtimer[1][1]=moment(kst).format(); 
@@ -305,17 +309,17 @@ function get_count() {
 	st=st.replace("香港版", moment(kst).add("h",1).format() +"～" + moment(ken).add("h",1).format());
 	st=st.replace("北米版",moment(moment.tz(Pst,tzPST)).local().format() +"～" + moment(moment.tz(Ptt,tzPST)).local().format());
 	
-//+"M$時間\t"
-//+moment.utc(ibekaishi).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\t"
-//+moment.utc(ibeowari).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\r\n"
+	//+"M$時間\t"
+	//+moment.utc(ibekaishi).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\t"
+	//+moment.utc(ibeowari).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\r\n"
 	stm="<tr><th>M$時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
-	stm=stm.replace("日本版",moment.utc(ts).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"～"+moment.utc(tt).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]));
+	stm=stm.replace("日本版",moment.utc(tsbk).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"～"+moment.utc(tt).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]));
 
 	stm=stm.replace("韓国版",moment.utc(kst).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]) + "～" +moment.utc(ken).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]));
 	stm=stm.replace("香港版",moment.utc(kst).add("h",1+tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]) +"～" + moment.utc(ken).add("h",1+tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]));
 	stm=stm.replace("北米版",moment.utc(moment.tz(Pst,tzPST)).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]) +"～" + moment.utc(moment.tz(Ptt,tzPST)).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1]));
 
-	
+	stm=stm.replace(/\+\-/gm,"-");
 	
 
 
@@ -327,9 +331,9 @@ function get_count() {
 	stt=stt.replace("北米版",moment(moment.tz(Pst,tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)") +"～" + moment(moment.tz(Ptt,tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)"));
 
 	
-//+"もめんと時間"+tzs+"/"+tze+"\t"
-//+moment(ibekaishi).tz(tzst).format("YYYY/MM/DD HH:mm z")+"("+tzst+")\t"
-//+moment(ibeowari).tz(tzst).format("YYYY/MM/DD HH:mm z")+"("+tzst+")\r\n"
+	//+"もめんと時間"+tzs+"/"+tze+"\t"
+	//+moment(ibekaishi).tz(tzst).format("YYYY/MM/DD HH:mm z")+"("+tzst+")\t"
+	//+moment(ibeowari).tz(tzst).format("YYYY/MM/DD HH:mm z")+"("+tzst+")\r\n"
 
 
 
