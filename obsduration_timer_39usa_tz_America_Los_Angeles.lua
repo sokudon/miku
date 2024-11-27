@@ -143,11 +143,11 @@ hotkey_id_pause     = obs.OBS_INVALID_HOTKEY_ID
 --//! version : 0.5.44
 --//! Copyright (c) JS Foundation and other contributors
 --//! license : MIT
---//! github.com/moment/moment-timezone ロサンゼルスだけ移植（）
+--//! github.com/moment/moment-timezone America/Los_Angelesだけ移植（）
 PSTname="America/Los_Angeles"
-PSTabbrs={PST PDT}
-PSTuntils={1520762400000 1541322000000}
-PSToffsets={480,420}
+PSTabbrs={"PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST"}
+PSTuntils={1552212000000,1572771600000,1583661600000,1604221200000,1615716000000,1636275600000,1647165600000,1667725200000,1678615200000,1699174800000,1710064800000,1730624400000,1741514400000,1762074000000,1772964000000,1793523600000,1805018400000,1825578000000,1836468000000,1857027600000,1867917600000,1888477200000,nil}
+PSToffsets={480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480}
 len =tonumber(#PSToffsets)-1
 
 function delta_time()
@@ -1058,7 +1058,7 @@ end
 
 function script_description()
 	return "Sets a text source to act as a timer with advanced options. Hotkeys can be set for starting/stopping and to the reset timer.%TZ %SS %EE moment-timezone-with-data-10-year-range.js America/Los_Angeles ONLY PORTED(EXPERIMENTAL)"
---を備えたタイマーとして機能するようにテキスト ソースを設定します。ホットキーは開始/停止およびリセット タイマーに設定できます。%TZ %SS %EE moment-timezone-with-data-10-year-range.js America/Los_Angeles のみ移植されてます(実験的)"
+--を備えたタイマーとして機能するようにテキスト ソースを設定します。ホットキーは開始/停止およびリセット タイマーに設定できます。%TZ %SS %EE moment-timezone-with-data-10-year-range.js America/Los_Angeles ONLY PORTED(EXPERIMENTAL)"
 end
 
 function cut_string(s,max)
@@ -1121,17 +1121,17 @@ function script_update(settings)
 end
 
 function script_defaults(settings)
-	obs.obs_data_set_default_double(settings, "UTC", 0)
-	obs.obs_data_set_default_string(settings, "start_text", "2020-04-30T12:00:00+09:00")
-	obs.obs_data_set_default_string(settings, "stop_text", "2020-05-07T21:00:00+09:00")
+	obs.obs_data_set_default_double(settings, "UTC", -8)
+	obs.obs_data_set_default_string(settings, "start_text", "2024-11-22 15:00PST")
+	obs.obs_data_set_default_string(settings, "stop_text", "2024-11-28 21:00PST")
 	obs.obs_data_set_default_string(settings, "mode", "Countdown")
 	obs.obs_data_set_default_string(settings, "a_mode", "Global (timer always active)")
-	obs.obs_data_set_default_string(settings, "format", "%H:%m:%s")
-	obs.obs_data_set_default_string(settings, "title_text", "でれすて")
-	obs.obs_data_set_default_string(settings, "time_text", "%Y/%m/%d %H:%M:%S")
-	obs.obs_data_set_default_string(settings, "para_text", "%T%n経過時間%K%n残り時間%L%nイベント時間%I%n現地時間%N%n日本時間%JST%n達成率%P%nS %S%nE %E%n%nSJ %SJ%nEJ %EJ%n%nSU %SU%nEU %EU")
-	obs.obs_data_set_default_string(settings, "end_text", "タイマー停止中(開始前/終了)")
-	obs.obs_data_set_default_double(settings, "bar", 1)
+	obs.obs_data_set_default_string(settings, "format", "%d %hh:%mm:%ss(%hsH,%dsD)")
+	obs.obs_data_set_default_string(settings, "title_text", "君が主役の物語を")
+	obs.obs_data_set_default_string(settings, "time_text", "%Y-%m-%dT%H:%M:%S%z (%a)")
+	obs.obs_data_set_default_string(settings, "para_text", "DATENNOW:%TZ\nEND     :%EE\nELAPSED :%K\nLEFT    :%L\nDURATION:%I\n%T%P％\n%Q")
+	obs.obs_data_set_default_string(settings, "end_text", "THE EVENT HAS ENDED")
+	obs.obs_data_set_default_double(settings, "bar", 2)
 
 
 end
