@@ -356,7 +356,7 @@ function set_time_text()
 	pst=get_pst(os.time()*1000)
 	tz_st=PSTabbrs[tz_idx]
 	
-	local time_textq=string.gsub(time_text, "%%[EJKLNOPQfikloqsv]","")	 --フリーズ文字 %%[EJKLNOPQfikloqsv]
+	local time_textq=string.gsub(time_text, "%%[EJKLNOPQfikloqsvZ]","")	 --フリーズ文字 %%[EJKLNOPQfikloqsv]
 	text = string.gsub(text, "%%N", os.date(time_textq,os.time() ))
 	local time_textj="!".. string.gsub(time_textq, "%%z", "+0900")
 	local time_textu="!".. string.gsub(time_textq, "%%z", get_tzoffset(utc*3600))
@@ -404,7 +404,7 @@ function set_time_text()
 	text = string.gsub(text, "%%EJ",os.date(time_textj,parse_json_date_utc(finaltime)+9*3600 ))
 	text = string.gsub(text, "%%E",os.date(time_textq,parse_json_date_utc(finaltime)))
 	end
-	text=  string.gsub(text, "%%[EJKLNOPQfikloqsv]","")	 --フリーズ文字 %%[EJKLNOPQfikloqsv]
+	text=  string.gsub(text, "%%[EJKLNOPQfikloqsvZ]","")	 --フリーズ文字 %%[EJKLNOPQfikloqsv]
 	
 	text =os.date(text)
 	
