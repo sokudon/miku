@@ -1,0 +1,503 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>ぼかろげーむたいまー改</title>
+<head>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="./LIB/moment-with-locales.js"></script>
+<script  type="text/javascript" src="https://script.googleusercontent.com/macros/echo?user_content_key=vEIJZwCtYoK6SWZ9O5CiIpOIYlceNm40cHMjLftABB7TfjvX2Gu2VXYefEhNgiU8M6xc0f3vjbTjpspiMAG0jA-XMWw99tjWm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnGo7YCUS3MTuu7YZro4DwHR9flikHwsnHQ8JT9B0be4H6cbNXkghGPgYZpTak_o22Q&lib=MY0bVFkg9nUYingi9071ijYFpGDg2vV9V"></script>
+<script  type="text/javascript" src="https://script.google.com/macros/s/AKfycbx_v4T5aF8JckzV3g72LovKOiy4JnTqRoJNdfEWivyvKKdueqvYfR94hIx3SGq4Oeum7w/exec"></script>
+<script>
+<!--
+window.onload = function() {
+createSelectBox();
+get_web_para();
+};
+
+var kac=JSON.parse(JSON.stringify(gamedata));
+var mk=["proseka","vocalo","kinen"];
+var swap_birthday=swap();
+var dl_luascript="date-and-time_miku.lua";
+
+
+function swap(){
+var k=0;
+var sw=[];
+for(var j=0;j<mk.length;j++){
+sw[mk[j]]=[];
+k=0;
+for(var i=0;i<birthday[mk[j]].length;i++){
+sw[mk[j]][k]=[];
+sw[mk[j]][k][0]=birthday[mk[j]][i][1]
+sw[mk[j]][k][1]=birthday[mk[j]][i][0]
+sw[mk[j]][k][2]=birthday[mk[j]][i][2]
+sw[mk[j]][k][3]=birthday[mk[j]][i][3]
+k++;
+}
+}
+	 return sw;
+}
+
+function get_web_para(){
+var url=document.location.href;
+var s="";
+var n = url.indexOf("#");
+if (n > -1) {
+s = url.substring(n+1,url.length);
+url= url.substring(0,n);
+document.gm.gm.options.selectedIndex=parseInt(s);getind();
+}
+}
+
+function createSelectBox(){
+
+var mk=["proseka","vocalo","kinen"];
+var maker=document.maker.nn.options.selectedIndex;
+  gamedata=[];
+  if(maker==0){
+  gamedata=kac;
+  }
+  else{
+  gamedata=["db"].concat(swap_birthday[mk[maker-1]]);
+  for(var i=0;i<gamedata.length;i++){
+  gamedata[i][3]="";
+  gamedata[i][4]="";
+  }
+  }
+  if( document.getElementById("sel1").length>1){
+   document.getElementById("sel1").length=1;
+  }
+ 
+  //連想配列をループ処理で値を取り出してセレクトボックスにセットする
+  for(var i=1;i<gamedata.length;i++){
+    let op = document.createElement("option");
+    op.value = "";  //value値
+    op.text = gamedata[i][0] + "(" + gamedata[i][2] +")";   //テキスト値
+    op.text = op.text.replace("()","");
+    document.getElementById("sel1").appendChild(op);
+  }
+  document.getElementById("sel1").selectedIndex=1;
+  game=1;
+};
+
+	
+timer_update = 500;
+setInterval("get_count()",timer_update);
+var game =1;
+
+function getind(){
+game =document.gm.gm.options.selectedIndex;
+if(game==0){
+game=1;
+  document.getElementById("sel1").selectedIndex=1;
+}
+}
+
+
+function leapYD(s){
+if(moment(s).isLeapYear() && moment.utc(s).add("Hours",9).format("MMDD")=="0229"){
+s = moment(s).add("Days",-1);
+}
+return s;
+}
+
+function get_count() {
+	ibeowari =gamedata[game][3];
+	ibekaishi=gamedata[game][1];
+    ibemie = gamedata[game][0] +"("+gamedata[game][2] +")";
+    ibemie = ibemie.replace("()","");
+    
+    //ibeowari= leapYD(ibeowari);
+    //ibekaishi= leapYD(ibekaishi);
+	
+   var jtc=9;
+   var jtc_sm=11;
+  
+   
+   if(jtc==9){
+   date_fm="YYYY/MM/DD(ddd) HH:mm:ss ([UTC+9:00])";//現在時刻フォーマット
+   }
+   
+	var now=moment.utc().add("Hours",jtc);	
+
+	
+	var left_timetJST=moment.utc(ibeowari).add("Hours",jtc).format("YYYY-MM-DDTHH:MM:00+09:00");
+	var left_time=moment.utc(left_timetJST.replace(/\d\d:\d\d/,"00:00"))-moment.utc();//命日計算、HH:mmは除去
+	
+	
+	var zan="サ終まで:";
+	if(left_time<0){
+	left_time=-left_time;
+	zan="サ終から:"
+	}
+	
+	
+	
+	
+	t= moment(left_time).valueOf()/1000;
+	
+	var yend="("+ Math.floor(t/(3600*24)/365) +"年" +Math.floor(t/(3600*24)%365) +"日)";
+	
+	var timetxt= Math.floor(t/(3600*24)) +"日" + yend
+	+Math.floor( (t%(3600*24))/3600) + "時間" 
+	+Math.floor((t%3600)/60)+ "分" 
+	+Math.floor(t%60)+ "秒";
+	
+	timetxt=timetxt.replace(/^0日/,"");
+
+   var ibetime=(moment.utc(ibeowari)-moment.utc(ibekaishi))/1000;
+	var kaishi="経過時間:";
+	var esps=(moment.utc()- moment.utc(ibekaishi))/1000;
+	if(esps<0){
+	esps=-esps;
+	kaishi="開始まで:"
+	}
+	
+	const start = moment.utc(ibekaishi);
+  const end = moment.utc();
+
+// 年数の差
+  const years = end.diff(start, 'years');
+
+  // 年数の差を引いた後の残りの日数
+  const remainingDays = end.diff(start.add(years, 'years'), 'days');
+
+  //return { years, remainingDays };
+  
+    var yelas = "("+years+"年"+ remainingDays+"日)" ;
+	//var yelas="("+ Math.floor(esps/(3600*24)/365) +"年" +Math.floor(esps/(3600*24)%365) +"日)";
+	var espst= Math.floor(esps/(3600*24)) +"日"+ yelas +Math.floor( (esps%(3600*24))/3600)  +"時間"+ Math.floor((esps%3600)/60) +"分" + Math.floor(esps%60) +"秒";
+	if(espst.indexOf("NaN")>=0){
+	espst="----";
+	}
+	
+	moment.locale("ja", {
+ 	weekdays: ["日曜日", "月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日"],
+ 	weekdaysShort: ["日", "月", "火", "水", "木", "金", "土"]
+	 });
+
+	if(getDevice()){
+		date_fm=date_fm.replace(/\(J.+/,"");
+	}
+
+
+
+	//文字色
+	var text_color = "black";
+	//画面出力
+	timest = "<font size=\"20\">"
+	+"現在時刻:"
+	+now.format(date_fm)+"<br>"
+	+kaishi +espst+"<br>";
+	
+	if(timetxt.indexOf("NaN")<0){
+	timest +=zan +timetxt+"<br><br>";
+	}
+	
+	timest +="開始日時:" +moment.utc(ibekaishi).add("Hours",jtc).format(date_fm)+"<br>";
+	var kinen="";
+	if(moment.utc(ibekaishi).add("Hours",jtc).format("MMDD")==moment.utc().add("Hours",jtc).format("MMDD")){
+	 kinen +=  Math.floor(esps/(3600*24)/365) +"周年日";
+	}
+	
+	if(ibeowari!=""){
+	timest +="サ終日時:" +moment.utc(ibeowari).add("Hours",jtc).format(date_fm)+"<br>";
+	if(moment.utc(ibeowari).add("Hours",jtc).format("MMDD")==moment.utc().add("Hours",jtc).format("MMDD")){
+	 kinen +=  meiniti(Math.floor(t/(3600*24)/365));
+	}
+	}
+	
+	var syunen = moment.utc().add("Hours",jtc).format("YYYY-")+moment.utc(ibekaishi).add("Hours",jtc).format("MM-DDT00:00:00+09:00");
+	if(ibemie.match(/ミリシタ海外版/)){
+	var syunen = moment.utc().add("Hours",jtc).format("YYYY-")+moment.utc("2020-06-29T00:00:00+09:00").add("Hours",jtc).format("MM-DDT00:00:00+09:00");
+	if(ibemie.match(/台湾/)){
+	syunen=moment(syunen).add("h",1).format();
+	}
+   date_fm="YYYY/MM/DD(ddd) HH:mm:ss ([UTC]Z)";//現在時刻フォーマット
+	timest +="周年日:" +moment(syunen).format(date_fm)+"<br>";
+	}
+	
+	esps=(moment.utc(syunen)-moment.utc())/1000;
+	kaishi="周年まで:";
+	if(esps<0){	esps=-esps;	kaishi="周年から:"}
+	espst= Math.floor(esps/(3600*24)) +"日"+Math.floor( (esps%(3600*24))/3600)  +"時間"+ Math.floor((esps%3600)/60) +"分" + Math.floor(esps%60) +"秒";
+
+	timest +=kaishi +espst+"<br>";
+	if(ibeowari!=""){
+	syunen=moment.utc().add("Hours",jtc).format("YYYY-")+moment.utc(ibeowari).add("Hours",jtc).format("MM-DDT00:00:00+09:00");
+	esps=(-moment.utc()+ moment.utc(syunen))/1000;
+	kaishi="命日まで:";
+	if(esps<0){	esps=-esps;	kaishi="命日から:"}
+	espst= Math.floor(esps/(3600*24)) +"日"+ Math.floor( (esps%(3600*24))/3600)  +"時間"+ Math.floor((esps%3600)/60) +"分" + Math.floor(esps%60) +"秒";
+	timest +=kaishi +espst+"<br>";
+	}
+	
+	document.getElementById("cdt_now").innerHTML=timest+"</font><br>";
+	document.getElementById("ibe").innerHTML ="<font size=\"20\">"+ ibemie +kinen+"</font>";
+
+}
+
+function meiniti(t){
+var mei=[
+[1,"一周忌"],[2,"三回忌"],[6,"七回忌"],[12,"十三回忌"],[16,"十七回忌"],[22,"二十三回忌"],[26,"二十七回忌"],
+[32,"三十三回忌"],[36,"三十七回忌"],[42,"四十三回忌"],[46,"四十七回忌"],[49,"五十回忌"],[99,"百回忌"]
+];
+for(var i=0;i<mei.length;i++){
+if(mei[i][0]==t){
+return mei[i][1];
+}}
+
+return "命日" +t +"年目";
+}
+
+function getDevice(){
+    var ua = navigator.userAgent;
+    if(ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0){
+        return 'sp';
+    }else if(ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0){
+        return 'tab';
+    }
+            return null;
+}
+
+function changeBoxColor( newColor ) {
+    //document.getElementById('ibe').style.backgroundColor = newColor;
+    //document.getElementById('cdt_now').style.backgroundColor = newColor;
+    document.getElementById('bg').style.backgroundColor = newColor;
+}
+
+
+function fix_url(a) {
+    if (a.indexOf("http") >= 0) {} else if (a.indexOf("ttp") >= 0) {
+        a = "h" + a;
+    } else {
+        a = "http" + a;
+    }
+    return a.replace("http://127.0.0.1:8823/thread/", "");
+}
+function parseData(data) {
+    stringfilter(data);
+}
+
+function getweb(urls) {
+        var local = new RegExp("(\.\/neta\/[a-zA-Z0-9_ \-]+)\.(lua|py)");
+        var uri = new RegExp("(h?ttps?)?(:\/\/[-_.!~*\'()a-zA-Z0-9;\/?:\@&=+\$,%#]+)");
+        var lcmm = urls.match(local);
+        var urlm = urls.match(uri);
+        var text = "";
+        var your_url = "";
+        if (lcmm != null) {
+            your_url = lcmm[0];
+            $.get(your_url, parseData);
+        } else if (urlm != null) {
+            your_url = fix_url(urlm[0]);
+            text = "";
+            $.ajax({
+                url: your_url,
+                type: 'GET',
+                timeout: 10000,
+                success: function(res) {
+                    stringfilter(rmhtml(res));
+                }
+            });
+        }
+        return false;
+    }
+
+function stringfilter(data){
+
+if(data.match(/^from tkinter import/)){
+//makepyscript(data);
+return;
+}
+
+var KAC=[];  //gamedata //swap_birthday
+
+for(var i=1;i<gamedata.length;i++){
+KAC[i-1]=[];
+KAC[i-1][0]=gamedata[i][0];
+KAC[i-1][1]=gamedata[i][1];
+KAC[i-1][2]=gamedata[i][2];
+KAC[i-1][3]=gamedata[i][3];
+}
+
+var k=KAC.length;
+
+//"proseka","vocalo","kinen"
+for(var j=0;j<mk.length;j++){
+for(var i=0;i<swap_birthday[mk[j]].length;i++){
+KAC[k]=[];
+KAC[k][0]=swap_birthday[mk[j]][i][0]
+KAC[k][1]=swap_birthday[mk[j]][i][1]
+KAC[k][2]=swap_birthday[mk[j]][i][2]
+KAC[k][3]=swap_birthday[mk[j]][i][3]
+k++;
+}
+k=KAC.length;
+}
+
+//obs.obs_properties_add_text(props, "cg", "1.KAC", obs.OBS_TEXT_DEFAULT)
+//obs.obs_properties_add_text(props, "ml", "2.BNAM", obs.OBS_TEXT_DEFAULT)
+///obs.obs_properties_add_text(props, "sm", "3.SEGA", obs.OBS_TEXT_DEFAULT)
+//obs.obs_properties_add_text(props, "sc", "4.OTHER", obs.OBS_TEXT_DEFAULT)
+//obs.obs_properties_add_text(props, "ds", "5.//", obs.OBS_TEXT_DEFAULT)
+
+var cloned = {};
+cloned.cg=[];
+for(var i=1;i<gamedata.length;i++){
+cloned.cg[i-1]=[];
+cloned.cg[i-1][0]=gamedata[i][1];
+cloned.cg[i-1][1]=gamedata[i][0].replace(/\-/gm," ");
+cloned.cg[i-1][2]=gamedata[i][0].replace(/\-/gm," ");
+}
+
+var cl=0;
+cloned.ml=[];
+for(var i=0;i<swap_birthday[mk[cl]].length;i++){
+cloned.ml[i]=[];
+cloned.ml[i][0]=swap_birthday[mk[cl]][i][1];
+cloned.ml[i][1]=swap_birthday[mk[cl]][i][0].replace(/\-/gm," ");
+cloned.ml[i][2]=swap_birthday[mk[cl]][i][0].replace(/\-/gm," ");
+}
+
+cl=1
+cloned.sm=[];
+for(var i=0;i<swap_birthday[mk[cl]].length;i++){
+cloned.sm[i]=[];
+cloned.sm[i][0]=swap_birthday[mk[cl]][i][1];
+cloned.sm[i][1]=swap_birthday[mk[cl]][i][0].replace(/\-/gm," ");
+cloned.sm[i][2]=swap_birthday[mk[cl]][i][0].replace(/\-/gm," ");
+}
+cl=2
+cloned.sc=[];
+for(var i=0;i<swap_birthday[mk[cl]].length;i++){
+cloned.sc[i]=[];
+cloned.sc[i][0]=swap_birthday[mk[cl]][i][1];
+cloned.sc[i][1]=swap_birthday[mk[cl]][i][0].replace(/\-/gm," ");
+cloned.sc[i][2]=swap_birthday[mk[cl]][i][0].replace(/\-/gm," ");
+}
+cloned.ds=[];
+for(var i=0;i<KAC.length;i++){
+cloned.ds[i]=[];
+cloned.ds[i][0]=KAC[i][1];
+cloned.ds[i][1]=KAC[i][0].replace(/\-/gm," ");
+cloned.ds[i][2]=KAC[i][0].replace(/\-/gm," ");
+}
+
+var KACTXT= JSON.stringify(KAC).replace(/\[/gm,"{").replace(/\]/gm,"}").replace(/null/gm,'""');//- 
+var KACTXTsel= JSON.stringify(cloned).replace('["ゲーム名","稼働","備考","終わり",""],',"").replace(/\.000/gm,"").replace(/\[""/gm,'["--"').replace(/'/gm,"’");
+//imas = 
+//imasb=''
+data = data.replace('"KACOTOGE"',KACTXT);
+data = data.replace('"OTOGE"',"'"+KACTXTsel+"'");
+
+//data = data.replace(/^imas =.+/,"imas = "+KACTXT);
+//data = data.replace(/^imasb.+'$/,"imasb ='"+KACTXTsel+"'");
+
+
+//Dbcut
+var kac='{"コナミ","セガ","バンナム","他音ゲー","ALL"}';
+var miku='{"みくさんげー","ぷろせか","ぼかろ","記念日","ALL"}';
+data = data.replace(kac,miku);
+data = data.replace('AC音ゲー稼働日検索',"みくさんげーむ発売日/誕生日検索");
+data = data.replace('AC音ゲー個別検索',"発売日/誕生日個別検索");
+var rp=["beatmania","SOUND VOLTEX","CHUNITHM","太鼓の達人","GROOVE COASTER","beatmania"];
+var rrp=["初音ミク -Project DIVA-","初音ミク -Project DIVA-","日野森志歩","LEON","ミクオの日","ALL"];
+for(var i=0;i<rp.length;i++){
+data = data.replace(rp[i],rrp[i]);
+}
+
+
+TextDL(data,dl_luascript)
+return;
+}
+
+function makepyscript(data){
+
+data = data.replace("ぷろせか",ibemie);
+
+//s = '2020-12-10T14:00:00+08:00'
+//ss = '2020-12-18T12:00:00Z'
+data = data.replace("2020-12-10T14:00:00+08:00",moment(ibekaishi).format());
+data = data.replace("2020-12-18T12:00:00Z",moment(ibeowari).format());
+
+TextDL(data,"pythonduration_timer_miri.py");
+        return false;
+}
+
+function makeplugin(){
+getweb("./neta/date-and-time_kacbirth all.lua");
+}
+
+function makepy(){
+getweb("./ibetimer.py");
+}
+
+
+
+
+function TextDL(n,t){b=new Blob([n],{type:"text/plain"}),a=document.createElement("a"),a.download=t,a.href=window.URL.createObjectURL(b),e=document.createEvent("MouseEvent"),e.initEvent("click",!0,!0),a.dispatchEvent(e)}
+
+
+
+//https://twitter.com/intent/tweet?
+
+//Twitterボタン
+function toTwitter() {
+	var url = "";
+	var urlmas= document.location.href.replace(/#.+/gm,"");
+	urlmas += "#"+game;
+    
+    s=document.getElementById("ibe").innerHTML+"<br>"+document.getElementById("cdt_now").innerHTML;
+	s=s.replace(/<br>/gm,"\r\n");
+	s=s.replace(/<.*?>/gm,"");
+	s=s.replace(/\r\n\r\n/gm,"\r\n");
+	s=s+"\r\n"+urlmas+ "\r\n#KACタイマー";
+	
+	if (url == "") {
+		url = "http://twitter.com/share?text=" + encodeURIComponent(s);
+	} else {
+		url = "http://twitter.com/share?url=" + url + "&text=" + encodeURIComponent(s);
+	}
+	window.open(url,"_blank","width=600,height=300");
+}
+-->
+</script>
+<body id="bg">
+<h1>ぼかろげーむたいまー改</h1>
+<span id="ibe">ibe</span><br>
+<span id="cdt_now">text</span><br><br>
+
+<!--<p align="center"><a href="javascript:toTwitter()"><img src="./neta/imm_files/saved_resource" alt="Send to Twitter" width="61" height="61" border="0"></a></p>
+-->
+
+
+<form name="maker">
+<select name="nn" id="selmk" onChange="createSelectBox();">
+<option selected="selected">ぼかろげーむ</option>
+<option>プロセカの誕生日</option>
+<option>ぼかろ誕生日</option>
+<option>記念日他</option>
+</select>
+</form>
+
+<form name="gm">
+<select name="gm" id="sel1" onChange="getind();">
+<option>--ゲーム名/誕生日--</option>
+</select>
+</form>
+
+<p>クロマキー合成、背景色
+    <input type="button" value="緑色に変更する" onclick="changeBoxColor('#008000');">
+    <input type="button" value="青色に変更する" onclick="changeBoxColor('#0000ff');">
+    <input type="button" value="黄色に変更する" onclick="changeBoxColor('#ffff00');">
+    <input type="button" value="赤色に変更する" onclick="changeBoxColor('#ff0000');">
+    <input type="button" value="淡い緑色に戻す" onclick="changeBoxColor('#ccffcc');">
+    <input type="button" value="白色に戻す" onclick="changeBoxColor('#ffffff');">
+</p>
+
+
+<p><b>OBSタイマープラグイン生成:</b><br>
+<input type="Submit" value="OBSLUAtimerplugin" generate"="" onclick="makeplugin();return false"> 
+
+</body>
+</html>
