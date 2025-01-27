@@ -6,7 +6,7 @@
 -- みりした、LIVE Carnival Wish you Happiness！！のイベント時間　現行イベントのみ(event duration) ISO8601 recommanded☆ >>> unix >> localtime(OS)
 -- http://sokudon.s17.xrea.com/sekai.html
 -- http://sokudon.s17.xrea.com/sekai-dere.html
--- UI ENGLISH MODE view textline, 670
+-- UI ENGLISH MODE view textline, 930
 -- parameter https://github.com/sokudon/deresute/wiki/OBS-EVENT-DURATION-TIMER(luascript)
 --[[
 //全部出しさんぷる
@@ -72,7 +72,7 @@ OS時間:%N
 --%y two-digit year (98) [00-99] ２桁の年 
 --%y 年の最後の 2 つの数字 (00..99) 
 --%Y 年 (1970...) 
---%Z タイムゾーン (例 EDT)、あるいはタイムゾーンが決定できないならば無し 
+--%Z タイムゾーン (例 EDT)、あるいはタイムゾーンが決定できないならば無し  windows11だとエラーで落ちるので除去ストリングに（）　win7+⑨OBSだと文字化けするだけだった
 --%z timezone,osdateのサマータイム有り 
 
 //経過残書式一覧
@@ -128,84 +128,8 @@ dateformat = {
     "%a,%d %b %Y %H %z", "%d %b %Y %H:%M:%S %z", "%d %b %Y %H:%M %z",
     "%d %b %Y %H %z"
 }
--- mstz = {"UTC-11:00	UTC-11	協定世界時 - 11","UTC-10:00	ハワイ標準時	ハワイ","UTC-08:00	太平洋標準時	太平洋標準時 (米国およびカナダ)","UTC-07:00	山地標準時	山地標準時 (米国およびカナダ)","UTC-06:00	中部標準時 (メキシコ)	グアダラハラ、メキシコ シティ、モンテレイ","UTC-06:00	中央アメリカ標準時	中央アメリカ","UTC-05:00	東部標準時	東部標準時 (米国およびカナダ)","UTC-05:00	南アメリカ太平洋標準時	ボゴタ、リマ、キト、リオブランコ","UTC-04:30	ベネズエラ標準時	カラカス","UTC-04:00	大西洋標準時	大西洋標準時 (カナダ)","UTC-04:00	南アメリカ西部標準時	ジョージタウン、ラパス、マナウス、サンフアン","UTC-04:00	パラグアイ標準時	アスンシオン","UTC-03:00	太平洋南アメリカ標準時	サンティアゴ","UTC-03:00	南アメリカ東部標準時	カイエンヌ、フォルタレザ","UTC-03:00	モンテビデオ標準時	モンテビデオ","UTC-03:00	グリーンランド標準時	グリーンランド","UTC-03:00	アルゼンチン標準時	ブエノスアイレス","UTC-03:00	E. 南アメリカ標準時	ブラジリア","UTC-02:00	UTC-02	協定世界時 - 02","UTC-01:00	カーボベルデ標準時	カーボベルデ諸島","UTC	モロッコ標準時	カサブランカ","UTC	グリニッジ標準時	モンロビア、レイキャビク","UTC	UTC	協定世界時","UTC	GMT 標準時	ダブリン、エジンバラ、リスボン、ロンドン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	ナミビア標準時	ウィントフック","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	E. ヨーロッパ標準時	E. 欧州","UTC+02:00	エジプト標準時	Cairo","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	イスラエル標準時	中東","UTC+02:00	ヨルダン標準時	アンマン","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	中東標準時	ベイルート","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	E. ヨーロッパ標準時	E. 欧州","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	エジプト標準時	Cairo","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	シリア標準時	ダマスカス","UTC+02:00	Türkiye 標準時	イスタンブール","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	ベラルーシ標準時	ミンスク","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラビック標準時	バグダッド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	ロシア標準時	モスクワ、サンクトペテルブルク、ボルゴグラード (RTZ 2)","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:30	イラン標準時	テヘラン","UTC+04:00	コーカサス標準時	エレバン","UTC+04:00	アゼルバイジャン標準時	バクー","UTC+04:00	ジョージア標準時	トビリシ","UTC+04:00	モーリシャス標準時	ポートルイス","UTC+04:00	アラビア標準時	アブダビ、マスカット","UTC+04:00	モーリシャス標準時	ポートルイス","UTC+04:00	アラビア標準時	アブダビ、マスカット","UTC+04:30	アフガニスタン標準時	カブール","UTC+05:00	西アジア標準時	アシハバード、タシケント","UTC+05:00	パキスタン標準時	イスラマバード、カラチ","UTC+05:00	西アジア標準時	アシハバード、タシケント","UTC+05:30	インド標準時	チェンナイ、コルカタ、ムンバイ、ニューデリー","UTC+05:30	スリランカ標準時	スリジャヤワルダナプラコッテ","UTC+05:45	ネパール標準時	カトマンズ","UTC+06:00	バングラデシュ標準時	ダッカ","UTC+06:00	中央アジア標準時	アスタナ","UTC+06:30	ミャンマー標準時	ヤンゴン (ラングーン)","UTC+07:00	東南アジア標準時	バンコク、ハノイ、ジャカルタ","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	中国標準時	北京、重慶、香港特別行政区、ウルムチ","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	ウランバートル標準時	ウランバートル","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	台北標準時	台北","UTC+09:00	東京標準時	大阪、札幌、東京","UTC+09:00	韓国標準時	ソウル","UTC+09:00	東京標準時	大阪、札幌、東京","UTC+10:00	オーストラリア東部標準時	キャンベラ、メルボルン、シドニー","UTC+10:00	西太平洋標準時	グアム、ポートモレスビー","UTC+11:00	中央太平洋標準時	ソロモン諸島、ニューカレドニア","UTC+12:00	フィジー標準時	フィジー","UTC+12:00	UTC+12	協定世界時 + 12","UTC+12:00	ニュージーランド標準時	オークランド、ウェリントン","UTC+12:00	UTC+12	協定世界時 + 12","UTC+13:00	サモア標準時	サモア","UTC+13:00	トンガ標準時	ヌクアロファ"}
-mstz = {
-    "UTC-11:00	UTC-11	Coordinated Universal Time-11",
-    "UTC-10:00	Hawaiian Standard Time	Hawaii",
-    "UTC-08:00	Pacific Standard Time	Pacific Time (US & Canada)",
-    "UTC-07:00	Mountain Standard Time	Mountain Time (US & Canada)",
-    "UTC-06:00	Central Standard Time (Mexico)	Guadalajara, Mexico City, Monterrey",
-    "UTC-06:00	Central America Standard Time	Central America",
-    "UTC-05:00	SA Pacific Standard Time	Bogota, Lima, Quito, Rio Branco",
-    "UTC-05:00	Eastern Standard Time	Eastern Time (US & Canada)",
-    "UTC-04:30	Venezuela Standard Time	Caracas",
-    "UTC-04:00	SA Western Standard Time	Georgetown, La Paz, Manaus, San Juan",
-    "UTC-04:00	Paraguay Standard Time	Asuncion",
-    "UTC-04:00	Atlantic Standard Time	Atlantic Time (Canada)",
-    "UTC-03:00	SA Eastern Standard Time	Cayenne, Fortaleza",
-    "UTC-03:00	Pacific SA Standard Time	Santiago",
-    "UTC-03:00	Montevideo Standard Time	Montevideo",
-    "UTC-03:00	Greenland Standard Time	Greenland",
-    "UTC-03:00	E. South America Standard Time	Brasilia",
-    "UTC-03:00	Argentina Standard Time	City of Buenos Aires",
-    "UTC-02:00	UTC-02	Coordinated Universal Time-02",
-    "UTC-01:00	Cape Verde Standard Time	Cabo Verde Is.",
-    "UTC	GMT Standard Time	Dublin, Edinburgh, Lisbon, London",
-    "UTC	Greenwich Standard Time	Monrovia, Reykjavik",
-    "UTC	Morocco Standard Time	Casablanca",
-    "UTC	UTC	Coordinated Universal Time",
-    "UTC+01:00	Central Europe Standard Time	Belgrade, Bratislava, Budapest, Ljubljana, Prague",
-    "UTC+01:00	Central European Standard Time	Sarajevo, Skopje, Warsaw, Zagreb",
-    "UTC+01:00	Namibia Standard Time	Windhoek",
-    "UTC+01:00	Romance Standard Time	Brussels, Copenhagen, Madrid, Paris",
-    "UTC+01:00	W. Central Africa Standard Time	West Central Africa",
-    "UTC+01:00	W. Europe Standard Time	Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
-    "UTC+02:00	E. Europe Standard Time	E. Europe",
-    "UTC+02:00	Egypt Standard Time	Cairo",
-    "UTC+02:00	FLE Standard Time	Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius",
-    "UTC+02:00	GTB Standard Time	Athens, Bucharest",
-    "UTC+02:00	Israel Standard Time	Middle East",
-    "UTC+02:00	Jordan Standard Time	Amman",
-    "UTC+02:00	Middle East Standard Time	Beirut",
-    "UTC+02:00	South Africa Standard Time	Harare, Pretoria",
-    "UTC+02:00	Syria Standard Time	Damascus",
-    "UTC+02:00	Türkiye Standard Time	Istanbul",
-    "UTC+03:00	Arab Standard Time	Kuwait, Riyadh",
-    "UTC+03:00	Arabic Standard Time	Baghdad",
-    "UTC+03:00	Belarus Standard Time	Minsk",
-    "UTC+03:00	E. Africa Standard Time	Nairobi",
-    "UTC+03:00	Russian Standard Time	Moscow, St. Petersburg, Volgograd (RTZ 2)",
-    "UTC+03:30	Iran Standard Time	Tehran",
-    "UTC+04:00	Arabian Standard Time	Abu Dhabi, Muscat",
-    "UTC+04:00	Azerbaijan Standard Time	Baku",
-    "UTC+04:00	Caucasus Standard Time	Yerevan",
-    "UTC+04:00	Georgian Standard Time	Tbilisi",
-    "UTC+04:00	Mauritius Standard Time	Port Louis",
-    "UTC+04:30	Afghanistan Standard Time	Kabul",
-    "UTC+05:00	Pakistan Standard Time	Islamabad, Karachi",
-    "UTC+05:00	West Asia Standard Time	Ashgabat, Tashkent",
-    "UTC+05:30	India Standard Time	Chennai, Kolkata, Mumbai, New Delhi",
-    "UTC+05:30	Sri Lanka Standard Time	Sri Jayawardenepura",
-    "UTC+05:45	Nepal Standard Time	Kathmandu",
-    "UTC+06:00	Bangladesh Standard Time	Dhaka",
-    "UTC+06:00	Central Asia Standard Time	Astana",
-    "UTC+06:30	Myanmar Standard Time	Yangon (Rangoon)",
-    "UTC+07:00	SE Asia Standard Time	Bangkok, Hanoi, Jakarta",
-    "UTC+08:00	China Standard Time	Beijing, Chongqing, Hong Kong SAR, Urumqi",
-    "UTC+08:00	Singapore Standard Time	Kuala Lumpur, Singapore",
-    "UTC+08:00	Taipei Standard Time	Taipei",
-    "UTC+08:00	Ulaanbaatar Standard Time	Ulaanbaatar",
-    "UTC+09:00	Korea Standard Time	Seoul",
-    "UTC+09:00	Tokyo Standard Time	Osaka, Sapporo, Tokyo",
-    "UTC+10:00	AUS Eastern Standard Time	Canberra, Melbourne, Sydney",
-    "UTC+10:00	West Pacific Standard Time	Guam, Port Moresby",
-    "UTC+11:00	Central Pacific Standard Time	Solomon Is., New Caledonia",
-    "UTC+12:00	Fiji Standard Time	Fiji",
-    "UTC+12:00	New Zealand Standard Time	Auckland, Wellington",
-    "UTC+12:00	UTC+12	Coordinated Universal Time+12",
-    "UTC+13:00	Samoa Standard Time	Samoa",
-    "UTC+13:00	Tonga Standard Time	Nuku'alofa"
-}
+ mstz = {"UTC-11:00	UTC-11	協定世界時 - 11","UTC-10:00	ハワイ標準時	ハワイ","UTC-08:00	太平洋標準時	太平洋標準時 (米国およびカナダ)","UTC-07:00	山地標準時	山地標準時 (米国およびカナダ)","UTC-06:00	中部標準時 (メキシコ)	グアダラハラ、メキシコ シティ、モンテレイ","UTC-06:00	中央アメリカ標準時	中央アメリカ","UTC-05:00	東部標準時	東部標準時 (米国およびカナダ)","UTC-05:00	南アメリカ太平洋標準時	ボゴタ、リマ、キト、リオブランコ","UTC-04:30	ベネズエラ標準時	カラカス","UTC-04:00	大西洋標準時	大西洋標準時 (カナダ)","UTC-04:00	南アメリカ西部標準時	ジョージタウン、ラパス、マナウス、サンフアン","UTC-04:00	パラグアイ標準時	アスンシオン","UTC-03:00	太平洋南アメリカ標準時	サンティアゴ","UTC-03:00	南アメリカ東部標準時	カイエンヌ、フォルタレザ","UTC-03:00	モンテビデオ標準時	モンテビデオ","UTC-03:00	グリーンランド標準時	グリーンランド","UTC-03:00	アルゼンチン標準時	ブエノスアイレス","UTC-03:00	E. 南アメリカ標準時	ブラジリア","UTC-02:00	UTC-02	協定世界時 - 02","UTC-01:00	カーボベルデ標準時	カーボベルデ諸島","UTC	モロッコ標準時	カサブランカ","UTC	グリニッジ標準時	モンロビア、レイキャビク","UTC	UTC	協定世界時","UTC	GMT 標準時	ダブリン、エジンバラ、リスボン、ロンドン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	ナミビア標準時	ウィントフック","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	E. ヨーロッパ標準時	E. 欧州","UTC+02:00	エジプト標準時	Cairo","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	イスラエル標準時	中東","UTC+02:00	ヨルダン標準時	アンマン","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	中東標準時	ベイルート","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	E. ヨーロッパ標準時	E. 欧州","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	エジプト標準時	Cairo","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	シリア標準時	ダマスカス","UTC+02:00	Türkiye 標準時	イスタンブール","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	ベラルーシ標準時	ミンスク","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラビック標準時	バグダッド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	ロシア標準時	モスクワ、サンクトペテルブルク、ボルゴグラード (RTZ 2)","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:30	イラン標準時	テヘラン","UTC+04:00	コーカサス標準時	エレバン","UTC+04:00	アゼルバイジャン標準時	バクー","UTC+04:00	ジョージア標準時	トビリシ","UTC+04:00	モーリシャス標準時	ポートルイス","UTC+04:00	アラビア標準時	アブダビ、マスカット","UTC+04:00	モーリシャス標準時	ポートルイス","UTC+04:00	アラビア標準時	アブダビ、マスカット","UTC+04:30	アフガニスタン標準時	カブール","UTC+05:00	西アジア標準時	アシハバード、タシケント","UTC+05:00	パキスタン標準時	イスラマバード、カラチ","UTC+05:00	西アジア標準時	アシハバード、タシケント","UTC+05:30	インド標準時	チェンナイ、コルカタ、ムンバイ、ニューデリー","UTC+05:30	スリランカ標準時	スリジャヤワルダナプラコッテ","UTC+05:45	ネパール標準時	カトマンズ","UTC+06:00	バングラデシュ標準時	ダッカ","UTC+06:00	中央アジア標準時	アスタナ","UTC+06:30	ミャンマー標準時	ヤンゴン (ラングーン)","UTC+07:00	東南アジア標準時	バンコク、ハノイ、ジャカルタ","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	中国標準時	北京、重慶、香港特別行政区、ウルムチ","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	ウランバートル標準時	ウランバートル","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	台北標準時	台北","UTC+09:00	東京標準時	大阪、札幌、東京","UTC+09:00	韓国標準時	ソウル","UTC+09:00	東京標準時	大阪、札幌、東京","UTC+10:00	オーストラリア東部標準時	キャンベラ、メルボルン、シドニー","UTC+10:00	西太平洋標準時	グアム、ポートモレスビー","UTC+11:00	中央太平洋標準時	ソロモン諸島、ニューカレドニア","UTC+12:00	フィジー標準時	フィジー","UTC+12:00	UTC+12	協定世界時 + 12","UTC+12:00	ニュージーランド標準時	オークランド、ウェリントン","UTC+12:00	UTC+12	協定世界時 + 12","UTC+13:00	サモア標準時	サモア","UTC+13:00	トンガ標準時	ヌクアロファ"}
+
 
 hotkey_id_reset = obs.OBS_INVALID_HOTKEY_ID
 hotkey_id_pause = obs.OBS_INVALID_HOTKEY_ID
@@ -361,7 +285,7 @@ function set_time_text()
         bar = makebar(prog)
     end
 
-    local time_textq = string.gsub(time_text, "%%[EJKLNOPQfikloqsv]", "") -- フリーズ文字 %%[EJKLNOPQfikloqsv]
+    local time_textq = string.gsub(time_text, "%%[EJKLNOPQfikloqsvZ]", "") -- フリーズ文字 %%[EJKLNOPQfikloqsv]
     text = string.gsub(text, "%%N", os.date(time_textq, os.time()))
     local time_textj = "!" .. string.gsub(time_textq, "%%z", "+0900")
     local time_textu = "!" ..
@@ -391,7 +315,7 @@ function set_time_text()
         text = string.gsub(text, "%%EJ", os.date(time_textj, ends + 9 * 3600))
         text = string.gsub(text, "%%E", os.date(time_textq, ends))
     end
-    text = string.gsub(text, "%%[EJKLNOPQfikloqsv]", "") -- フリーズ文字 %%[EJKLNOPQfikloqsv]
+    text = string.gsub(text, "%%[EJKLNOPQfikloqsvZ]", "") -- フリーズ文字 %%[EJKLNOPQfikloqsv]
 
     text = os.date(text)
 
@@ -922,7 +846,8 @@ function script_properties()
     local p_mode = obs.obs_properties_add_list(props, "mode", "Mode",
                                                obs.OBS_COMBO_TYPE_EDITABLE,
                                                obs.OBS_COMBO_FORMAT_STRING)
-    obs.obs_property_list_add_string(p_mode, "Countdown", "countdown") -- 右だけ日本語化 
+    obs.obs_property_list_add_string(p_mode, "Countdown", "countdown") -- 右だけ日本語化
+
     local c_mode = obs.obs_properties_add_list(props, "UTC",
                                                "WorldTime UTC+-??",
                                                obs.OBS_COMBO_TYPE_EDITABLE,
@@ -930,6 +855,7 @@ function script_properties()
     for i = 1, #mstz do
         obs.obs_property_list_add_string(c_mode, mstz[i], mstz[i])
     end
+
     obs.obs_property_set_modified_callback(p_mode, settings_modified)
     obs.obs_property_set_long_description(f_prop,
                                           "%d - days\n%hh - hours with leading zero (00..23)\n%h - hours (0..23)\n%HH - hours with leading zero (00..infinity)\n%H - hours (0..infinity)\n%mm - minutes with leading zero (00..59)\n%m - minutes (0..59)\n%MM - minutes with leading zero (00..infinity)\n%M - minutes (0..infinity)\n%ss - seconds with leading zero (00..59)\n%s - seconds (0..59)\n%SS - seconds with leading zero (00..infinity)\n%S - seconds (0..infinity)\n%t - tenths")
@@ -956,15 +882,16 @@ function script_properties()
     local p_para_text
     local p_time_text
 
-    if (true) then -- ENGLISH MODE delete if(false), use if(true)
+     if(false)then
+    --if (true) then -- ENGLISH MODE delete if(false), use if(true)
         p_title_text = obs.obs_properties_add_text(props, "title_text",
                                                    "EVENT NAME:",
                                                    obs.OBS_TEXT_DEFAULT)
         p_start_text = obs.obs_properties_add_text(props, "start_text",
-                                                   "START:ex　2020-02-26 15:00 PST",
+                                                   "START:ex　2020-02-26T15:00:00+09:00",
                                                    obs.OBS_TEXT_DEFAULT)
         p_stop_text = obs.obs_properties_add_text(props, "stop_text",
-                                                  "END:ex　2020-03-26 21:00 PDT",
+                                                  "END:ex　2020-02-26T21:00:00+09:00",
                                                   obs.OBS_TEXT_DEFAULT)
         f_prop = obs.obs_properties_add_text(props, "format",
                                              "ELASPED/LEFT format",
@@ -980,6 +907,7 @@ function script_properties()
             obs.obs_property_list_add_string(time_mode, dateformat[i],
                                              dateformat[i])
         end
+
         p_end_text = obs.obs_properties_add_text(props, "end_text",
                                                  "STOP text:(empty not use)",
                                                  obs.OBS_TEXT_DEFAULT)
@@ -1057,12 +985,29 @@ function cut_string(s, max)
     return trim(s)
 end
 
+function extract_and_calculate_offset(str)
+    local pattern = "UTC[%-%+]%d%d:%d%d"
+
+    local match = string.match(str, pattern)
+    if match then
+        local sign, hours, minutes = match:match("^UTC([%+%-])(%d%d):(%d%d)")
+        local offset = hours + minutes / 60
+        if (sign == "-") then offset = -offset end
+        return offset
+    end
+
+    return 0 -- マッチしなかった場合
+end
+
 function script_update(settings)
     stop_timer()
 
     mode = obs.obs_data_get_string(settings, "mode")
     a_mode = obs.obs_data_get_string(settings, "a_mode")
-    utc = obs.obs_data_get_double(settings, "UTC")
+    -- utc           = obs.obs_data_get_double(settings, "UTC")
+    utc = 0
+    utc_st = obs.obs_data_get_string(settings, "UTC")
+    utc = extract_and_calculate_offset(utc_st)
 
     if mode == "Countdown" then
         local dt =
@@ -1106,21 +1051,21 @@ function script_update(settings)
 end
 
 function script_defaults(settings)
-    obs.obs_data_set_default_double(settings, "UTC", 8)
+    obs.obs_data_set_default_double(settings, "UTC", 0)
     obs.obs_data_set_default_string(settings, "start_text",
-                                    "2024-12-10 15:00HKT")
-    obs.obs_data_set_default_string(settings, "stop_text", "2024-12-18 21:00HKT")
+                                    "2025-01-11T15:00:00+09:00")
+    obs.obs_data_set_default_string(settings, "stop_text",
+                                    "2025-01-19T20:59:59+09:00")
     obs.obs_data_set_default_string(settings, "mode", "Countdown")
     obs.obs_data_set_default_string(settings, "a_mode",
                                     "Global (timer always active)")
     obs.obs_data_set_default_string(settings, "format",
                                     "%d %hh:%mm:%ss(%hsH,%dsD)")
-    obs.obs_data_set_default_string(settings, "title_text",
-                                    "あっちこっち飼育員体験！")
+    obs.obs_data_set_default_string(settings, "title_text", "Time to take off!")
     obs.obs_data_set_default_string(settings, "time_text",
                                     "%Y-%m-%dT%H:%M:%S%z (%a)")
     obs.obs_data_set_default_string(settings, "para_text",
-                                    "HKT現在時間%UTC\nHKT終了時間%EU\n経過時間%K\n残り時間%L\nイベント時間%I\n%T%P％\n%Q")
+                                    "日本時間%JST\n経過時間%K\n残り時間%L\nイベント時間%I\n%T%P％\n%Q")
     obs.obs_data_set_default_string(settings, "end_text", "終了しました")
     obs.obs_data_set_default_double(settings, "bar", 2)
 
