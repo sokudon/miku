@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プロセカいべたいまー改</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #2ecc71;
+        }
+        
+        .myText{
+            color: #2c3e50;
+            font-size: clamp(16px, 2.9vw, 32px);
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            margin: 20px auto;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #2ecc71;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #95a5a6;
+        }
+            /* カスタムボタンのスタイル */
+    .btn-magenta {
+      background-color: magenta;
+      color: white;
+      border: none;
+    }
+    .btn-magenta:hover {
+      background-color: #d400d4;
+    }
+
+    .btn-cyan {
+      background-color: cyan;
+      color: black;
+      border: none;
+    }
+    .btn-cyan:hover {
+      background-color: #00b7eb;
+    }
+
+    .btn-blight-purple {
+      background-color: #b300FF; /* ブライトパープル */
+      color: white;
+      border: none;
+    }
+    .btn-light-purple:hover {
+      background-color: #c48bcc;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>プロセカいべたいまー改</h1>
+
+    <div class="container">
+        <!-- イベント情報セクション -->
+        <div class="myText">
+            <span id="ibe">イベント名を表示</span><br>
+            <span id="cdt_now">現在時刻を表示</span><br><br>
+        </div>
+
+        <!-- タイムゾーン設定セクション -->
+        <div class="section">
+            <h2>タイムゾーン設定</h2>
+            <label for="bar"><input type="checkbox" name="hyouka" checked="checked" id="bar">進捗バーを表示しない</label><br>
+            <label for="CUSTOM"><input type="checkbox" name="hyouka" checked="checked"
+                    id="CUSTOM">日時短縮表示,ついっただと文字数があるので"MM/DD(ddd)HH:mm"に短縮（）</label>
+            <form name="tzone">
+                <label for="OF">
+                    <input type="checkbox" checked="checked" value="NEW" id="OF">
+                    OSのタイムゾーンを優先する
+                </label><br>
+                <select name="owata" class="form-select">
+                    <option value="">UTC -12:00　国際日付変更線西側</option>
+                    <option value="">UTC -11:00　ミッドウェー島</option>
+                    <option value="">UTC -10:00　ハワイ</option>
+                    <option value="">UTC -09:00　アラスカ</option>
+                    <option value="">UTC -08:00　(米国およびカナダ　; ティファナティファナ</option>
+                    <option value="">UTC -07:00　山岳部標準時:(米国およびカナダ　</option>
+                    <option value="">UTC -07:00　チワワ、ラパス、マサトラン</option>
+                    <option value="">UTC -07:00　アリゾナ州</option>
+                    <option value="">UTC -06:00　中部標準:(米国およびカナダ　</option>
+                    <option value="">UTC -06:00　サスカチェワン</option>
+                    <option value="">UTC -06:00　グアダラハラ、メキシコシティ、モンテレー</option>
+                    <option value="">UTC -06:00　中央アメリカ</option>
+                    <option value="">UTC -05:00　(米国およびカナダ）、東部標準時</option>
+                    <option value="">UTC -05:00　インディアナ (東部　</option>
+                    <option value="">UTC -05:00　ボゴタ、リマ、Quito</option>
+                    <option value="">UTC -04:00　大西洋標準:(カナダ　</option>
+                    <option value="">UTC -04:00　ジョージタウン、ラパス、サンフアン</option>
+                    <option value="">UTC -04:00　サンティアゴ</option>
+                    <option value="">UTC -03:30　ニューファンドランド</option>
+                    <option value="">UTC -03:00　ブラジリア</option>
+                    <option value="">UTC -03:00　ジョージタウン</option>
+                    <option value="">UTC -03:00　グリーンランド</option>
+                    <option value="">UTC -02:00　中央大西洋</option>
+                    <option value="">UTC -01:00　アゾレス諸島</option>
+                    <option value="">UTC -01:00　カーボベルデ諸島</option>
+                    <option value="">UTC +00:00　 ダブリン、エジンバラ、リスボン、ロンドン、グリニッジ標準時、世界協定時刻</option>
+                    <option value="">UTC +00:00　モンロビア、レイキャビク</option>
+                    <option value="">UTC +01:00　サニーベイル, カリフォルニア州、ブラチスラバ、ブダペスト、Ljubljana、プラハ</option>
+                    <option value="">UTC +01:00　サラエボ、Skopje、ワルシャワ、Zagreb</option>
+                    <option value="">UTC +01:00　ブリュッセル、コペンハーゲン、マドリッド、パリ</option>
+                    <option value="">UTC +01:00　アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン</option>
+                    <option value="">UTC +01:00　西中央アフリカ</option>
+                    <option value="">UTC +02:00　ミンスク</option>
+                    <option value="">UTC +02:00　カイロ</option>
+                    <option value="">UTC +02:00　ヘルシンキ、キエフ、リガ、ソフィア、Tallinn、Vilnius</option>
+                    <option value="">UTC +02:00　アテネ、ブカレスト、イスタンブール</option>
+                    <option value="">UTC +02:00　エルサレム</option>
+                    <option value="">UTC +02:00　ハラレ、プレトリア</option>
+                    <option value="">UTC +03:00　モスクワ、サンクト ペテルスブルグ、ボルゴグラード</option>
+                    <option value="">UTC +03:00　クウェート、リヤド</option>
+                    <option value="">UTC +03:00　ナイロビ</option>
+                    <option value="">UTC +03:00　バグダッド</option>
+                    <option value="">UTC +03:30　テヘラン</option>
+                    <option value="">UTC +04:00　アブダビ、マスカット</option>
+                    <option value="">UTC +04:00　バクー、トビリシ、エレバン</option>
+                    <option value="">UTC +04:30　カブール</option>
+                    <option value="">UTC +05:00　エカテリンブルク</option>
+                    <option value="">UTC +05:00　タシケント</option>
+                    <option value="">UTC +05:30　チェンナイ、カルカッタ、ムンバイ、ニューデリー</option>
+                    <option value="">UTC +05:45　カトマンズ</option>
+                    <option value="">UTC +06:00　アスタナ、ダッカ</option>
+                    <option value="">UTC +06:00　スリジャヤワルダナプラコッテ</option>
+                    <option value="">UTC +06:00　アルマアトイ、ノボシビルスク</option>
+                    <option value="">UTC +06:30　ヤンゴン (ラングーン　</option>
+                    <option value="">UTC +07:00　バンコク、ハノイ、ジャカルタ</option>
+                    <option value="">UTC +07:00　クラスノヤルスク</option>
+                    <option value="">UTC +08:00　北京、重慶、ホンコン、ウルムチ</option>
+                    <option value="">UTC +08:00　マレーシア. クアラルンプール、シンガポール</option>
+                    <option value="">UTC +08:00　台北</option>
+                    <option value="">UTC +08:00　パース</option>
+                    <option value="">UTC +08:00　イルクーツク、ウランバートル</option>
+                    <option value="">UTC +09:00　ソウル</option>
+                    <option selected="selected" value="">UTC +09:00　大阪、札幌、東京</option>
+                    <option value="">UTC +09:00　ヤクーツク</option>
+                    <option value="">UTC +09:30　ダーウィン</option>
+                    <option value="">UTC +09:30　アデレード</option>
+                    <option value="">UTC +10:00　キャンベラ、メルボルン、シドニー</option>
+                    <option value="">UTC +10:00　ブリスベン</option>
+                    <option value="">UTC +10:00　ホバート</option>
+                    <option value="">UTC +10:00　ウラジオ ストック</option>
+                    <option value="">UTC +10:00　グアム、ポートモレスビー</option>
+                    <option value="">UTC +11:00　マガダン、ソロモン諸島、ニューカレドニア</option>
+                    <option value="">UTC +12:00　フィジー、カムチャツカ、マーシャル諸島</option>
+                    <option value="">UTC +12:00　オークランド、ウェリントン</option>
+                    <option value="">UTC +13:00　キリバス、サモア、トケラウ、トンガ、ニュージーランド夏、フィジー夏</option>
+                    <option value="">UTC +14:00　サモア夏</option>
+                </select>
+            </form>
+        </div>
+
+        <!-- 背景色変更セクション -->
+        <div class="section">
+            <h2>背景色の変更</h2>
+            <label for="same_color"><input type="checkbox" name="hyouka" checked="checked"
+                    id="same_color">セクションも同色にする</label><br>
+            <button class="btn btn-success" onclick="changeBoxColor('#008000','#ccffcc');">緑</button>
+            <button class="btn btn-primary" onclick="changeBoxColor('#0000ff','#cceeff');">青</button>
+            <button class="btn btn btn-magenta" onclick="changeBoxColor('#ff00ff','#ff99aa');">マゼンダ</button>
+  			<button class="btn btn-cyan" onclick="changeBoxColor('#00ffff','#ccffff');">シアン</button>
+  			<button class="btn btn-blight-purple" onclick="changeBoxColor('#b300ff','#cc99ff');">ブライトパープル</button>
+            <button class="btn btn-secondary" onclick="changeBoxColor('#ecf0f1','#ffffff');" >もとの色</button>
+            
+            <h2>文字色の変更</h2>
+            <button class="btn btn-light" onclick="changeTxtColor('#ffffff');">白</button>
+            <button class="btn btn-dark" onclick="changeTxtColor('#000000');">黒</button>
+
+        </div>
+
+        <!-- カレンダー登録 -->
+        <div class="section">
+            <h2>カレンダー登録</h2>
+            <button class="btn btn-secondary" onclick="makeical(); return false;">iCalendar作成</button>
+            <a href="./miku_event_calender.html" class="btn btn-link">Googleカレンダー向け</a>
+        </div>
+
+        <!--OBSたいまー-->
+        <div class="section">
+            <h2>OBSタイマープラグイン生成</h2>
+                <a href="https://photos.app.goo.gl/anwmTnhhAua4p8aP9">OBSluascript設定さんぷる</a>
+                <select name="obs" id="obstxt">
+                    <option value="">ミリ縦</option>
+                    <option value="">ミリコリア</option>
+                    <option value="">台湾</option>
+                    <option value="">ミリデレ2</option>
+                    <option value="">ミリミリデレ</option>
+                    <option selected="selected">プロセカ</option>
+                    <option value="">ユーザー設定(タブ区切り)</option>
+                </select><br>
+                <a href="OBSdere_sample.txt">ユーザー設定:</a><input type="text" name="" value="" id="user" maxlength="200"
+                    size="50"><br>				
+                <button class="btn btn-secondary" onclick="makeplugin(); return false;">OBSluascript作成</button><br><br>
+                <button class="btn btn-secondary" onclick="makepluginpy(); return false;">OBSpython作成</button>
+                <a href="https://photos.app.goo.gl/puPDpiXsFb41YjW77">PYTHON obs設定さんぷる</a>
+
+        </div>
+        <!--pythonoたいまー-->
+        <div class="section">
+        <h2>pythonタイマー生成(要PY3.8以上,PC上で動作)</h2>
+        <button class="btn btn-secondary" onclick="makepy();return false;">Py Tinker作成</button>
+            </p>
+        </div>
+
+        <!-- 旧デザインリンク -->
+        <div class="section">
+            <h2>旧デザイン</h2>
+            <p><a href="./miku_ibetimer_old.html">旧デザインを見る</a></p>
+        </div>
+    </div>
+    <div class="footer">© 2025 プロセカいべたいまー改. All rights reserved.</div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+    <script src="./LIB/moment-with-locales.js"></script>
+    <script
+        src="https://script.googleusercontent.com/macros/echo?user_content_key=1KqwZXfj9UfcokJ9wrNM1s3enPgk61tHnZkw1xHG_3WY1gUJ-OctHyYGjcuQKdGyCfYfXnFO4bnzsTUfgyVgIWWg4Z7i8iI3m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnH0ZbknEEvCooDg64hkh2YIAujrj78NTWjypppjDthV_tWKciH7L3CqLTc3ub6Jkcg&lib=MZpfFxa5O7Ug6FBst2kEU43ndBJ9ix56c"></script>
+    <!--<script src="settei.txt"></script>-->
+    <script src="./LIB/strmdn_web_timer.js"></script>
+</body>
+
+</html>
