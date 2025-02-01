@@ -128,26 +128,127 @@ tz_st = ""
 
 ENG = true
 
+dateformat = {
+    "%X %x", "%X", "%x", "%D %x", "%Y-%m-%dT%H:%M:%S%z (%a)",
+    "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M", "%Y-%m-%d %H", "%Y-%m-%d",
+    "%m-%d %H:%M:%S%z (%a)", "%m-%d %H:%M:%S", "%m-%d %H:%M", "%m-%d %H",
+    "%m-%d", "%H:%M:%S%z (%a)", "%H:%M:%S", "%H:%M", "%p %I:%M %B %d",
+    "%p %I:%M", "%c", "%a,%d %b %Y %H:%M:%S %z", "%a,%d %b %Y %H:%M %z",
+    "%a,%d %b %Y %H %z", "%d %b %Y %H:%M:%S %z", "%d %b %Y %H:%M %z",
+    "%d %b %Y %H %z"
+}
+-- mstz = {"UTC-11:00	UTC-11	協定世界時 - 11","UTC-10:00	ハワイ標準時	ハワイ","UTC-08:00	太平洋標準時	太平洋標準時 (米国およびカナダ)","UTC-07:00	山地標準時	山地標準時 (米国およびカナダ)","UTC-06:00	中部標準時 (メキシコ)	グアダラハラ、メキシコ シティ、モンテレイ","UTC-06:00	中央アメリカ標準時	中央アメリカ","UTC-05:00	東部標準時	東部標準時 (米国およびカナダ)","UTC-05:00	南アメリカ太平洋標準時	ボゴタ、リマ、キト、リオブランコ","UTC-04:30	ベネズエラ標準時	カラカス","UTC-04:00	大西洋標準時	大西洋標準時 (カナダ)","UTC-04:00	南アメリカ西部標準時	ジョージタウン、ラパス、マナウス、サンフアン","UTC-04:00	パラグアイ標準時	アスンシオン","UTC-03:00	太平洋南アメリカ標準時	サンティアゴ","UTC-03:00	南アメリカ東部標準時	カイエンヌ、フォルタレザ","UTC-03:00	モンテビデオ標準時	モンテビデオ","UTC-03:00	グリーンランド標準時	グリーンランド","UTC-03:00	アルゼンチン標準時	ブエノスアイレス","UTC-03:00	E. 南アメリカ標準時	ブラジリア","UTC-02:00	UTC-02	協定世界時 - 02","UTC-01:00	カーボベルデ標準時	カーボベルデ諸島","UTC	モロッコ標準時	カサブランカ","UTC	グリニッジ標準時	モンロビア、レイキャビク","UTC	UTC	協定世界時","UTC	GMT 標準時	ダブリン、エジンバラ、リスボン、ロンドン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	ナミビア標準時	ウィントフック","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	サラエボ、スコピエ、ワルシャワ、ザグレブ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	中央ヨーロッパ標準時	ベオグラード、ブラチスラバ、ブダペスト、リュブリャナ、プラハ","UTC+01:00	ロマンス標準時	ブリュッセル、コペンハーゲン、マドリード、パリ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+01:00	西 中央アフリカ標準時	西中央アフリカ","UTC+01:00	西 ヨーロッパ標準時	アムステルダム、ベルリン、ベルン、ローマ、ストックホルム、ウィーン","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	E. ヨーロッパ標準時	E. 欧州","UTC+02:00	エジプト標準時	Cairo","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	イスラエル標準時	中東","UTC+02:00	ヨルダン標準時	アンマン","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	中東標準時	ベイルート","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	E. ヨーロッパ標準時	E. 欧州","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	エジプト標準時	Cairo","UTC+02:00	GTB 標準時	アテネ、ブカレスト","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+02:00	シリア標準時	ダマスカス","UTC+02:00	Türkiye 標準時	イスタンブール","UTC+02:00	FLE 標準時	ヘルシンキ、キエフ、リガ、ソフィア、タリン、ビリニュス","UTC+02:00	南アフリカ標準時	ハラーレ、プレトリア","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	ベラルーシ標準時	ミンスク","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラビック標準時	バグダッド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	ロシア標準時	モスクワ、サンクトペテルブルク、ボルゴグラード (RTZ 2)","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:00	E. アフリカ標準時	ナイロビ","UTC+03:00	アラブ標準時	クウェート、リヤド","UTC+03:30	イラン標準時	テヘラン","UTC+04:00	コーカサス標準時	エレバン","UTC+04:00	アゼルバイジャン標準時	バクー","UTC+04:00	ジョージア標準時	トビリシ","UTC+04:00	モーリシャス標準時	ポートルイス","UTC+04:00	アラビア標準時	アブダビ、マスカット","UTC+04:00	モーリシャス標準時	ポートルイス","UTC+04:00	アラビア標準時	アブダビ、マスカット","UTC+04:30	アフガニスタン標準時	カブール","UTC+05:00	西アジア標準時	アシハバード、タシケント","UTC+05:00	パキスタン標準時	イスラマバード、カラチ","UTC+05:00	西アジア標準時	アシハバード、タシケント","UTC+05:30	インド標準時	チェンナイ、コルカタ、ムンバイ、ニューデリー","UTC+05:30	スリランカ標準時	スリジャヤワルダナプラコッテ","UTC+05:45	ネパール標準時	カトマンズ","UTC+06:00	バングラデシュ標準時	ダッカ","UTC+06:00	中央アジア標準時	アスタナ","UTC+06:30	ミャンマー標準時	ヤンゴン (ラングーン)","UTC+07:00	東南アジア標準時	バンコク、ハノイ、ジャカルタ","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	中国標準時	北京、重慶、香港特別行政区、ウルムチ","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	ウランバートル標準時	ウランバートル","UTC+08:00	シンガポール標準時	クアラルンプール、シンガポール","UTC+08:00	台北標準時	台北","UTC+09:00	東京標準時	大阪、札幌、東京","UTC+09:00	韓国標準時	ソウル","UTC+09:00	東京標準時	大阪、札幌、東京","UTC+10:00	オーストラリア東部標準時	キャンベラ、メルボルン、シドニー","UTC+10:00	西太平洋標準時	グアム、ポートモレスビー","UTC+11:00	中央太平洋標準時	ソロモン諸島、ニューカレドニア","UTC+12:00	フィジー標準時	フィジー","UTC+12:00	UTC+12	協定世界時 + 12","UTC+12:00	ニュージーランド標準時	オークランド、ウェリントン","UTC+12:00	UTC+12	協定世界時 + 12","UTC+13:00	サモア標準時	サモア","UTC+13:00	トンガ標準時	ヌクアロファ"}
+mstz = {
+    "UTC-11:00	UTC-11	Coordinated Universal Time-11",
+    "UTC-10:00	Hawaiian Standard Time	Hawaii",
+    "UTC-08:00	Pacific Standard Time	Pacific Time (US & Canada)",
+    "UTC-07:00	Mountain Standard Time	Mountain Time (US & Canada)",
+    "UTC-06:00	Central Standard Time (Mexico)	Guadalajara, Mexico City, Monterrey",
+    "UTC-06:00	Central America Standard Time	Central America",
+    "UTC-05:00	SA Pacific Standard Time	Bogota, Lima, Quito, Rio Branco",
+    "UTC-05:00	Eastern Standard Time	Eastern Time (US & Canada)",
+    "UTC-04:30	Venezuela Standard Time	Caracas",
+    "UTC-04:00	SA Western Standard Time	Georgetown, La Paz, Manaus, San Juan",
+    "UTC-04:00	Paraguay Standard Time	Asuncion",
+    "UTC-04:00	Atlantic Standard Time	Atlantic Time (Canada)",
+    "UTC-03:00	SA Eastern Standard Time	Cayenne, Fortaleza",
+    "UTC-03:00	Pacific SA Standard Time	Santiago",
+    "UTC-03:00	Montevideo Standard Time	Montevideo",
+    "UTC-03:00	Greenland Standard Time	Greenland",
+    "UTC-03:00	E. South America Standard Time	Brasilia",
+    "UTC-03:00	Argentina Standard Time	City of Buenos Aires",
+    "UTC-02:00	UTC-02	Coordinated Universal Time-02",
+    "UTC-01:00	Cape Verde Standard Time	Cabo Verde Is.",
+    "UTC	GMT Standard Time	Dublin, Edinburgh, Lisbon, London",
+    "UTC	Greenwich Standard Time	Monrovia, Reykjavik",
+    "UTC	Morocco Standard Time	Casablanca",
+    "UTC	UTC	Coordinated Universal Time",
+    "UTC+01:00	Central Europe Standard Time	Belgrade, Bratislava, Budapest, Ljubljana, Prague",
+    "UTC+01:00	Central European Standard Time	Sarajevo, Skopje, Warsaw, Zagreb",
+    "UTC+01:00	Namibia Standard Time	Windhoek",
+    "UTC+01:00	Romance Standard Time	Brussels, Copenhagen, Madrid, Paris",
+    "UTC+01:00	W. Central Africa Standard Time	West Central Africa",
+    "UTC+01:00	W. Europe Standard Time	Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna",
+    "UTC+02:00	E. Europe Standard Time	E. Europe",
+    "UTC+02:00	Egypt Standard Time	Cairo",
+    "UTC+02:00	FLE Standard Time	Helsinki, Kyiv, Riga, Sofia, Tallinn, Vilnius",
+    "UTC+02:00	GTB Standard Time	Athens, Bucharest",
+    "UTC+02:00	Israel Standard Time	Middle East",
+    "UTC+02:00	Jordan Standard Time	Amman",
+    "UTC+02:00	Middle East Standard Time	Beirut",
+    "UTC+02:00	South Africa Standard Time	Harare, Pretoria",
+    "UTC+02:00	Syria Standard Time	Damascus",
+    "UTC+02:00	Türkiye Standard Time	Istanbul",
+    "UTC+03:00	Arab Standard Time	Kuwait, Riyadh",
+    "UTC+03:00	Arabic Standard Time	Baghdad",
+    "UTC+03:00	Belarus Standard Time	Minsk",
+    "UTC+03:00	E. Africa Standard Time	Nairobi",
+    "UTC+03:00	Russian Standard Time	Moscow, St. Petersburg, Volgograd (RTZ 2)",
+    "UTC+03:30	Iran Standard Time	Tehran",
+    "UTC+04:00	Arabian Standard Time	Abu Dhabi, Muscat",
+    "UTC+04:00	Azerbaijan Standard Time	Baku",
+    "UTC+04:00	Caucasus Standard Time	Yerevan",
+    "UTC+04:00	Georgian Standard Time	Tbilisi",
+    "UTC+04:00	Mauritius Standard Time	Port Louis",
+    "UTC+04:30	Afghanistan Standard Time	Kabul",
+    "UTC+05:00	Pakistan Standard Time	Islamabad, Karachi",
+    "UTC+05:00	West Asia Standard Time	Ashgabat, Tashkent",
+    "UTC+05:30	India Standard Time	Chennai, Kolkata, Mumbai, New Delhi",
+    "UTC+05:30	Sri Lanka Standard Time	Sri Jayawardenepura",
+    "UTC+05:45	Nepal Standard Time	Kathmandu",
+    "UTC+06:00	Bangladesh Standard Time	Dhaka",
+    "UTC+06:00	Central Asia Standard Time	Astana",
+    "UTC+06:30	Myanmar Standard Time	Yangon (Rangoon)",
+    "UTC+07:00	SE Asia Standard Time	Bangkok, Hanoi, Jakarta",
+    "UTC+08:00	China Standard Time	Beijing, Chongqing, Hong Kong SAR, Urumqi",
+    "UTC+08:00	Singapore Standard Time	Kuala Lumpur, Singapore",
+    "UTC+08:00	Taipei Standard Time	Taipei",
+    "UTC+08:00	Ulaanbaatar Standard Time	Ulaanbaatar",
+    "UTC+09:00	Korea Standard Time	Seoul",
+    "UTC+09:00	Tokyo Standard Time	Osaka, Sapporo, Tokyo",
+    "UTC+10:00	AUS Eastern Standard Time	Canberra, Melbourne, Sydney",
+    "UTC+10:00	West Pacific Standard Time	Guam, Port Moresby",
+    "UTC+11:00	Central Pacific Standard Time	Solomon Is., New Caledonia",
+    "UTC+12:00	Fiji Standard Time	Fiji",
+    "UTC+12:00	New Zealand Standard Time	Auckland, Wellington",
+    "UTC+12:00	UTC+12	Coordinated Universal Time+12",
+    "UTC+13:00	Samoa Standard Time	Samoa",
+    "UTC+13:00	Tonga Standard Time	Nuku'alofa"
+}
+
 hotkey_id_reset = obs.OBS_INVALID_HOTKEY_ID
 hotkey_id_pause = obs.OBS_INVALID_HOTKEY_ID
 
---//! moment-timezone.js
---//! version : 0.5.44
---//! Copyright (c) JS Foundation and other contributors
---//! license : MIT
---//! github.com/moment/moment-timezone America/Los_Angelesだけ移植（）
-PSTname="America/Los_Angeles"
-PSTabbrs={"PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST","PDT","PST"}
-PSTuntils={1552212000000,1572771600000,1583661600000,1604221200000,1615716000000,1636275600000,1647165600000,1667725200000,1678615200000,1699174800000,1710064800000,1730624400000,1741514400000,1762074000000,1772964000000,1793523600000,1805018400000,1825578000000,1836468000000,1857027600000,1867917600000,1888477200000,math_huge}
-PSToffsets={480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480,420,480}
-len =tonumber(#PSToffsets)-1
+-- //! moment-timezone.js
+-- //! version : 0.5.44
+-- //! Copyright (c) JS Foundation and other contributors
+-- //! license : MIT
+-- //! github.com/moment/moment-timezone America/Los_Angelesだけ移植（）
+PSTname = "America/Los_Angeles"
+PSTabbrs = {
+    "PST", "PDT", "PST", "PDT", "PST", "PDT", "PST", "PDT", "PST", "PDT", "PST",
+    "PDT", "PST", "PDT", "PST", "PDT", "PST", "PDT", "PST", "PDT", "PST", "PDT",
+    "PST"
+}
+PSTuntils = {
+    1552212000000, 1572771600000, 1583661600000, 1604221200000, 1615716000000,
+    1636275600000, 1647165600000, 1667725200000, 1678615200000, 1699174800000,
+    1710064800000, 1730624400000, 1741514400000, 1762074000000, 1772964000000,
+    1793523600000, 1805018400000, 1825578000000, 1836468000000, 1857027600000,
+    1867917600000, 1888477200000, math.huge
+}
+PSToffsets = {
+    480, 420, 480, 420, 480, 420, 480, 420, 480, 420, 480, 420, 480, 420, 480,
+    420, 480, 420, 480, 420, 480, 420, 480
+}
+len = tonumber(#PSToffsets) - 1
 
 -- 2024-03-10 2:00LA zoneparser,this invaidtime but bisectR is always bigger ,fixed 2024-03-10 3:00PDT
 -- 2024-11-03 1:30TZ zoneparser,this ambigous time but bisectR is always bigger ,fixed 2024-11-03 1:30PST
 -- three alias can be used, 2024-03-10 2:00{zoneparser}
 useTZ = "useTZ"
 TZ = "TZ"
-town_name = "LosAngeles"
+town_name = "LA"
 
 function delta_time()
     local now = os.time()
@@ -263,7 +364,7 @@ function makebar(p)
     return bar
 end
 
--- function closest (num, arr) { //２分探索方法
+-- function closest (num, arr) { //２分探索右方法
 -- var len = arr.length;
 -- if (num < arr[0]) {
 -- return 0;
@@ -379,70 +480,70 @@ function closest_with_offset(num)
     return binary_search_right_w_offset(PSTuntils, PSToffsets, num)
 end
 
-ffunction get_pst_idx(timestamp)
-if(len==0)then
-return 1  --JSTだけとか
-end
+function get_pst_idx(timestamp)
+    if(len==0)then
+    return 1  --JSTだけとか
+    end
 
-tmp_idx = closest_with_offset(timestamp)
-if (tmp_idx < 1) then tmp_idx = 1 end
-if (tmp_idx > #PSTuntils - 1) then tmp_idx = #PSTuntils - 1 end
+    tmp_idx = closest_with_offset(timestamp)
+    if (tmp_idx < 1) then tmp_idx = 1 end
+    if (tmp_idx > #PSTuntils - 1) then tmp_idx = #PSTuntils - 1 end
 
---debugtxt2 = PSTuntils[tmp_idx]
-tmp_idx = tmp_idx + 1
+    --debugtxt2 = PSTuntils[tmp_idx]
+    tmp_idx = tmp_idx + 1
 
---debugtxt = timestamp
---debugtxt3 = PSToffsets[tmp_idx]
+    --debugtxt = timestamp
+    --debugtxt3 = PSToffsets[tmp_idx]
 
-return tmp_idx
+    return tmp_idx
 end
 
 function get_pst(timestamp)
 
-if(len==0)then
-    tz_idx =1
-    return PSToffsets[1] / (-60)
-end
+    if(len==0)then
+        tz_idx =1
+        return PSToffsets[1] / (-60)
+    end
 
-tz_idx = closest(timestamp)
-if (tz_idx < 1) then
-    tz_idx = 1
-    return PSToffsets[1] / (-60)
-end
-if (tz_idx > #PSTuntils - 1) then
-    tz_idx = #PSTuntils - 1
-    return PSToffsets[#PSTuntils - 1] / (-60)
-end
+    tz_idx = closest(timestamp)
+    if (tz_idx < 1) then
+        tz_idx = 1
+        return PSToffsets[1] / (-60)
+    end
+    if (tz_idx > #PSTuntils - 1) then
+        tz_idx = #PSTuntils - 1
+        return PSToffsets[#PSTuntils - 1] / (-60)
+    end
 
--- debugtxt2=PSTuntils[tz_idx]
-tz_idx = tz_idx + 1
--- debugtxt=tz_idx
--- debugtxt3=PSToffsets[tz_idx]/(-60)
+    -- debugtxt2=PSTuntils[tz_idx]
+    tz_idx = tz_idx + 1
+    -- debugtxt=tz_idx
+    -- debugtxt3=PSToffsets[tz_idx]/(-60)
 
-return PSToffsets[tz_idx] / (-60)
+    return PSToffsets[tz_idx] / (-60)
 end
 
 -- パーサー invaid/ambigousを考慮する場合　momentのデフォルト、さいしょのソース　せんけいたんさく
 function get_pst_parser_strict(timestamp)
-target = tonumber(timestamp)
-max = tonumber(#PSTuntils) - 1
-offsetPrev = PSToffsets[1]
-for i = 1, max do
+    target = tonumber(timestamp)
+    max = tonumber(#PSTuntils) - 1
+    offsetPrev = PSToffsets[1]
+    for i = 1, max do
 
-    offset = PSToffsets[i];
-    -- offsetNext = offsets[i + 1]
-    if (i > 2) then offsetPrev = PSToffsets[i - 1] end
+        offset = PSToffsets[i]
+        -- offsetNext = offsets[i + 1]
+        if (i > 2) then offsetPrev = PSToffsets[i - 1] end
 
-    -- if (offset < offsetNext && tz.moveAmbiguousForward) {　//moveAmbiguousForwardはでふぉだとオフ
-    -- offset = offsetNext;
-    if (offset > offsetPrev) then -- else if (offset > offsetPrev && tz_moveInvalidForward) {
-        offset = offsetPrev;
+        -- if (offset < offsetNext && tz.moveAmbiguousForward) {　//moveAmbiguousForwardはでふぉだとオフ
+        -- offset = offsetNext;
+        if (offset > offsetPrev) then -- else if (offset > offsetPrev && tz_moveInvalidForward) {
+            offset = offsetPrev;
+        end
+        if (target < PSTuntils[i] - (offset * 60000)) then  --PSTuntils[i]だけ totzzonetime (2025/01/26).tz,PSTuntils[i] - (offset * 60000) でzoneparse 2025/01/26=>2025/01/26TZ
+            return timestamp + PSToffsets[i] * (-3600)
+        end
     end
-    if (target < PSTuntils[i] - (offset * 60000)) then　　--　PSTuntils[i]だけ totzzonetime (2025/01/26).tz,PSTuntils[i] - (offset * 60000) でzoneparse 2025/01/26=>2025/01/26TZ
-        return timestamp + PSToffsets[i] * (-3600)
-    end
-end
-return timestamp + PSToffsets[max] * (-3600)
+    return timestamp + PSToffsets[max] * (-3600)
 end
 
 function get_tzoffset(timezone)
@@ -1112,8 +1213,14 @@ function script_properties()
                                                obs.OBS_COMBO_TYPE_EDITABLE,
                                                obs.OBS_COMBO_FORMAT_STRING)
     obs.obs_property_list_add_string(p_mode, "Countdown", "countdown") -- 右だけ日本語化
-    obs.obs_properties_add_float(props, "UTC", "WorldTime UTC-14～+14(%UTC)",
-                                 -14, 14, 1)
+
+    local c_mode = obs.obs_properties_add_list(props, "UTC",
+    "WorldTime UTC+-??",
+    obs.OBS_COMBO_TYPE_EDITABLE,
+    obs.OBS_COMBO_FORMAT_STRING)
+for i = 1, #mstz do
+obs.obs_property_list_add_string(c_mode, mstz[i], mstz[i])
+end
     obs.obs_property_set_modified_callback(p_mode, settings_modified)
     obs.obs_property_set_long_description(f_prop,
                                           "%d - days\n%hh - hours with leading zero (00..23)\n%h - hours (0..23)\n%HH - hours with leading zero (00..infinity)\n%H - hours (0..infinity)\n%mm - minutes with leading zero (00..59)\n%m - minutes (0..59)\n%MM - minutes with leading zero (00..infinity)\n%M - minutes (0..infinity)\n%ss - seconds with leading zero (00..59)\n%s - seconds (0..59)\n%SS - seconds with leading zero (00..infinity)\n%S - seconds (0..infinity)\n%t - tenths")
@@ -1156,9 +1263,13 @@ function script_properties()
         p_para_text = obs.obs_properties_add_text(props, "para_text",
                                                   "TIME parameter:",
                                                   obs.OBS_TEXT_MULTILINE)
-        p_time_text = obs.obs_properties_add_text(props, "time_text",
-                                                  "TIME format:",
-                                                  obs.OBS_TEXT_DEFAULT)
+       local time_mode = obs.obs_properties_add_list(props, "time_text",
+		"TIME format:",
+		obs.OBS_COMBO_TYPE_EDITABLE,
+		obs.OBS_COMBO_FORMAT_STRING)
+        for i = 1, #dateformat do
+        obs.obs_property_list_add_string(time_mode, dateformat[i],dateformat[i])
+        end
         p_end_text = obs.obs_properties_add_text(props, "end_text",
                                                  "STOP text:(empty not use)",
                                                  obs.OBS_TEXT_DEFAULT)
@@ -1178,9 +1289,13 @@ function script_properties()
         p_para_text = obs.obs_properties_add_text(props, "para_text",
                                                   "表示する時間:",
                                                   obs.OBS_TEXT_MULTILINE)
-        p_time_text = obs.obs_properties_add_text(props, "time_text",
+        local time_mode = obs.obs_properties_add_list(props, "time_text",
                                                   "時刻表記:",
-                                                  obs.OBS_TEXT_DEFAULT)
+                                                  obs.OBS_COMBO_TYPE_EDITABLE,
+                                                  obs.OBS_COMBO_FORMAT_STRING)
+                                                  for i = 1, #dateformat do
+                                                  obs.obs_property_list_add_string(time_mode, dateformat[i],dateformat[i])
+                                                  end
         p_end_text = obs.obs_properties_add_text(props, "end_text",
                                                  "タイマー停止の文字:(空欄だと未使用)",
                                                  obs.OBS_TEXT_DEFAULT)
@@ -1234,7 +1349,11 @@ function script_update(settings)
 
     mode = obs.obs_data_get_string(settings, "mode")
     a_mode = obs.obs_data_get_string(settings, "a_mode")
-    utc = obs.obs_data_get_double(settings, "UTC")
+    utc_st = obs.obs_data_get_string(settings, "UTC")
+    local sign, hour, min = utc_st:match("^UTC([+-])(%d%d):?(%d%d)")
+    utc = hour + min/60
+    if(sign=="-")then utc = -utc end
+
 
     if mode == "Countdown" then
         local dt =
@@ -1281,18 +1400,23 @@ function script_update(settings)
 end
 
 function script_defaults(settings)
-	obs.obs_data_set_default_double(settings, "UTC", -8)
-	obs.obs_data_set_default_string(settings, "start_text", "2025-01-23 15:00PST")
-	obs.obs_data_set_default_string(settings, "stop_text", "2025-01-29 21:00PST")
-	obs.obs_data_set_default_string(settings, "mode", "Countdown")
-	obs.obs_data_set_default_string(settings, "a_mode", "Global (timer always active)")
-	obs.obs_data_set_default_string(settings, "format", "%d %hh:%mm:%ss(%hsH,%dsD)")
-	obs.obs_data_set_default_string(settings, "title_text", "逆光のレンズフレア")
-	obs.obs_data_set_default_string(settings, "time_text", "%Y-%m-%dT%H:%M:%S%z (%a)")
-	obs.obs_data_set_default_string(settings, "para_text", "DATENNOW:%TZ\nEND     :%EE\nELAPSED :%K\nLEFT    :%L\nDURATION:%I\n%T%P％\n%Q")
-	obs.obs_data_set_default_string(settings, "end_text", "THE EVENT HAS ENDED")
-	obs.obs_data_set_default_double(settings, "bar", 2)
-
+    obs.obs_data_set_default_string(settings, "UTC","UTC-08:00")
+    obs.obs_data_set_default_string(settings, "start_text",
+                                    "2024-12-10 15:00PST")
+    obs.obs_data_set_default_string(settings, "stop_text", "2024-12-18 21:00PST")
+    obs.obs_data_set_default_string(settings, "mode", "Countdown")
+    obs.obs_data_set_default_string(settings, "a_mode",
+                                    "Global (timer always active)")
+    obs.obs_data_set_default_string(settings, "format",
+                                    "%d %hh:%mm:%ss(%hsH,%dsD)")
+    obs.obs_data_set_default_string(settings, "title_text",
+                                    "あっちこっち飼育員体験！")
+    obs.obs_data_set_default_string(settings, "time_text",
+                                    "%Y-%m-%dT%H:%M:%S%z (%a)")
+    obs.obs_data_set_default_string(settings, "para_text",
+                                    "DATENNOW:%TZ\nEND     :%EE\nELAPSED :%K\nLEFT    :%L\nDURATION:%I\n%T%P％\n%Q")
+    obs.obs_data_set_default_string(settings, "end_text", "THE EVENT HAS ENDED")
+    obs.obs_data_set_default_double(settings, "bar", 2)
 
 end
 
