@@ -1351,8 +1351,11 @@ function script_update(settings)
     a_mode = obs.obs_data_get_string(settings, "a_mode")
     utc_st = obs.obs_data_get_string(settings, "UTC")
     local sign, hour, min = utc_st:match("^UTC([+-])(%d%d):?(%d%d)")
+    if(hour == nil) then
+    else
     utc = hour + min/60
     if(sign=="-")then utc = -utc end
+    end
 
 
     if mode == "Countdown" then

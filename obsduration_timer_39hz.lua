@@ -1064,9 +1064,11 @@ function script_update(settings)
     a_mode = obs.obs_data_get_string(settings, "a_mode")
     utc_st = obs.obs_data_get_string(settings, "UTC")
     local sign, hour, min = utc_st:match("^UTC([+-])(%d%d):?(%d%d)")
+    if(hour == nil) then
+    else
     utc = hour + min/60
     if(sign=="-")then utc = -utc end
-
+    end
 
     if mode == "Countdown" then
         local dt =
@@ -1110,7 +1112,7 @@ function script_update(settings)
 end
 
 function script_defaults(settings)
-    obs.obs_data_set_default_string(settings, "UTC","UTC+09:00")
+    obs.obs_data_set_default_string(settings, "UTC","UTC+08:00")
     obs.obs_data_set_default_string(settings, "start_text",
                                     "2024-12-10 15:00HKT")
     obs.obs_data_set_default_string(settings, "stop_text", "2024-12-18 21:00HKT")
