@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>画像 Base64 変換</title>
+</head>
+<body>
+  <input type="file" id="imageInput" accept="image/png, image/jpeg">
+  <div id="result"></div>
+
+  <script>
+  <!-- https://gemini.google.com/app/8dfeab901fa6f9a8 -->
+  const imageInput = document.getElementById('imageInput');
+const resultDiv = document.getElementById('result');
+
+imageInput.addEventListener('change', (event) => {
+  const file = event.target.files[0];
+
+  if (file) {
+    const reader = new FileReader();
+
+    reader.onload = (e) => {
+      const base64String = e.target.result;
+      const imageType = file.type; // "image/png" or "image/jpeg"
+
+      // Base64 文字列を表示
+      resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea rows="5" cols="50">${base64String}</textarea>`;
+
+      // 必要であれば、Base64 文字列をコンソールに出力
+      console.log("Base64 文字列:", base64String);
+
+      // イメージを表示する場合
+      const img = document.createElement('img');
+      img.src = base64String;
+      resultDiv.appendChild(img);
+    };
+
+    reader.readAsDataURL(file); // Data URL 形式で読み込む
+  }
+});
+  
+  </script>
+</body>
+</html>
