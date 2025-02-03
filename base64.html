@@ -1,15 +1,54 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <title>画像 Base64 変換</title>
 </head>
 <body>
-  <input type="file" id="imageInput" accept="image/png, image/jpeg">
-  <div id="result"></div>
-
+  <input type="file" id="imageInput" accept="image/png, image/jpeg"><br>
+<label for="add_gemini_css"><input type="checkbox" checked="checked"
+                    id="add_gemini_css">gemini_かすたむ_cssもつける</label><br>
+                    <button id="copyButton">コピー</button><br>
+  <div id="result"><p>Base64 文字列:</p><textarea id="target" rows="5" cols="50"></textarea></div>
   <script>
   <!-- https://gemini.google.com/app/8dfeab901fa6f9a8 -->
+  const copyButton = document.getElementById('copyButton');
+  const copyTarget = document.getElementById('target');
+
+  copyButton.addEventListener('click', () => {
+    navigator.clipboard.writeText(copyTarget.value)
+      .then(() => {
+        alert('コピーしました！');
+      })
+      .catch(err => {
+        console.error('コピーに失敗しました: ', err);
+      });
+  });
+  
+  
   const imageInput = document.getElementById('imageInput');
+  const css_head = `/*‼️次で始まるURL https://gemini.google.com/  */ 
+:where(.theme-host) {  /* デフォの白背景削除 */ 
+ --gem-sys-color--surface: transparent, !important; 
+}
+
+body {  /*上のバナー 明るい色*/ 
+  background-color: rgba(255, 255, 255, 0.562);
+}
+.main-content{  /*子を透過する */
+  background-color: rgba(255, 255, 255, 0.562);
+}
+
+.chat-app {
+  /*opacity: 0.3;  全体を透過 */
+  /*backdrop-filter: blur(5px); */ /* 背景をぼかす (adjust the value as needed) */
+  background-color:transparent, !important; 
+    background-size: auto;
+    background:
+url(`;
+
+const foot =");}";
+
+
 const resultDiv = document.getElementById('result');
 
 imageInput.addEventListener('change', (event) => {
@@ -23,7 +62,12 @@ imageInput.addEventListener('change', (event) => {
       const imageType = file.type; // "image/png" or "image/jpeg"
 
       // Base64 文字列を表示
-      resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea rows="5" cols="50">${base64String}</textarea>`;
+		var result =`${base64String}`;
+      if(document.getElementById("add_gemini_css").checked){
+       result = css_head + result + foot;
+      }
+      
+      resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea id="target" rows="5" cols="50">`+result+`</textarea>`;
 
       // 必要であれば、Base64 文字列をコンソールに出力
       console.log("Base64 文字列:", base64String);
