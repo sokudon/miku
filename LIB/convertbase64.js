@@ -1,5 +1,5 @@
 
-<!-- https://gemini.google.com/app/8dfeab901fa6f9a8 -->
+//< !--https://gemini.google.com/app/8dfeab901fa6f9a8 -->
 const copyButton = document.getElementById('copyButton');
 
 copyButton.addEventListener('click', () => {
@@ -189,6 +189,9 @@ function getBrowser() {
     return 'Firefox';
   } else if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) {
     return 'Chrome';
+  }
+  else if (userAgent.includes('Edg')) {
+    return 'Edg';
   } else {
     return 'Other';
   }
@@ -206,7 +209,7 @@ function installStylus(cssContent) {
     uploadCssAndInstall(cssContent);
 
 
-  } else if (browser === 'Chrome') {
+  } else if (browser === 'Chrome' || browser === 'Edg') {
     window.open(stylusInstallUrl_chrome, '_blank');
   } else {
     alert('This is not a supported browser.');
