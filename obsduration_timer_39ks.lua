@@ -985,7 +985,9 @@ function script_update(settings)
 
     mode = obs.obs_data_get_string(settings, "mode")
     a_mode = obs.obs_data_get_string(settings, "a_mode")
+    utc_st = obs.obs_data_get_string(settings, "UTC")
     local sign, hour, min = utc_st:match("^UTC([+-])(%d%d):?(%d%d)")
+    utc=0
     if(hour == nil) then
     else
     utc = hour + min/60
