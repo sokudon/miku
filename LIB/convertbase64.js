@@ -30,7 +30,7 @@ var tamper_gemini=`// ==UserScript==
 // ==/UserScript==
 
 GM_addStyle(`;
-tamper_gemini += "`";  // ダブルクォートで囲む
+tamper_gemini += "`\r\n";  // ダブルクォートで囲む
 
 
 var tamper_claude=`// ==UserScript==
@@ -45,7 +45,7 @@ var tamper_claude=`// ==UserScript==
 // ==/UserScript==
 
 GM_addStyle(`;
-tamper_claude += "`";  // ダブルクォートで囲む
+tamper_claude += "`\r\n";  // ダブルクォートで囲む
 
 var meta = `/* ==UserStyle==
 @name           custom_css
@@ -132,9 +132,9 @@ flex-1 {
     background: url(`;
 
     
-const foot_body = ");}";
+const foot_body = ");\r\n}";
 const foot_stylus = "}";
-const foot_tamper ="`);";
+const foot_tamper ="\r\n`);";
 
 var output='custom.user.css';
 
@@ -152,16 +152,13 @@ imageInput.addEventListener('change', (event) => {
       const base64String = e.target.result;
       const imageType = file.type; // "image/png" or "image/jpeg"
 
-      document.getElementById('css_install').disable=true;
 
       // Base64 文字列を表示
       result = `${base64String}`;
       if (document.getElementById("add_gemini_css").checked) {
-      document.getElementById('css_install').disable=false;
         result = meta + css_head_gemini +css_body_gemini + result + foot_body+foot_stylus;
       }
       if (document.getElementById("add_claude_css").checked) {
-        document.getElementById('css_install').disable=false;
         result = meta + css_head_claude +css_body_claude + result + foot_body+foot_stylus;
       } 
       if (document.getElementById("add_gemini_css_tamper").checked) {
