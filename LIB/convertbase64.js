@@ -120,6 +120,11 @@ flex-1 {
     opacity: 0.7;
 }
 
+/*↓背景絵のアルファ */
+.sticky,.overflow-x-hidden {
+    background: #ffffff6e;
+}
+
 .overflow-hidden {
     /*   .tracking-tight   w-full
     opacity: 0.7;*/
@@ -147,12 +152,16 @@ imageInput.addEventListener('change', (event) => {
       const base64String = e.target.result;
       const imageType = file.type; // "image/png" or "image/jpeg"
 
+      document.getElementById('css_install').disable=true;
+
       // Base64 文字列を表示
       result = `${base64String}`;
       if (document.getElementById("add_gemini_css").checked) {
+      document.getElementById('css_install').disable=false;
         result = meta + css_head_gemini +css_body_gemini + result + foot_body+foot_stylus;
       }
       if (document.getElementById("add_claude_css").checked) {
+        document.getElementById('css_install').disable=false;
         result = meta + css_head_claude +css_body_claude + result + foot_body+foot_stylus;
       } 
       if (document.getElementById("add_gemini_css_tamper").checked) {
@@ -196,33 +205,18 @@ var share_url = {
 //Twitterボタン
 function toshare(sns) {
   var urls = "";
-  var urlmaster = url();
+  var urlmaster = document.location.href;
   var base_url = share_url[sns];
-  var tag = "\r\n#base64　#gemini #claude #stylus #user.css #custom_color";
+  var tag = "\r\n#base64　#gemini #claude #stylus #user.css #custom_bg #tamperjs #user.js";
 
-  if (sns == "tw") {
-    base_url = base_url.replace("hoge", urlmaster);
-    base_url = base_url.replace("TAG", tag.replace(/[\r\n#]/gm, ""));
-  }
-
-
-  s = "https://ss1.xrea.com/sokudon.s17.xrea.com/base64.html chrome/firefoxのstylus/tamperjsで背景色画像を変更したよ() "
+  s = `chrome/edge/firefoxのstylus/tamperjsで背景色画像を変更したよ() `;
   s = s.replace(/<br>/gm, "\r\n");
   s = s.replace(/<.*?>/gm, "");
   s = s.replace(/\r\n\r\n/gm, "\r\n");
-  if (sns == "bsk") {
-    urlmaster = "";
-    s += tag;
-  }
-  s = s + "\r\n " + urlmaster;
+ 
+  s = s +tag + "\r\n " + urlmaster;
   s = encodeURIComponent(s);
-  s += tag;
-  if (urlmaster == "") {
     urls = base_url.replace("TXT", s);
-  }
-  else {
-    urls = base_url.replace("TXT", s);
-  }
   window.open(urls, "_blank", "width=600,height=300");
 }
 
