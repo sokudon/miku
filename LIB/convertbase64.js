@@ -15,6 +15,38 @@ copyButton.addEventListener('click', () => {
 
 const imageInput = document.getElementById('imageInput');
 
+const bookmarklet_head ="javascript:(function() {  var style = document.createElement('style');  style.textContent = `";
+const bookmarklet_foot ="`;  document.head.appendChild(style);})();";
+
+var tamper_gemini=`// ==UserScript==
+// @name         gemini tampermokey css
+// @namespace    http://tampermonkey.net/
+// @version      2025-02-17
+// @description  try to take over the world!
+// @author       You
+// @match        *://*.gemini.google.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=google.com
+// @grant        GM_addStyle
+// ==/UserScript==
+
+GM_addStyle(`;
+tamper_gemini += "`";  // ダブルクォートで囲む
+
+
+var tamper_claude=`// ==UserScript==
+// @name         claude tampermokey css
+// @namespace    http://tampermonkey.net/
+// @version      2025-02-17
+// @description  try to take over the world!
+// @author       You
+// @match        *://*.claude.ai/chat/*
+// @icon         claude.ai/chat
+// @grant        GM_addStyle
+// ==/UserScript==
+
+GM_addStyle(`;
+tamper_claude += "`";  // ダブルクォートで囲む
+
 var meta = `/* ==UserStyle==
 @name           custom_css
 @namespace      example.com
@@ -24,10 +56,9 @@ var meta = `/* ==UserStyle==
 ==/UserStyle== */
 `;
 
+const css_head_gemini = `@-moz-document domain("gemini.google.com") { `;
 
-
-const css_head_gemini = `@-moz-document domain("gemini.google.com") {
-:where(.theme-host) {
+ const css_body_gemini =`:where(.theme-host) {
     /* デフォの白背景削除 */
     --gem-sys-color--surface: transparent, !important;
 }
@@ -49,8 +80,8 @@ body {
     background: url(`;
 
 
-const css_head_claude = `@-moz-document url-prefix("https://claude.ai/chat") {
-.flex-row-reverse {
+const css_head_claude = `@-moz-document url-prefix("https://claude.ai/chat") {`;
+const css_body_claude = `.flex-row-reverse {
     /*アイコン */
     background-color: #17f0cf26 !important
 }
@@ -95,7 +126,13 @@ flex-1 {
     background-size: auto;
     background: url(`;
 
-const foot = ");}}";
+    
+const foot_body = ");}";
+const foot_stylus = "}";
+const foot_tamper ="`);";
+
+var output='custom.user.css';
+
 var result = "";
 const resultDiv = document.getElementById('result');
 
@@ -113,10 +150,26 @@ imageInput.addEventListener('change', (event) => {
       // Base64 文字列を表示
       result = `${base64String}`;
       if (document.getElementById("add_gemini_css").checked) {
-        result = meta + css_head_gemini + result + foot;
+        result = meta + css_head_gemini +css_body_gemini + result + foot_body+foot_stylus;
       }
       if (document.getElementById("add_claude_css").checked) {
-        result = meta + css_head_claude + result + foot;
+        result = meta + css_head_claude +css_body_claude + result + foot_body+foot_stylus;
+      } 
+      if (document.getElementById("add_gemini_css_tamper").checked) {
+        output="tamper_gemini.user.js";
+        result =tamper_gemini +css_body_gemini + result + foot_body+foot_tamper;
+      }
+      if (document.getElementById("add_claude_css_tamper").checked) {
+        output="tamper_claude.user.js";
+        result = tamper_claude +css_body_claude + result + foot_body+foot_tamper;
+      }
+      if (document.getElementById("bookmarklet_gemini").checked) {
+        output="bookmarklet_gemini.txt";
+        result = bookmarklet_head +css_body_gemini + result + foot_body+bookmarklet_foot;
+      }
+      if (document.getElementById("bookmarklet_claude").checked) {
+        output="bookmarklet_calude.txt";
+        result = bookmarklet_head +css_body_claude + result + foot_body+bookmarklet_foot;
       }
 
       resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea id="target" rows="5" cols="50">` + result + `</textarea>`;
@@ -153,7 +206,7 @@ function toshare(sns) {
   }
 
 
-  s = "https://ss1.xrea.com/sokudon.s17.xrea.com/base64.html chrome/firefoxのstylusで背景色画像を変更したよ() "
+  s = "https://ss1.xrea.com/sokudon.s17.xrea.com/base64.html chrome/firefoxのstylus/tamperjsで背景色画像を変更したよ() "
   s = s.replace(/<br>/gm, "\r\n");
   s = s.replace(/<.*?>/gm, "");
   s = s.replace(/\r\n\r\n/gm, "\r\n");
@@ -175,7 +228,7 @@ function toshare(sns) {
 
 function makeplugin() {
   const base64Data = result; // Base64データ
-  downloadBase64(base64Data, 'custom.user.css');
+  downloadBase64(base64Data, output);
 }
 
 function makeplugintab() {
