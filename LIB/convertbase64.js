@@ -47,6 +47,20 @@ var tamper_claude=`// ==UserScript==
 GM_addStyle(`;
 tamper_claude += "`\r\n";  // ダブルクォートで囲む
 
+var tamper_grok=`// ==UserScript==
+// @name         grok tampermokey css
+// @namespace    http://tampermonkey.net/
+// @version      2025-02-18
+// @description  try to take over the world!
+// @author       You
+// @match        *://*.grok.com/*
+// @icon         grok.com
+// @grant        GM_addStyle
+// ==/UserScript==
+
+GM_addStyle(`;
+tamper_grok += "`\r\n";  // ダブルクォートで囲む
+
 var meta = `/* ==UserStyle==
 @name           custom_css
 @namespace      example.com
@@ -131,6 +145,123 @@ flex-1 {
     background-size: auto;
     background: url(`;
 
+const css_head_grok = `@-moz-document url-prefix("https://grok.com/") {`;
+const css_body_grok=`:root {
+    /*情報そーすのオーバーレイ*/
+    --background: #d390e9e8;
+    --foreground: #d390e9cc;
+
+    --scrollbar-thumb: rgba(0, 0, 0, .3);
+    --scrollbar-track: transparent;
+
+    --important: #fcfcfc;
+
+    /*フォーム内容*/
+    --input: #00000078;
+    --input-hover: #00000021;
+    /*ホーバー時*/
+}
+
+
+.font-body {
+    font-family: Font Text, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+.text-sm {
+    font-size: 13px;
+}
+
+form,
+.buttom-0,
+input,
+.text-base {
+    --background: #2369c6e0;
+}
+
+/*ボーダー*/
+:after,
+:before {
+    box-sizing: border-box;
+    border: 0 solid #e5e7eb;
+}
+/*スクロール*/
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/*grokのろご*/
+.text-primary {
+    color: #141414e8;
+}
+
+/*情報そーす*/
+.prose {
+    color: #43319ce8;
+}
+
+.bg-background {
+    --background-color: #00000003;
+}
+
+/*メッセージ*/
+.message-bubble {
+
+    background-color: #b428d480;
+}
+/*ぷろんプロ */
+.whitespace-pre-wrap {
+    color: #000000db;
+    background-color: #b428d41a;
+}
+
+/*スクリプトソース*/
+element.style {
+    display: block;
+    overflow-x: auto;
+    padding: 16px;
+    color: #201f20eb;
+    background: #0000;
+    foreground: #0000;
+    border-radius: 0px 0px 12px 12px;
+    margin-top: 0px;
+    font-size: 0.9em;
+    line-height: 1.5em;
+}
+
+/*文章の中たぐ*/
+p {}
+h3 {}
+ul {}
+li {}
+strong {}
+span {}
+button {}
+code {
+    color: #000000f5;
+    background-color: #b428d400;
+}
+.duration150 {
+
+    background-color: #b428d40f;
+}
+
+.bg-foreground/* 共有ぼたん？ */
+{
+    background-color: #b428d4cc;
+}
+
+/*背景とうか*/
+main {
+
+    background: #0003;
+}
+
+body {
+    background-color: #00000000;
+    background-size: auto;
+    background: 
+url(`;
+
     
 const foot_body = ");\r\n}";
 const foot_stylus = "}";
@@ -161,6 +292,9 @@ imageInput.addEventListener('change', (event) => {
       if (document.getElementById("add_claude_css").checked) {
         result = meta + css_head_claude +css_body_claude + result + foot_body+foot_stylus;
       } 
+      if (document.getElementById("add_grok_css").checked) {
+        result = meta + css_head_grok +css_body_grok + result + foot_body+foot_stylus;
+      } 
       if (document.getElementById("add_gemini_css_tamper").checked) {
         output="tamper_gemini.user.js";
         result =tamper_gemini +css_body_gemini + result + foot_body+foot_tamper;
@@ -169,6 +303,10 @@ imageInput.addEventListener('change', (event) => {
         output="tamper_claude.user.js";
         result = tamper_claude +css_body_claude + result + foot_body+foot_tamper;
       }
+      if (document.getElementById("add_grok_css_tamper").checked) {
+        output="tamper_grok.user.js";
+        result = tamper_grok +css_body_grok + result + foot_body+foot_tamper;
+      }
       if (document.getElementById("bookmarklet_gemini").checked) {
         output="bookmarklet_gemini.txt";
         result = bookmarklet_head +css_body_gemini + result + foot_body+bookmarklet_foot;
@@ -176,6 +314,10 @@ imageInput.addEventListener('change', (event) => {
       if (document.getElementById("bookmarklet_claude").checked) {
         output="bookmarklet_calude.txt";
         result = bookmarklet_head +css_body_claude + result + foot_body+bookmarklet_foot;
+      }
+      if (document.getElementById("bookmarklet_grok").checked) {
+        output="bookmarklet_calude.txt";
+        result = bookmarklet_head +css_body_grok + result + foot_body+bookmarklet_foot;
       }
 
       resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea id="target" rows="5" cols="50">` + result + `</textarea>`;
