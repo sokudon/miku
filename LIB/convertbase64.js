@@ -346,7 +346,7 @@ function toshare(sns) {
   var urls = "";
   var urlmaster = document.location.href;
   var base_url = share_url[sns];
-  var tag = "\r\n#base64　#gemini #claude #stylus #user.css #custom_bg #tamperjs #user.js";
+  var tag = "\r\n#base64　#gemini #claude #grok #stylus #user.css #custom_bg #tampermonkey #user.js";
 
   s = `chrome/edge/firefoxのstylus/tamperjsで背景色画像を変更したよ() `;
   s = s.replace(/<br>/gm, "\r\n");
