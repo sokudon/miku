@@ -280,6 +280,8 @@ function get_count() {
 
 	var kst = moment(ts).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
 	var ken = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
+	var hst = moment(kst).add("h", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
+	var hen = moment(ken).add("h", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
 	var Pst = moment(ts).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
 	var Ptt = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
 	//var kst= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
@@ -287,12 +289,25 @@ function get_count() {
 	//var Pst= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD HH:mm:ss");
 	//var Ptt= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD HH:mm:ss");
 
+	var hotfix_start=12;var hot_fix_end=17;
+	var mitibiki=121;
+
+	if(last_oversea>mitibiki){//hotfixpatch
+     for(var i=hotfix_start;i<=hot_fix_end;i++){
+			var datas=data[last_oversea][i];
+			if(datas!=""){
+					if(i==hot_fix_end){
+						Ptt=moment(datas);
+					}
+			}
+	 }
+	}
 
 	worldtimer[1][1] = moment(kst).format();
 	worldtimer[1][2] = moment(ken).format();
 
-	worldtimer[2][1] = moment(kst).add("h", 1).format();
-	worldtimer[2][2] = moment(ken).add("h", 1).format();
+	worldtimer[2][1] =moment(hst).format();
+	worldtimer[2][2] = moment(hen).format();
 
 	worldtimer[3][1] = moment(moment.tz(Pst, tzPST)).local().format();
 	worldtimer[3][2] = moment(moment.tz(Ptt, tzPST)).local().format();
@@ -354,6 +369,7 @@ function update() {
 		ibemie = escapeHTML(data[sel][2]);
 		ibekaishi = parsedate(data[sel][7]).format();
 		ibeowari = parsedate(data[sel][8]).format();
+		last_oversea=sel;
 		ibetime();
 	}
 }
@@ -361,6 +377,8 @@ function setend() {
 	document.getElementById("gamename").selectedIndex = document.getElementById("gamename").length - 1;
 	update();
 }
+
+var last_oversea= 1;
 
 function setoversea() {
 	var lastyear = (parseInt(moment().utc().add("h", 9).format("YYYY")) - 1) + moment().utc().add("h", 9).format("-MM-DD[T]HH:mm:ss+09:00");
