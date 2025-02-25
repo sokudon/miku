@@ -94,56 +94,69 @@ body {
     background: url(`;
 
 
-const css_head_claude = `@-moz-document url-prefix("https://claude.ai/chat") {`;
-const css_body_claude = `.flex-row-reverse {
-    /*アイコン */
-    background-color: #17f0cf26 !important
-}
-.bg-bg-200 {
-    /*サイドメニュー */
-    background-color: #2e50d826 !important
-}
-.flex_col {
-    /*アイコン右上 */
-    background-color: #12e11321 !important
-}
+const css_head_claude = `@-moz-document url-prefix("https://claude.ai/") {`;
+const css_body_claude = `    .flex-row-reverse {
+        /*アイコン */
+        background-color: #17f0cf26 !important
+    }
+    .bg-bg-200 {
+        /*サイドメニュー */
+        background-color: #2e50d826 !important
+    }
+    .flex_col {
+        /*アイコン右上 */
+        background-color: #12e11321 !important
+    }
 
-flex-1 {
-    /*アイコン右上 */
-    background-color: #c0b71726 !important
-}
+    flex-1 {
+        /*アイコン右上 */
+        background-color: #c0b71726 !important
+    }
 
-[data-theme=claude],
-[data-theme=claude][data-mode=light] {
+    [data-theme=claude],
+    [data-theme=claude][data-mode=light] {
 
-    --bg-000: #60dcd5d6;
-    --bg-100: #5bf0eede;
-    --bg-200: #5b94f0f2;
-    --bg-300: #62286042;
-    --bg-400: #62286242;
-    --bg-500: #62285842;
-}
-.font-user-message {
+        --bg-000: #60dcd5d6;
+        --bg-100: #5bf0eede;
+        --bg-200: #5b94f0f2;
+        --bg-300: #62286042;
+        --bg-400: #62286242;
+        --bg-500: #62285842;
+    }
+    .font-user-message {
 
-    background-color: #e1bf5be8;
-}
-.font-claude-message {
-    background-color: #f0a15be6;
-}
-.code-block__code {
-    opacity: 0.7;
-}
+        background-color: #e1bf5be8;
+    }
+    .font-claude-message {
+        background-color: #f0a15be6;
+    }
+    .code-block__code {
+        opacity: 0.7;
+    }
 
-/*↓背景絵のアルファ */
-.sticky,.overflow-x-hidden {
-    background: #ffffff6e;
-}
 
-.overflow-hidden {
-    /*   .tracking-tight   w-full
-    opacity: 0.7;*/
-    background-size: auto;
-    background: url(`;
+    /* サイドメニューに適用する場合 */
+    .bg-bg-200 {
+        /* background: #2e50d826 url('your-image-url.jpg') no-repeat center !important;
+    background-size: cover !important; */
+    }
+
+    .z-sidebar {
+        /* background: #ffffff6e url('data:image/png;base64,[あなたのBase64文字列]') no-repeat center !important;
+        background-size: cover !important;
+        */
+    }
+
+    /*↓背景絵のアルファ*/
+    .overflow-x-hidden {
+        background: #ffffff91;
+    }
+
+    /* 全体の背景に適用する場合 */
+    /* 背景絵 corsがきついのでブックマークレットで読み込みがbase64しかなさげ（）　*/
+    .flex.min-h-screen.w-full {
+        background-size: cover !important;
+        background: `;
 
 const css_head_grok = `@-moz-document url-prefix("https://grok.com/") {`;
 const css_body_grok=`:root {
