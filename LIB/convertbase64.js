@@ -156,7 +156,7 @@ const css_body_claude = `    .flex-row-reverse {
     /* 背景絵 corsがきついのでブックマークレットで読み込みがbase64しかなさげ（）　*/
     .flex.min-h-screen.w-full {
         background-size: cover !important;
-        background: `;
+        background: url(`;
 
 const css_head_grok = `@-moz-document url-prefix("https://grok.com/") {`;
 const css_body_grok=`:root {
