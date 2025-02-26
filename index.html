@@ -1,241 +1,312 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja" style="zoom: 120%;">
+<!DOCTYPE html>
+<html lang="ja">
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="Content-Script-Type" content="text/javascript">
-<meta name="keywords" content="プロセカ　プロジェクトセカイ PROJECTSEKAI projectsekai　ONGEKI オンゲキ　モバエム　mobage　サイドＭ　sidem sideM ｓｉｄｅＭ SIDEM　ＳＩＤＥＭ ミリオンライブ みります ぐります グリマス ミリシタ millionlive　 デレステ　でれすて　CGSS ボーダー ぼだ border そくどん　酢鶏無どん">
-<title>酢鶏無どんのあいます～関連鶴とかの置き場</title>
-<link rel="stylesheet" href="css/base.css" type="text/css" media="screen" />
-<!--shinobi1--><script type="text/javascript" src="//xa.shinobi.jp/ufo/187027200"></script><noscript><a href="//xa.shinobi.jp/bin/gg?187027200" target="_blank"><img src="//xa.shinobi.jp/bin/ll?187027200" border="0"></a><br><span style="font-size:9px"><img style="margin:0;vertical-align:text-bottom;" src="//img.shinobi.jp/tadaima/fj.gif" width="19" height="11"> </span></noscript><!--shinobi2-->
-<script type="text/javascript" src="http://skdon.vis1.shinobi.jp/js/" charset="utf-8"></script>
-<!-- mobeek tag-->
-<script src="//feed.mobeek.net/static/loader.js"></script>
-<script type="text/javascript" src="/SMART/smp.js"></script>
-<script>
-feedUID = 'ej6A5EdW';
-feedPrepare.toSmp = {};
-feedPrepare.toTab = {};
-feedPrepare.subwww = false;
-feedPrepare();
-</script>
-<!-- mobeek tag-->
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TQ6B6RCC"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords"
+        content="プロセカ　プロジェクトセカイ PROJECTSEKAI projectsekai　学園アイマス　学マス　KAC　音ゲー　ONGEKI オンゲキ　モバエム　mobage　サイドＭ　sidem sideM">
+    <title>酢鶏無どんのぷろせか、あいます～関連鶴とかの置き場</title>
 
-  gtag('config', 'G-D3TQ6B6RCC');
-</script>
+    <!-- 既存のトラッキングコード -->
+    <script type="text/javascript" src="//xa.shinobi.jp/ufo/187027200"></script>
+    <script type="text/javascript" src="//feed.mobeek.net/static/loader.js"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-D3TQ6B6RCC"></script>
+
+    <style>
+        :root {
+            --primary-color: #4a90e2;
+            --secondary-color: rgba(245, 246, 250, 0.95);
+            --text-color: #2c3e50;
+            --hover-color: #357abd;
+            --spacing: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f0f2f5"/><path d="M0 0h100v100H0z" fill="%23e6e9f0" fill-opacity=".5"/></svg>') fixed;
+            background-size: 50px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 144, 226, 0.1) 0%, rgba(74, 144, 226, 0.05) 100%);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing);
+            background: var(--secondary-color);
+            backdrop-filter: blur(5px);
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .header {
+            background: linear-gradient(to right, rgba(74, 144, 226, 0.9), rgba(74, 144, 226, 0.7));
+            padding: 2rem 0;
+            color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .legacy-links {
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .legacy-links a {
+            display: inline-block;
+            margin: 0.25rem 0;
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+        }
+
+        .legacy-links a:hover {
+            background-color: rgba(74, 144, 226, 0.1);
+            color: var(--primary-color);
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        .link-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+
+        .link-item {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 4px;
+            transition: all 0.2s;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .link-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-color);
+        }
+
+        /* レガシーコンテンツ互換用スタイル */
+        #wrapper {
+            background: transparent;
+        }
+
+        .legacy-section {
+            background: white;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+                margin-top: 10px;
+            }
+
+            .section {
+                padding: 1rem;
+                margin: 1rem 0;
+            }
+
+            .link-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .legacy-links {
+                padding: 0.25rem;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    <!-- Google Analytics -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-D3TQ6B6RCC');
+    </script>
 
-  ga('create', 'UA-50240321-3', 'auto');
-  ga('send', 'pageview');
+    <header class="header">
+        <div class="container">
+            <h1>酢鶏無どんのツール置き場 <a href="index_old.html">旧デザイン</a> <a href="mikusan.user.css">Stylus用みくさんcss</a></h1>
+        </div>
+    </header>
 
- window.onload = function(){
-var ua = window.navigator.userAgent.toLowerCase();
-//mozilla/5.0 (windows nt 10.0; win64; x64) applewebkit/537.36 (khtml, like gecko) chrome/79.0.3945.117 safari/537.36"
-if(ua.match("windows")){
-if(ua.match("windows nt 10")==null){
-document.getElementById("win").textContent="当サイトはwindows10未満の環境では動作非推奨です";
-}}
-}
-</script>
-<div id="win"></div>
-<div id="wrapper">
-<div id="header">
+    <main class="container">
+        <section class="section">
+            <h2 class="section-title">プロセカ関連</h2>
+            <div class="link-grid">
+                <div class="link-item"><a href="./miku_ibetimer.html">プロジェクトセカイいべたいまー</a> 
+                    <a href="./b.html">スマフォ向け モダンデザインねた</a></div>
+                <div class="link-item"><a href="./sekai_miku.html">プロジェクトセカイいべたいまーせかい時計（いちおう海外版予想対応）</a></div>
+                <div class="link-item"><a
+                        href="./sekai_miku_tzbig.html">せかい時計TZビッグバン（↑のTZDBでかいバン,めちゃ重いので注意(((((()))))</a></div>
+                <div class="link-item"><a href="./miku_event_calender.html">プロセカたいまー(Gカレンダー版)</a></div>
+                <div class="link-item"><a href="./miku_gametimer.html">ぼかろげーむたいまー</a></div>
+                <div class="link-item"><a href="./miku_birthtimer.html">ぼかろたんじょうび（初期1週間以内）</a></div>
+                <div class="link-item"><a href="./miku_event_calender.html">プロジェクトセカイいべんとかれんだー</a></div>
+                <div class="link-item"><a href="./base64.html">画像をbase64に変換する</a></div>
+            </div>
+        </section>
+        <section class="section">
+            <h2 class="section-title">ユメステ関連</h2>
+            <div class="link-grid">
+                <div class="link-item"><a href="./yumesute_ibetimer.html">ユメステいべたいまー</a></div>
+                <div class="link-item"><a href="./yumesute_sekai.html">ユメステいべたいまーせかい時計</a></div>
+                <div class="link-item"><a href="./yumesute_event_calender.html">ユメステいべんとかれんだー</a></div>
+            </div>
+        </section>
+        <section class="section">
+            <h2 class="section-title">あいます関連</h2>
+            <div class="link-grid">
+                <div class="link-item"><a href="./imas_event_calender.html">あいますげーむたいまー(Gカレンダー版)</a></div>
+                <b>--がくます関連--</b><br>
+                <div class="link-item"><a href="./gakumasu_ibetimer.html">がくますいべたいまー</a></div>
+                <div class="link-item"><a href="./gakumasu_event_calender.html">がくますいべんとかれんだー</a></div><br>
+                <br>
+                <b>--ミリシタ関連--</b><br>
+                <div class="link-item"><a href="./miriibe.html">みりしたいべスプレッドシート</a></div>
+                <div class="link-item"><a href="./ibetimer.html">みりしたいべたいまー</a></div>
+                <div class="link-item"><a href="./sekai.html">みりしたせかい時計</a></div>
+                <div class="link-item"><a href="./miri_event_calender.html">みりしたいべんとかれんだー</a></div>
+                <div class="link-item"><a href="./neta/theater.html">みりしたぼだしあたー、こくさいばん</a></div>
+                <div class="link-item"><a href="./neta/tour.html">みりしたぼだつあー、こくさいばん</a></div>
+                <div class="link-item"><a href="./neta/tale.html">みりしたぼだている、こくさいばん</a></div>
+                <div class="link-item"><a href="./ml_ptj_maker.html">れいんぼうPTめーかー、５パターンまで対応</a></div>
+                <div class="link-item"><a href="./ml_ptj_theater.html">れいんぼうさーちかくとくPT(シアター/チューン/トラスト)</a></div>
+                <div class="link-item"><a href="./ml_ptj_tour.html">れいんぼうさーちかくとくPT(つあー)</a></div>
+                <div class="link-item"><a href="./ml_ptj_tale.html">れいんぼうさーちかくとくPT(ている/とれじゃー)</a></div>
+                <div class="link-item"><a href="./shorttime.html">みりした短い曲検索</a></div><br>
+                <br>
+                <b>---デレステ関連----</b><br>
+                <div class="link-item"><a href="./cgss_ibetimer.html">デレステいべたいまー</a></div>
+                <div class="link-item"><a href="./sekai-dere.html">でれすてせかい時計</a></div>
+                <div class="link-item"><a href="./dere_ptj_atapon.html">れいんぼうさーちかくとくPT（あたぽん)</a></div>
+                <div class="link-item"><a href="./dere_event_calender.html">でれすていべんとかれんだー</a></div>
+            </div>
+        </section>
 
-<H3>プロセカ関連</h3>
-<ul>
-<li><a href="./miku_ibetimer.html">プロジェクトセカイいべたいまー</a></li>
-<li><a href="./sekai_miku.html">プロジェクトセカイいべたいまーせかい時計（いちおう海外版予想対応）</a></li>
-<li><a href="./sekai_miku_tzbig.html">せかい時計TZビッグバン（↑のTZDBでかいバン,めちゃ重いので注意(((((()))))</a></li>
-<li><a href="./miku_event_calender.html">プロセカたいまー(Gカレンダー版)</a></li>
-<li><a href="./miku_gametimer.html">ぼかろげーむたいまー</a></li>
-<li><a href="./miku_birthtimer.html">ぼかろたんじょうび（初期1週間以内）</a></li>
-<br>
-<br>
-</ul>
-<H3>ユメステ関連</h3>
-<ul>
-<li><a href="./yumesute_ibetimer.html">ユメステいべたいまー</a></li>
-<li><a href="./yumesute_sekai.html">ユメステいべたいまーせかい時計</a></li>
-<br><br>
-</ul>
-<H3>みりしたでれすれ関連</h3>
-<ul>
-<b>--ミリシタ関連--</b><br>
-<li><a href="./ibetimer.html">みりしたいべたいまー</a></li>
-<li><a href="./sekai.html">みりしたせかい時計</a></li>
-<li><a href="./neta/theater.html">みりしたぼだしあたー、こくさいばん</a></li>
-<li><a href="./neta/tour.html">みりしたぼだつあー、こくさいばん</a></li>
-<li><a href="./neta/tale.html">みりしたぼだている、こくさいばん</a></li>
-<li><a href="./ml_ptj_maker.html">れいんぼうPTめーかー、５パターンまで対応</a></li>
-<li><a href="./ml_ptj_theater.html">れいんぼうさーちかくとくPT(シアター/チューン/トラスト)</a></li>
-<li><a href="./ml_ptj_tour.html">れいんぼうさーちかくとくPT(つあー)</a></li>
-<li><a href="./ml_ptj_tale.html">れいんぼうさーちかくとくPT(ている/とれじゃー)</a></li>
-<li><a href="./shorttime.html">みりした短い曲検索</a></li><br>
-<br>
-<b>---デレステ関連----</b><br>
-<li><a href="./cgss_ibetimer.html">デレステいべたいまー</a></li>
-<li><a href="./sekai-dere.html">でれすてせかい時計</a></li>
-<li><a href="./dere_ptj_atapon.html">れいんぼうさーちかくとくPT（あたぽん)</a></li>
-<br>
-<b>--ほかます関連--</b><br>
-<li><a href="./shiny_song_ibetimer.html">シャニソンいべたいまー</a></li>
-<li><a href="./shiny_song_sekai.html">シャニソンせかい時計</a></li>
-<li><a href="./imas_event_calender.html">あいますげーむたいまー(Gカレンダー版)</a></li>
+        <section class="section">
+            <h2 class="section-title">LUAすくりぷと(GITHUB RAWのとこをDL)</h2>
+            <div class="link-grid">
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/deresute/blob/master/OBSdere_extend.lua">OBSいべんとたいま(ISO8601、みりでれ残り時間カウントダウン)</a>
+                </div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/deresute/blob/master/date-and-time.lua">OBSいべんとたいま(現在時刻＋せかい時計＋令和対応)</a>
+                </div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/deresute/blob/master/date-and-time_imasbirth.lua">OBSいべんとたいま(上にあいます記念日、あいどる誕生日追加)</a>
+                </div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/miku/blob/master/date-and-time_miku.lua">OBSいべんとたいま(上にぼかろ記念日、ぼかろぷろせｋ誕生日追加)</a>
+                </div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/yumesute/blob/master/date-and-time_daisuta.lua">OBSいべんとたいま(上にワールド大スター誕生日追加)</a>
+                </div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/acotoge">OBSいべんとたいま(上にKACコナミ音ゲーおもにBEMANIシリーズの稼働日のDB追加,SEGAセガ,NAMCOナムコ他も追加)</a>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <h2 class="section-title">PYTHONすくりぷと(RAWのとこをDL)</h2>
+            <div class="link-grid">
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/gakumasu/blob/master/date-time_with_tzinfo_gaku.py">OBSいべんとぱいそんのたいまーいべんとたいま(ISO8601残り時間カウントダウン)</a>
+                </div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/deresute/blob/master/%E3%81%B1%E3%81%84%E3%81%9D%E3%82%93%E3%81%AE%E3%81%9F%E3%81%84%E3%81%BE%E3%83%BC.py">ぱいそんのたいまーいべんとたいま(ISO8601残り時間カウントダウン)</a>
+                </div>
+            </div>
+        </section>
 
-<h3>LUAすくりぷと(RAWのとこをDL)</h3>
-<li><a href="https://github.com/sokudon/deresute/blob/master/OBSdere_extend.lua">OBSいべんとたいま(ISO8601、みりでれ残り時間カウントダウン)</a></li>
-<li><a href="https://github.com/sokudon/deresute/blob/master/date-and-time.lua">OBSいべんとたいま(現在時刻＋せかい時計＋令和対応)</a></li>
-<li><a href="https://github.com/sokudon/deresute/blob/master/date-and-time_imasbirth.lua">OBSいべんとたいま(上にあいます記念日、あいどる誕生日追加)</a></li>
-<li><a href="https://github.com/sokudon/miku/blob/master/date-and-time_miku.lua">OBSいべんとたいま(上にぼかろ記念日、ぼかろぷろせｋ誕生日追加)</a></li>
-<li><a href="https://github.com/sokudon/yumesute/blob/master/date-and-time_daisuta.lua">OBSいべんとたいま(上にワールド大スター誕生日追加)</a></li>
-<li><a href="https://github.com/sokudon/acotoge">OBSいべんとたいま(上にKACコナミ音ゲーおもにBEMANIシリーズの稼働日のDB追加,SEGAセガ,NAMCOナムコ他も追加)</a></li>
-<h3>PYTHONすくりぷと(RAWのとこをDL)</h3>
-<li><a href="https://github.com/sokudon/deresute/blob/master/%E3%81%B1%E3%81%84%E3%81%9D%E3%82%93%E3%81%AE%E3%81%9F%E3%81%84%E3%81%BE%E3%83%BC.py">ぱいそんのたいまーいべんとたいま(ISO8601残り時間カウントダウン)</a></li>
-<H3>JAVASCRIPT</h3>
-<ul>
-<li><a href="./gametimer.html">あいますしりーずのゲーム稼働/発売たいまー</a></li>
-<li><a href="https://script.google.com/macros/s/AKfycbxDoIGnZkPpM15YFVd8iSTOytT8oUyY3dDnNHygprtjWj4bAJEoGMlpMC2qzgbT8R2_/exec">あいますしりーずのゲーム稼働/発売たいまーごっごるばん</a></li>
-<li><a href="./birthtimer.html">あいますしりーずのゲーム稼働/発売たいまー（初期1週間以内）</a></li>
-<li><a href="./neta/imm.html">はんよういべんとたいまー(#いべんとめい,(開始時間),(終了時間),%%) %%=タイムゾーン,おまけで簡易icalendar作成</a></li>
-<li><a href="./neta/imm_tzbig.html">はんよういべんとたいまー（↑のTZDBでかいバン,めちゃ重いので注意(((((()))))</a></li>
+        <section class="section">
+            <h2 class="section-title">JAVASCRIPT</h2>
+            <div class="link-grid">
+                <div class="link-item"><a href="./gametimer.html">あいますしりーずのゲーム稼働/発売たいまー</a></div>
+                <div class="link-item"><a
+                        href="https://script.google.com/macros/s/AKfycbyDRM7yx9Jwgi25lc2JkFrQx-LPJs7IvwWKvv9rAQ9j5HMFOZaJHs0atRIqATEyDn0i/exec">あいますしりーずのゲーム稼働/発売たいまーごっごるばん</a>
+                </div>
+                <div class="link-item"><a href="./birthtimer.html">あいますしりーずのゲーム稼働/発売たいまー（初期1週間以内）</a></div>
+                <div class="link-item"><a href="./neta/imm.html">はんよういべんとたいまー(#いべんとめい,(開始時間),(終了時間),%%)
+                        %%=タイムゾーン,おまけで簡易icalendar作成</a></div>
+                <div class="link-item"><a href="./neta/imm_tzbig.html">はんよういべんとたいまー（↑のTZDBでかいバン,めちゃ重いので注意(((((()))))</a>
+                </div>
 
-<li><a href="./kac_gametimer.html">AC音ゲーム稼働/発売たいまー</a></li>
-<li><a href="./kac_birthtimer.html">KACしりーずの誕生日たいまー（初期1週間以内）</a></li>
-<li><a href="./sega-namco-hokatoge-birthtimer.html">SEGA,namcoほか音ゲ^しりーずの誕生日たいまー（初期1週間以内）</a></li>
-
-
-<li><a href="./gengoneta.html">新元号ジェネレーター流行りなんでねた</a></li>
-<li><a href="./offerdo.html"><s>みりしたおふぁー度</a></s></li>
-
-ーーみりした自己きろうようーーー<br>
-<li><a href="./g_sql.html">qery+googleでカツドウ表示</a></li>
-<li><a href="./tbl_mirikatu.html">gchart+jsonでカツドウ表示(月Q年表示)</a></li>
-<li><a href="./sitakyoku.html">曲のるま進捗状況WEB版</a></li>
-<li><a href="./sitatore.html">とれーにんぐ進捗状況WEB版</a></li>
-<li><a href="./sitatore_cn.html">とれーにんぐ進捗状況WEB版　台湾☆</a></li>
-<li><a href="./sitatore_kr.html">とれーにんぐ進捗状況WEB版　韓国☆</a></li>
-<li><a href="./lesson.html">れっすんちけっとたいまー</a></li>
-<li><a href="./mirisita_katudou_calc.html">シュウカツごっごるOCR整形、ミリシタカツドウ補助</a></li>
-<li><a href="./gg.html">JSON自分用送信機</a></li>
-<li><a href="https://docs.google.com/spreadsheets/d/1CpwNLrurUVVLX2dmMgZHU-uQC7WQfyfWqLlaiooRaN8/edit#gid=0">自カツドウ記録所</a>
-</ul>
-<H3>ANDROID_APK</h3>
-<ul>
-<li><a href="https://github.com/sokudon/netatimer_andoro/tree/master/app/release">ぷろせか、みりした、でれすてイベタイマーANDROID_APP(APK)ばん(最新ぎっと更新)</a></li> 
-</ul>
-<H3>C#(要NETFRAMEWORK)</h3>
-<ul>
-<li><a href="https://github.com/sokudon/netataimaC-/tree/master/bin/Release">ぷろせか、みりした、でれすてイベタイマーC#ばん(最新ぎっと更新)</a></li> 
-<li><a href="https://github.com/sokudon/MLSTRINGTOOL">みりますすとりんぐつる(ぼだ変換用、最新ぎっと更新)</a></li> 
-</ul>
-<H3>集計でーた他まとめ</h3>
-<ul>
-<li><a href="https://docs.google.com/spreadsheet/pub?key=0ArIs57u-VlLWdHlaSk1NY2kzcnNFbjg3b2xNaXJUbnc&output=html">ごっごるすぷれっどしーと</a></li>
-<li><a href="https://script.google.com/macros/s/AKfycbyAvEeTj_PgaKC9LodNFMBzdiHBcdTWHtl2sQUuEqdY_TwXn26_/exec">ごっごるより上位回数計算</a></li>
-<li><a href="https://github.com/sokudon/millionlive-border-records">GITHUB(集計てんぽらり置き場に使用)</a></li>
-<li><a href="http://pastebin.com/u/unzu127">そくどめも</a></li>
-ーーぐりじだいのいさんーーー<br>
-<li><a href="./million_live_rtb_calc.html">RT速度計算</a></li>
-
-<li><a href="./million_live_rtb_calc-ad.html">RT速度計算(分速ダブり対応)</a></li>
-
-<li><a href="./mcl_inf.html">RT速度(からむ数制限なし)</a></li>
-
-<li><a href="./mlc_mod.html">RT速度計算(ぱふぉーまんすイベ用)</a></li>
-
-<li><a href="./mcl_inf_mod.html">RT速度計算(ぱふぉーまんすイベ時刻統一版)</a></li>
-
-<li><a href="./mlc_cd.html">RT速度計算(CD選抜仕様)</a></li>
-
-<li><a href="./million_live_rtb_calc_fes.html">RT速度計算(ふぇす数/ちゃれんじ)</a></li>
-
-<li><a href="./mlc_fes.html">RT速度計算(ふぃーばー)</a></li>
-
-<li><a href="./mcl_lvdon.html">RT速度計算(LVDON)</a></li>
-
-<li><a href="./mlv_lounge_cal.html">RTらうんじそくど計算</a></li>
-
-<li><a href="./mcl_bomber.html">BOMB速度計算</a></li>
-
-<li><a href="./million_json_modder.html">MODDER速度計算</a></li>
-
-<li><a href="./million_live_list.html">りすと作成</a></li>
-
-</ul>
-
-<h3>グリマス時代のいべんとぐらふ</h3>
-<ul>
-
-<li><a href="./jss.html">ちゃんげq4アイドル別ファン</a></li>
-<li><a href="./r_tbl_fan.html">q4アイドル別ファン</a></li>
-<li><a href="./r_tbl_total.html">q4総合ファン</a></li>
-<li><a href="./r_tbl_ap.html">q4アピール</a></li>
-<li><a href="./r_tbl_lg.html">q4ラウンジ</a></li>
-<li><a href="./r_tbl_fant.html">q4アイドル総合ファン</a></li>
-
-<li><a href="./r_jst.html">じそくq4総合ファン</a></li>
-<li><a href="./r_jsf.html">じそくq4アイドル別ファン</a></li>
-<li><a href="./r_jsa.html">じそくq4アピール</a></li>
-<li><a href="./r_jsl.html">じそくq4ラウンジ</a></li>
-<li><a href="./r_jsi.html">じそくq4アイドル総合ファン</a></li>
------1月-----<br>
-<li><a href="./googlechart_tbl_fan.html">アイドル別ファン</a></li>
-<li><a href="./googlechart_tbl_total.html">総合ファン</a></li>
-<li><a href="./googlechart_tbl_ap.html">アピール</a></li>
-<li><a href="./googlechart_tbl_lg.html">ラウンジ</a></li>
-<li><a href="./googlechart_tbl_fant.html">アイドル総合ファン</a></li>
-
-<li><a href="./r_jss.html">ちゃんげアイドル別ファン</a></li>
-
-<li><a href="./jst.html">じそく総合ファン</a></li>
-<li><a href="./jsf.html">じそくアイドル別ファン</a></li>
-<li><a href="./jsa.html">じそくアピール</a></li>
-<li><a href="./jsl.html">じそくラウンジ</a></li>
-<li><a href="./jsi.html">じそくアイドル総合ファン</a></li>
+                <div class="link-item"><a href="./kac_gametimer.html">AC音ゲーム稼働/発売たいまー</a></div>
+                <div class="link-item"><a href="./kac_birthtimer.html">KACしりーずの誕生日たいまー（初期1週間以内）</a></div>
+                <div class="link-item"><a
+                        href="./sega-namco-hokatoge-birthtimer.html">SEGA,namcoほか音ゲ^しりーずの誕生日たいまー（初期1週間以内）</a></div>
 
 
+                <div class="link-item"><a href="./gengoneta.html">新元号ジェネレーター流行りなんでねた</a></div>
+            </div>
+        </section>
 
-<li><a href="./marajun/mara.html">まらそん優先順位</a></li>
-<li><a href="./KIZUNA.html">きずな獲得PT早見表(近似式)</a></li>
-<li><a href="./million_json_view.html">かこいべぼだびゅー</a></li>
-<li><a href="./jisoku_m@ster.html">そくどひょうじwithGOOGLEDB</a></li>
-<li><a href="./am1.html">ぼだamchart</a></li>
-<li><a href="./JS_cbHHP.html">HHP/IMCメンバー</a></li>　※<a href="http:/sokudon.s17.xrea.com/JS_cbHHP.html">（https無しこちら)一部スクリプトこっちでないと動きません_m(__)m_</a>
-<li><a href="./album/ml_id_seek.html">あるばむほかん</a></li>
-</ul>
-<ul>
-・HIGHCHART<br>
-<li><a href="./highchart_tbl.html">じそく</a></li>
-<li><a href="./highchart_cmp.html">けいか</a></li>
-<li><a href="./highchart_cmp_remain.html">のこりじかん</a></li>
-<li><a href="./fes_number.html">ふぇすすう／ちゃれんじ</a></li>
-</ul>
-<ul>
-・GOOGLE<br>
-<li><a href="./googlechart.html">らんく＋てーぶる連動</a></li>
-<li><a href="./googlechart_tbl.html">＋じそく</a></li>
-<li><a href="./googlechart_tbl2.html">じそくのみ</a></li>
-<li><a href="./googlechart_tbl_g.html">らんく＋てーぶる連動withGOOGLEDB</a></li>
-</ul>
-<hr><br><hr>
---これより下は過去いべURLにアクセスできなくなったので過去の産物--
-<ul>
-<li><a href="./million_live_team.html">ちーむいべ検索</a></li>
-<li><a href="./million_live_friend_url.html">同僚うらる</a></li>
-</ul>
 
-</div><!-- / footer end -->
-</div><!-- / wrapper end -->
+        <section class="section">
+            <h2 class="section-title">ANDROID_APK</h2>
+            <div class="link-grid">
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/netatimer_andoro/tree/master/app/release">ぷろせか、みりした、でれすてイベタイマーANDROID_APP(APK)ばん(最新ぎっと更新)</a>
+                </div>
+            </div>
+        </section>
+        <h2 class="section-title">C#(要NETFRAMEWORK)</h2>
+        <div class="link-grid">
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/tzzone_ZIC_neta/tree/master/bin/Release/net8.0-windows7.0">tzdatabase対応版
+                        ぷろせか、みりした、でれすてイベタイマーC#ばん(最新ぎっと更新)</a></div>
+                <div class="link-item"><a
+                        href="https://github.com/sokudon/netataimaC-/tree/master/bin/Release">ぷろせか、みりした、でれすてイベタイマーC#ばん(旧版)</a>
+                </div>
+                <div class="link-item"><a href="https://github.com/sokudon/MLSTRINGTOOL">みりますすとりんぐつる(ぼだ変換用、最新ぎっと更新)</a>
+                </div>
+        </div>
+        </section>
+
+
+    </main>
 </body>
+
 </html>
