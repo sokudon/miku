@@ -19,14 +19,13 @@ var ibe = ibemie;
 var evnetskip = 77;
 
 window.onload = function () {
-	timer_update = 1000;
 	createSelectBox();
 	document.gm.gm.selectedIndex = 146;//ロサンゼルス
 	document.getElementById("gamename").selectedIndex = document.getElementById("gamename").length - 1;
 	update();
 	get_web_para();
 	ibetime();
-	setInterval("get_count()", timer_update);
+	get_count();
 }
 
 function escapeHTML(html) {
@@ -252,8 +251,17 @@ function UTC(i) {
 	}
 	return tm + ":00"
 }
+function isPatchJson(value,defalutvalue) {
+	// value が undefined, null, 空文字でないかつ、momentで有効な日時なら moment オブジェクトを返す
+	if (value !== undefined && value !== null && value !== "" && moment(value).isValid()) {
+		return moment(value).format("YYYY-MM-DD[T]HH:mm:ssZ"); // moment オブジェクトを返す（呼び出し側で format() 可能）
+	}
+
+	return defalutvalue; // それ以外はデフォルト値をそのまま返す
+}
 
 function get_count() {
+
 	var tt = ibeowari;//undefinedで現在時刻
 	var ts = ibekaishi;//undefinedで現在時刻
 	var st = "";
@@ -282,39 +290,51 @@ function get_count() {
 	var ken = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
 	var hst = moment(kst).add("h", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
 	var hen = moment(ken).add("h", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
-	var Pst = moment(ts).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
-	var Ptt = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
-	//var kst= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
-	//var ken= (parseInt(moment(tt).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD[T]HH:mm:ss+09:00");
-	//var Pst= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(ts).utc().add("h",9).format("-MM-DD HH:mm:ss");
-	//var Ptt= (parseInt(moment(ts).utc().add("h",9).format("YYYY")) +1) + moment(tt).utc().add("h",9).format("-MM-DD HH:mm:ss");
+	var gst = moment(ts).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
+	var gen = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
 
-	var hotfix_start=12;var hot_fix_end=17;
-	var mitibiki=121;
 
-	if(last_oversea>mitibiki){//hotfixpatch
-     for(var i=hotfix_start;i<=hot_fix_end;i++){
-			var datas=data[last_oversea][i];
-			if(datas!=""){
-					if(i==hot_fix_end){
-						Ptt=moment(datas);
-					}
+	var patch_idx = 12;//ぱっちの位置/ぱっちの位置のグーグルマクロとの
+	patch_idx--;//ぱっちの位置のグーグルマクロとのjs修正
+
+	// dataからpatchJsonを取得してパース
+	var patchString = data[last_oversea][patch_idx]; // インデックス12にpatchJson文字列
+	var patchJson = { patch: false, columns: {} };
+	if (data[last_oversea][patch_idx] != "") {
+		if (patchString) {
+			try {
+				patchJson = JSON.parse(patchString);
+			} catch (e) {
+				console.error("patchJsonのパースに失敗: ", e.message);
+				patchJson = { patch: false, columns: {} }; // エラー時は空のデフォルト
 			}
-	 }
+		}
+
+		// patchJsonから値を取得して上書き（厳密なチェック）
+		if (patchJson && patchJson.patch && patchJson.columns && typeof patchJson.columns === "object") {
+			// momentで値を取得し、フォーマット// 使用例
+			kst = isPatchJson(patchJson.columns.kst,kst);
+			ken = isPatchJson(patchJson.columns.ken,ken);
+			hst = isPatchJson(patchJson.columns.hst,hst);
+			hen = isPatchJson(patchJson.columns.hen,hen);
+			gst = isPatchJson(patchJson.columns.gst,gst);
+			gen = isPatchJson(patchJson.columns.gen,gen);
+		}
 	}
+
 
 	worldtimer[1][1] = moment(kst).format();
 	worldtimer[1][2] = moment(ken).format();
 
-	worldtimer[2][1] =moment(hst).format();
+	worldtimer[2][1] = moment(hst).format();
 	worldtimer[2][2] = moment(hen).format();
 
-	worldtimer[3][1] = moment(moment.tz(Pst, tzPST)).local().format();
-	worldtimer[3][2] = moment(moment.tz(Ptt, tzPST)).local().format();
+	worldtimer[3][1] = moment(moment.tz(gst, tzPST)).local().format();
+	worldtimer[3][2] = moment(moment.tz(gen, tzPST)).local().format();
 
 	st = st.replace("韓国版", moment(kst).format() + "～" + moment(ken).format());
 	st = st.replace("香港版", moment(kst).add("h", 1).format() + "～" + moment(ken).add("h", 1).format());
-	st = st.replace("北米版", moment(moment.tz(Pst, tzPST)).local().format() + "～" + moment(moment.tz(Ptt, tzPST)).local().format());
+	st = st.replace("北米版", moment(moment.tz(gst, tzPST)).local().format() + "～" + moment(moment.tz(gen, tzPST)).local().format());
 
 	//+"M$時間\t"
 	//+moment.utc(ibekaishi).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\t"
@@ -324,25 +344,18 @@ function get_count() {
 
 	stm = stm.replace("韓国版", moment.utc(kst).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(ken).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
 	stm = stm.replace("香港版", moment.utc(kst).add("h", 1 + tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(ken).add("h", 1 + tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
-	stm = stm.replace("北米版", moment.utc(moment.tz(Pst, tzPST)).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(moment.tz(Ptt, tzPST)).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
+	stm = stm.replace("北米版", moment.utc(moment.tz(gst, tzPST)).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(moment.tz(gen, tzPST)).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
 
 	stm = stm.replace(/\+\-/gm, "-");
 
 
 
-	stt = "<tr><th>もーめんとろーかる時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
+	stt = "<tr><th>もーめんとTZ時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
 	stt = stt.replace("日本版", moment(ts).tz(tzst).format() + "～" + moment(tt).tz(tzst).format());
 
 	stt = stt.replace("韓国版", moment(kst).tz(tzst).format() + "～" + moment(ken).tz(tzst).format());
 	stt = stt.replace("香港版", moment(kst).add("h", 1).tz(tzst).format() + "～" + moment(ken).add("h", 1).tz(tzst).format());
-	stt = stt.replace("北米版", moment(moment.tz(Pst, tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)") + "～" + moment(moment.tz(Ptt, tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)"));
-
-
-	//+"もめんと時間"+tzs+"/"+tze+"\t"
-	//+moment(ibekaishi).tz(tzst).format("YYYY/MM/DD HH:mm z")+"("+tzst+")\t"
-	//+moment(ibeowari).tz(tzst).format("YYYY/MM/DD HH:mm z")+"("+tzst+")\r\n"
-
-
+	stt = stt.replace("北米版", moment(moment.tz(gst, tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)") + "～" + moment(moment.tz(gen, tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)"));
 
 	var header = "<th></th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th>";
 	var st = "<table id=\"sampleTable\" class=\"tablesorter\">" + "<thead><tr>" + header + "</tr></thead><tbody>" + st + stm + stt + "</tbody></table>";
@@ -352,7 +365,6 @@ function get_count() {
 
 
 }
-
 
 function NextYearNoLeap(date) {
 	if (moment([moment(date).utc().add("h", 9).format("YYYY")]).isLeapYear()) {
@@ -369,8 +381,9 @@ function update() {
 		ibemie = escapeHTML(data[sel][2]);
 		ibekaishi = parsedate(data[sel][7]).format();
 		ibeowari = parsedate(data[sel][8]).format();
-		last_oversea=sel;
+		last_oversea = sel;
 		ibetime();
+		get_count();
 	}
 }
 function setend() {
@@ -378,7 +391,7 @@ function setend() {
 	update();
 }
 
-var last_oversea= 1;
+var last_oversea = 1;
 
 function setoversea() {
 	var lastyear = (parseInt(moment().utc().add("h", 9).format("YYYY")) - 1) + moment().utc().add("h", 9).format("-MM-DD[T]HH:mm:ss+09:00");
