@@ -435,7 +435,7 @@ function closest(num)
     local len = #PSTuntils
     if num < PSTuntils[1] then
         return 1
-    elseif len > 1 and PSTuntils[len] == math.huge and num >= PSTuntils[len - 1] then
+    elseif len > 1 and num >= PSTuntils[len - 1] then
         return len
     elseif (num >= PSTuntils[len]) then
         return -1
@@ -470,8 +470,7 @@ function closest_with_offset(num)
     local len = #PSTuntils
     if num < PSTuntils[1] + PSToffsets[2] then
         return 1
-    elseif len > 1 and PSTuntils[len] == math.huge and num >= PSTuntils[len - 1] +
-        PSToffsets[len] then
+    elseif len > 1 and  num >= PSTuntils[len - 1] + PSToffsets[len] then
         return len
     elseif (num >= PSTuntils[len]) then
         return -1
@@ -509,10 +508,11 @@ function get_pst(timestamp)
     if (tz_idx < 1) then
         tz_idx = 1
         return PSToffsets[1] / (-60)
-    end
+    end    
     if (tz_idx > #PSTuntils - 1) then
         tz_idx = #PSTuntils - 1
-        return PSToffsets[#PSTuntils - 1] / (-60)
+        tz_idx = tz_idx + 1
+        return PSToffsets[tz_idx] / (-60)
     end
 
     -- debugtxt2=PSTuntils[tz_idx]
