@@ -131,8 +131,8 @@ psten = 0
 tz_idx = 1
 tz_st = ""
 
---timezone_strings = {"America/Los_Angeles", "America/New_York","US/Mountain","US/Central","Asia/Seoul","Asia/Hong_Kong","Asia/Taipei","Asia/Tokyo","UTC"}
-timezone_strings ={"Africa/Abidjan","Africa/Accra","Africa/Addis_Ababa","Africa/Algiers","Africa/Asmara","Africa/Asmera","Africa/Bamako","Africa/Bangui","Africa/Banjul","Africa/Bissau","Africa/Blantyre","Africa/Brazzaville","Africa/Bujumbura","Africa/Cairo","Africa/Casablanca","Africa/Ceuta","Africa/Conakry","Africa/Dakar","Africa/Dar_es_Salaam","Africa/Djibouti","Africa/Douala","Africa/El_Aaiun","Africa/Freetown","Africa/Gaborone","Africa/Harare","Africa/Johannesburg","Africa/Juba","Africa/Kampala","Africa/Khartoum","Africa/Kigali","Africa/Kinshasa","Africa/Lagos","Africa/Libreville","Africa/Lome","Africa/Luanda","Africa/Lubumbashi","Africa/Lusaka","Africa/Malabo","Africa/Maputo","Africa/Maseru","Africa/Mbabane","Africa/Mogadishu","Africa/Monrovia","Africa/Nairobi","Africa/Ndjamena","Africa/Niamey","Africa/Nouakchott","Africa/Ouagadougou","Africa/Porto-Novo","Africa/Sao_Tome","Africa/Timbuktu","Africa/Tripoli","Africa/Tunis","Africa/Windhoek","America/Adak","America/Anchorage","America/Anguilla","America/Antigua","America/Araguaina","America/Argentina/Buenos_Aires","America/Argentina/Catamarca","America/Argentina/ComodRivadavia","America/Argentina/Cordoba","America/Argentina/Jujuy","America/Argentina/La_Rioja","America/Argentina/Mendoza","America/Argentina/Rio_Gallegos","America/Argentina/Salta","America/Argentina/San_Juan","America/Argentina/San_Luis","America/Argentina/Tucuman","America/Argentina/Ushuaia","America/Aruba","America/Asuncion","America/Atikokan","America/Atka","America/Bahia","America/Bahia_Banderas","America/Barbados","America/Belem","America/Belize","America/Blanc-Sablon","America/Boa_Vista","America/Bogota","America/Boise","America/Buenos_Aires","America/Cambridge_Bay","America/Campo_Grande","America/Cancun","America/Caracas","America/Catamarca","America/Cayenne","America/Cayman","America/Chicago","America/Chihuahua","America/Ciudad_Juarez","America/Coral_Harbour","America/Cordoba","America/Costa_Rica","America/Creston","America/Cuiaba","America/Curacao","America/Danmarkshavn","America/Dawson","America/Dawson_Creek","America/Denver","America/Detroit","America/Dominica","America/Edmonton","America/Eirunepe","America/El_Salvador","America/Ensenada","America/Fort_Nelson","America/Fort_Wayne","America/Fortaleza","America/Glace_Bay","America/Godthab","America/Goose_Bay","America/Grand_Turk","America/Grenada","America/Guadeloupe","America/Guatemala","America/Guayaquil","America/Guyana","America/Halifax","America/Havana","America/Hermosillo","America/Indiana/Indianapolis","America/Indiana/Knox","America/Indiana/Marengo","America/Indiana/Petersburg","America/Indiana/Tell_City","America/Indiana/Vevay","America/Indiana/Vincennes","America/Indiana/Winamac","America/Indianapolis","America/Inuvik","America/Iqaluit","America/Jamaica","America/Jujuy","America/Juneau","America/Kentucky/Louisville","America/Kentucky/Monticello","America/Knox_IN","America/Kralendijk","America/La_Paz","America/Lima","America/Los_Angeles","America/Louisville","America/Lower_Princes","America/Maceio","America/Managua","America/Manaus","America/Marigot","America/Martinique","America/Matamoros","America/Mazatlan","America/Mendoza","America/Menominee","America/Merida","America/Metlakatla","America/Mexico_City","America/Miquelon","America/Moncton","America/Monterrey","America/Montevideo","America/Montreal","America/Montserrat","America/Nassau","America/New_York","America/Nipigon","America/Nome","America/Noronha","America/North_Dakota/Beulah","America/North_Dakota/Center","America/North_Dakota/New_Salem","America/Nuuk","America/Ojinaga","America/Panama","America/Pangnirtung","America/Paramaribo","America/Phoenix","America/Port-au-Prince","America/Port_of_Spain","America/Porto_Acre","America/Porto_Velho","America/Puerto_Rico","America/Punta_Arenas","America/Rainy_River","America/Rankin_Inlet","America/Recife","America/Regina","America/Resolute","America/Rio_Branco","America/Rosario","America/Santa_Isabel","America/Santarem","America/Santiago","America/Santo_Domingo","America/Sao_Paulo","America/Scoresbysund","America/Shiprock","America/Sitka","America/St_Barthelemy","America/St_Johns","America/St_Kitts","America/St_Lucia","America/St_Thomas","America/St_Vincent","America/Swift_Current","America/Tegucigalpa","America/Thule","America/Thunder_Bay","America/Tijuana","America/Toronto","America/Tortola","America/Vancouver","America/Virgin","America/Whitehorse","America/Winnipeg","America/Yakutat","America/Yellowknife","Antarctica/Casey","Antarctica/Davis","Antarctica/DumontDUrville","Antarctica/Macquarie","Antarctica/Mawson","Antarctica/McMurdo","Antarctica/Palmer","Antarctica/Rothera","Antarctica/South_Pole","Antarctica/Syowa","Antarctica/Troll","Antarctica/Vostok","Arctic/Longyearbyen","Asia/Aden","Asia/Almaty","Asia/Amman","Asia/Anadyr","Asia/Aqtau","Asia/Aqtobe","Asia/Ashgabat","Asia/Ashkhabad","Asia/Atyrau","Asia/Baghdad","Asia/Bahrain","Asia/Baku","Asia/Bangkok","Asia/Barnaul","Asia/Beirut","Asia/Bishkek","Asia/Brunei","Asia/Calcutta","Asia/Chita","Asia/Choibalsan","Asia/Chongqing","Asia/Chungking","Asia/Colombo","Asia/Dacca","Asia/Damascus","Asia/Dhaka","Asia/Dili","Asia/Dubai","Asia/Dushanbe","Asia/Famagusta","Asia/Gaza","Asia/Hanoi","Asia/Harbin","Asia/Hebron","Asia/Ho_Chi_Minh","Asia/Hong_Kong","Asia/Hovd","Asia/Irkutsk","Asia/Istanbul","Asia/Jakarta","Asia/Jayapura","Asia/Jerusalem","Asia/Kabul","Asia/Kamchatka","Asia/Karachi","Asia/Kashgar","Asia/Kathmandu","Asia/Katmandu","Asia/Khandyga","Asia/Kolkata","Asia/Krasnoyarsk","Asia/Kuala_Lumpur","Asia/Kuching","Asia/Kuwait","Asia/Macao","Asia/Macau","Asia/Magadan","Asia/Makassar","Asia/Manila","Asia/Muscat","Asia/Nicosia","Asia/Novokuznetsk","Asia/Novosibirsk","Asia/Omsk","Asia/Oral","Asia/Phnom_Penh","Asia/Pontianak","Asia/Pyongyang","Asia/Qatar","Asia/Qostanay","Asia/Qyzylorda","Asia/Rangoon","Asia/Riyadh","Asia/Saigon","Asia/Sakhalin","Asia/Samarkand","Asia/Seoul","Asia/Shanghai","Asia/Singapore","Asia/Srednekolymsk","Asia/Taipei","Asia/Tashkent","Asia/Tbilisi","Asia/Tehran","Asia/Tel_Aviv","Asia/Thimbu","Asia/Thimphu","Asia/Tokyo","Asia/Tomsk","Asia/Ujung_Pandang","Asia/Ulaanbaatar","Asia/Ulan_Bator","Asia/Urumqi","Asia/Ust-Nera","Asia/Vientiane","Asia/Vladivostok","Asia/Yakutsk","Asia/Yangon","Asia/Yekaterinburg","Asia/Yerevan","Atlantic/Azores","Atlantic/Bermuda","Atlantic/Canary","Atlantic/Cape_Verde","Atlantic/Faeroe","Atlantic/Faroe","Atlantic/Jan_Mayen","Atlantic/Madeira","Atlantic/Reykjavik","Atlantic/South_Georgia","Atlantic/St_Helena","Atlantic/Stanley","Australia/ACT","Australia/Adelaide","Australia/Brisbane","Australia/Broken_Hill","Australia/Canberra","Australia/Currie","Australia/Darwin","Australia/Eucla","Australia/Hobart","Australia/LHI","Australia/Lindeman","Australia/Lord_Howe","Australia/Melbourne","Australia/NSW","Australia/North","Australia/Perth","Australia/Queensland","Australia/South","Australia/Sydney","Australia/Tasmania","Australia/Victoria","Australia/West","Australia/Yancowinna","Brazil/Acre","Brazil/DeNoronha","Brazil/East","Brazil/West","CET","CST6CDT","Canada/Atlantic","Canada/Central","Canada/Eastern","Canada/Mountain","Canada/Newfoundland","Canada/Pacific","Canada/Saskatchewan","Canada/Yukon","Chile/Continental","Chile/EasterIsland","Cuba","EET","EST","EST5EDT","Egypt","Eire","Etc/GMT","Etc/GMT+0","Etc/GMT+1","Etc/GMT+10","Etc/GMT+11","Etc/GMT+12","Etc/GMT+2","Etc/GMT+3","Etc/GMT+4","Etc/GMT+5","Etc/GMT+6","Etc/GMT+7","Etc/GMT+8","Etc/GMT+9","Etc/GMT-0","Etc/GMT-1","Etc/GMT-10","Etc/GMT-11","Etc/GMT-12","Etc/GMT-13","Etc/GMT-14","Etc/GMT-2","Etc/GMT-3","Etc/GMT-4","Etc/GMT-5","Etc/GMT-6","Etc/GMT-7","Etc/GMT-8","Etc/GMT-9","Etc/GMT0","Etc/Greenwich","Etc/UCT","Etc/UTC","Etc/Universal","Etc/Zulu","Europe/Amsterdam","Europe/Andorra","Europe/Astrakhan","Europe/Athens","Europe/Belfast","Europe/Belgrade","Europe/Berlin","Europe/Bratislava","Europe/Brussels","Europe/Bucharest","Europe/Budapest","Europe/Busingen","Europe/Chisinau","Europe/Copenhagen","Europe/Dublin","Europe/Gibraltar","Europe/Guernsey","Europe/Helsinki","Europe/Isle_of_Man","Europe/Istanbul","Europe/Jersey","Europe/Kaliningrad","Europe/Kiev","Europe/Kirov","Europe/Kyiv","Europe/Lisbon","Europe/Ljubljana","Europe/London","Europe/Luxembourg","Europe/Madrid","Europe/Malta","Europe/Mariehamn","Europe/Minsk","Europe/Monaco","Europe/Moscow","Europe/Nicosia","Europe/Oslo","Europe/Paris","Europe/Podgorica","Europe/Prague","Europe/Riga","Europe/Rome","Europe/Samara","Europe/San_Marino","Europe/Sarajevo","Europe/Saratov","Europe/Simferopol","Europe/Skopje","Europe/Sofia","Europe/Stockholm","Europe/Tallinn","Europe/Tirane","Europe/Tiraspol","Europe/Ulyanovsk","Europe/Uzhgorod","Europe/Vaduz","Europe/Vatican","Europe/Vienna","Europe/Vilnius","Europe/Volgograd","Europe/Warsaw","Europe/Zagreb","Europe/Zaporozhye","Europe/Zurich","Factory","GB","GB-Eire","GMT","GMT+0","GMT-0","GMT0","Greenwich","HST","Hongkong","Iceland","Indian/Antananarivo","Indian/Chagos","Indian/Christmas","Indian/Cocos","Indian/Comoro","Indian/Kerguelen","Indian/Mahe","Indian/Maldives","Indian/Mauritius","Indian/Mayotte","Indian/Reunion","Iran","Israel","Jamaica","Japan","Kwajalein","Libya","MET","MST","MST7MDT","Mexico/BajaNorte","Mexico/BajaSur","Mexico/General","NZ","NZ-CHAT","Navajo","PRC","PST8PDT","Pacific/Apia","Pacific/Auckland","Pacific/Bougainville","Pacific/Chatham","Pacific/Chuuk","Pacific/Easter","Pacific/Efate","Pacific/Enderbury","Pacific/Fakaofo","Pacific/Fiji","Pacific/Funafuti","Pacific/Galapagos","Pacific/Gambier","Pacific/Guadalcanal","Pacific/Guam","Pacific/Honolulu","Pacific/Johnston","Pacific/Kanton","Pacific/Kiritimati","Pacific/Kosrae","Pacific/Kwajalein","Pacific/Majuro","Pacific/Marquesas","Pacific/Midway","Pacific/Nauru","Pacific/Niue","Pacific/Norfolk","Pacific/Noumea","Pacific/Pago_Pago","Pacific/Palau","Pacific/Pitcairn","Pacific/Pohnpei","Pacific/Ponape","Pacific/Port_Moresby","Pacific/Rarotonga","Pacific/Saipan","Pacific/Samoa","Pacific/Tahiti","Pacific/Tarawa","Pacific/Tongatapu","Pacific/Truk","Pacific/Wake","Pacific/Wallis","Pacific/Yap","Poland","Portugal","ROC","ROK","Singapore","Turkey","UCT","US/Alaska","US/Aleutian","US/Arizona","US/Central","US/East-Indiana","US/Eastern","US/Hawaii","US/Indiana-Starke","US/Michigan","US/Mountain","US/Pacific","US/Samoa","UTC","Universal","W-SU","WET","Zulu"}
+timezone_strings = {"America/Los_Angeles", "America/New_York","US/Mountain","US/Central","Asia/Seoul","Asia/Hong_Kong","Asia/Taipei","Asia/Tokyo","UTC"}
+--timezone_strings ={"Africa/Abidjan","Africa/Accra","Africa/Addis_Ababa","Africa/Algiers","Africa/Asmara","Africa/Asmera","Africa/Bamako","Africa/Bangui","Africa/Banjul","Africa/Bissau","Africa/Blantyre","Africa/Brazzaville","Africa/Bujumbura","Africa/Cairo","Africa/Casablanca","Africa/Ceuta","Africa/Conakry","Africa/Dakar","Africa/Dar_es_Salaam","Africa/Djibouti","Africa/Douala","Africa/El_Aaiun","Africa/Freetown","Africa/Gaborone","Africa/Harare","Africa/Johannesburg","Africa/Juba","Africa/Kampala","Africa/Khartoum","Africa/Kigali","Africa/Kinshasa","Africa/Lagos","Africa/Libreville","Africa/Lome","Africa/Luanda","Africa/Lubumbashi","Africa/Lusaka","Africa/Malabo","Africa/Maputo","Africa/Maseru","Africa/Mbabane","Africa/Mogadishu","Africa/Monrovia","Africa/Nairobi","Africa/Ndjamena","Africa/Niamey","Africa/Nouakchott","Africa/Ouagadougou","Africa/Porto-Novo","Africa/Sao_Tome","Africa/Timbuktu","Africa/Tripoli","Africa/Tunis","Africa/Windhoek","America/Adak","America/Anchorage","America/Anguilla","America/Antigua","America/Araguaina","America/Argentina/Buenos_Aires","America/Argentina/Catamarca","America/Argentina/ComodRivadavia","America/Argentina/Cordoba","America/Argentina/Jujuy","America/Argentina/La_Rioja","America/Argentina/Mendoza","America/Argentina/Rio_Gallegos","America/Argentina/Salta","America/Argentina/San_Juan","America/Argentina/San_Luis","America/Argentina/Tucuman","America/Argentina/Ushuaia","America/Aruba","America/Asuncion","America/Atikokan","America/Atka","America/Bahia","America/Bahia_Banderas","America/Barbados","America/Belem","America/Belize","America/Blanc-Sablon","America/Boa_Vista","America/Bogota","America/Boise","America/Buenos_Aires","America/Cambridge_Bay","America/Campo_Grande","America/Cancun","America/Caracas","America/Catamarca","America/Cayenne","America/Cayman","America/Chicago","America/Chihuahua","America/Ciudad_Juarez","America/Coral_Harbour","America/Cordoba","America/Costa_Rica","America/Creston","America/Cuiaba","America/Curacao","America/Danmarkshavn","America/Dawson","America/Dawson_Creek","America/Denver","America/Detroit","America/Dominica","America/Edmonton","America/Eirunepe","America/El_Salvador","America/Ensenada","America/Fort_Nelson","America/Fort_Wayne","America/Fortaleza","America/Glace_Bay","America/Godthab","America/Goose_Bay","America/Grand_Turk","America/Grenada","America/Guadeloupe","America/Guatemala","America/Guayaquil","America/Guyana","America/Halifax","America/Havana","America/Hermosillo","America/Indiana/Indianapolis","America/Indiana/Knox","America/Indiana/Marengo","America/Indiana/Petersburg","America/Indiana/Tell_City","America/Indiana/Vevay","America/Indiana/Vincennes","America/Indiana/Winamac","America/Indianapolis","America/Inuvik","America/Iqaluit","America/Jamaica","America/Jujuy","America/Juneau","America/Kentucky/Louisville","America/Kentucky/Monticello","America/Knox_IN","America/Kralendijk","America/La_Paz","America/Lima","America/Los_Angeles","America/Louisville","America/Lower_Princes","America/Maceio","America/Managua","America/Manaus","America/Marigot","America/Martinique","America/Matamoros","America/Mazatlan","America/Mendoza","America/Menominee","America/Merida","America/Metlakatla","America/Mexico_City","America/Miquelon","America/Moncton","America/Monterrey","America/Montevideo","America/Montreal","America/Montserrat","America/Nassau","America/New_York","America/Nipigon","America/Nome","America/Noronha","America/North_Dakota/Beulah","America/North_Dakota/Center","America/North_Dakota/New_Salem","America/Nuuk","America/Ojinaga","America/Panama","America/Pangnirtung","America/Paramaribo","America/Phoenix","America/Port-au-Prince","America/Port_of_Spain","America/Porto_Acre","America/Porto_Velho","America/Puerto_Rico","America/Punta_Arenas","America/Rainy_River","America/Rankin_Inlet","America/Recife","America/Regina","America/Resolute","America/Rio_Branco","America/Rosario","America/Santa_Isabel","America/Santarem","America/Santiago","America/Santo_Domingo","America/Sao_Paulo","America/Scoresbysund","America/Shiprock","America/Sitka","America/St_Barthelemy","America/St_Johns","America/St_Kitts","America/St_Lucia","America/St_Thomas","America/St_Vincent","America/Swift_Current","America/Tegucigalpa","America/Thule","America/Thunder_Bay","America/Tijuana","America/Toronto","America/Tortola","America/Vancouver","America/Virgin","America/Whitehorse","America/Winnipeg","America/Yakutat","America/Yellowknife","Antarctica/Casey","Antarctica/Davis","Antarctica/DumontDUrville","Antarctica/Macquarie","Antarctica/Mawson","Antarctica/McMurdo","Antarctica/Palmer","Antarctica/Rothera","Antarctica/South_Pole","Antarctica/Syowa","Antarctica/Troll","Antarctica/Vostok","Arctic/Longyearbyen","Asia/Aden","Asia/Almaty","Asia/Amman","Asia/Anadyr","Asia/Aqtau","Asia/Aqtobe","Asia/Ashgabat","Asia/Ashkhabad","Asia/Atyrau","Asia/Baghdad","Asia/Bahrain","Asia/Baku","Asia/Bangkok","Asia/Barnaul","Asia/Beirut","Asia/Bishkek","Asia/Brunei","Asia/Calcutta","Asia/Chita","Asia/Choibalsan","Asia/Chongqing","Asia/Chungking","Asia/Colombo","Asia/Dacca","Asia/Damascus","Asia/Dhaka","Asia/Dili","Asia/Dubai","Asia/Dushanbe","Asia/Famagusta","Asia/Gaza","Asia/Hanoi","Asia/Harbin","Asia/Hebron","Asia/Ho_Chi_Minh","Asia/Hong_Kong","Asia/Hovd","Asia/Irkutsk","Asia/Istanbul","Asia/Jakarta","Asia/Jayapura","Asia/Jerusalem","Asia/Kabul","Asia/Kamchatka","Asia/Karachi","Asia/Kashgar","Asia/Kathmandu","Asia/Katmandu","Asia/Khandyga","Asia/Kolkata","Asia/Krasnoyarsk","Asia/Kuala_Lumpur","Asia/Kuching","Asia/Kuwait","Asia/Macao","Asia/Macau","Asia/Magadan","Asia/Makassar","Asia/Manila","Asia/Muscat","Asia/Nicosia","Asia/Novokuznetsk","Asia/Novosibirsk","Asia/Omsk","Asia/Oral","Asia/Phnom_Penh","Asia/Pontianak","Asia/Pyongyang","Asia/Qatar","Asia/Qostanay","Asia/Qyzylorda","Asia/Rangoon","Asia/Riyadh","Asia/Saigon","Asia/Sakhalin","Asia/Samarkand","Asia/Seoul","Asia/Shanghai","Asia/Singapore","Asia/Srednekolymsk","Asia/Taipei","Asia/Tashkent","Asia/Tbilisi","Asia/Tehran","Asia/Tel_Aviv","Asia/Thimbu","Asia/Thimphu","Asia/Tokyo","Asia/Tomsk","Asia/Ujung_Pandang","Asia/Ulaanbaatar","Asia/Ulan_Bator","Asia/Urumqi","Asia/Ust-Nera","Asia/Vientiane","Asia/Vladivostok","Asia/Yakutsk","Asia/Yangon","Asia/Yekaterinburg","Asia/Yerevan","Atlantic/Azores","Atlantic/Bermuda","Atlantic/Canary","Atlantic/Cape_Verde","Atlantic/Faeroe","Atlantic/Faroe","Atlantic/Jan_Mayen","Atlantic/Madeira","Atlantic/Reykjavik","Atlantic/South_Georgia","Atlantic/St_Helena","Atlantic/Stanley","Australia/ACT","Australia/Adelaide","Australia/Brisbane","Australia/Broken_Hill","Australia/Canberra","Australia/Currie","Australia/Darwin","Australia/Eucla","Australia/Hobart","Australia/LHI","Australia/Lindeman","Australia/Lord_Howe","Australia/Melbourne","Australia/NSW","Australia/North","Australia/Perth","Australia/Queensland","Australia/South","Australia/Sydney","Australia/Tasmania","Australia/Victoria","Australia/West","Australia/Yancowinna","Brazil/Acre","Brazil/DeNoronha","Brazil/East","Brazil/West","CET","CST6CDT","Canada/Atlantic","Canada/Central","Canada/Eastern","Canada/Mountain","Canada/Newfoundland","Canada/Pacific","Canada/Saskatchewan","Canada/Yukon","Chile/Continental","Chile/EasterIsland","Cuba","EET","EST","EST5EDT","Egypt","Eire","Etc/GMT","Etc/GMT+0","Etc/GMT+1","Etc/GMT+10","Etc/GMT+11","Etc/GMT+12","Etc/GMT+2","Etc/GMT+3","Etc/GMT+4","Etc/GMT+5","Etc/GMT+6","Etc/GMT+7","Etc/GMT+8","Etc/GMT+9","Etc/GMT-0","Etc/GMT-1","Etc/GMT-10","Etc/GMT-11","Etc/GMT-12","Etc/GMT-13","Etc/GMT-14","Etc/GMT-2","Etc/GMT-3","Etc/GMT-4","Etc/GMT-5","Etc/GMT-6","Etc/GMT-7","Etc/GMT-8","Etc/GMT-9","Etc/GMT0","Etc/Greenwich","Etc/UCT","Etc/UTC","Etc/Universal","Etc/Zulu","Europe/Amsterdam","Europe/Andorra","Europe/Astrakhan","Europe/Athens","Europe/Belfast","Europe/Belgrade","Europe/Berlin","Europe/Bratislava","Europe/Brussels","Europe/Bucharest","Europe/Budapest","Europe/Busingen","Europe/Chisinau","Europe/Copenhagen","Europe/Dublin","Europe/Gibraltar","Europe/Guernsey","Europe/Helsinki","Europe/Isle_of_Man","Europe/Istanbul","Europe/Jersey","Europe/Kaliningrad","Europe/Kiev","Europe/Kirov","Europe/Kyiv","Europe/Lisbon","Europe/Ljubljana","Europe/London","Europe/Luxembourg","Europe/Madrid","Europe/Malta","Europe/Mariehamn","Europe/Minsk","Europe/Monaco","Europe/Moscow","Europe/Nicosia","Europe/Oslo","Europe/Paris","Europe/Podgorica","Europe/Prague","Europe/Riga","Europe/Rome","Europe/Samara","Europe/San_Marino","Europe/Sarajevo","Europe/Saratov","Europe/Simferopol","Europe/Skopje","Europe/Sofia","Europe/Stockholm","Europe/Tallinn","Europe/Tirane","Europe/Tiraspol","Europe/Ulyanovsk","Europe/Uzhgorod","Europe/Vaduz","Europe/Vatican","Europe/Vienna","Europe/Vilnius","Europe/Volgograd","Europe/Warsaw","Europe/Zagreb","Europe/Zaporozhye","Europe/Zurich","Factory","GB","GB-Eire","GMT","GMT+0","GMT-0","GMT0","Greenwich","HST","Hongkong","Iceland","Indian/Antananarivo","Indian/Chagos","Indian/Christmas","Indian/Cocos","Indian/Comoro","Indian/Kerguelen","Indian/Mahe","Indian/Maldives","Indian/Mauritius","Indian/Mayotte","Indian/Reunion","Iran","Israel","Jamaica","Japan","Kwajalein","Libya","MET","MST","MST7MDT","Mexico/BajaNorte","Mexico/BajaSur","Mexico/General","NZ","NZ-CHAT","Navajo","PRC","PST8PDT","Pacific/Apia","Pacific/Auckland","Pacific/Bougainville","Pacific/Chatham","Pacific/Chuuk","Pacific/Easter","Pacific/Efate","Pacific/Enderbury","Pacific/Fakaofo","Pacific/Fiji","Pacific/Funafuti","Pacific/Galapagos","Pacific/Gambier","Pacific/Guadalcanal","Pacific/Guam","Pacific/Honolulu","Pacific/Johnston","Pacific/Kanton","Pacific/Kiritimati","Pacific/Kosrae","Pacific/Kwajalein","Pacific/Majuro","Pacific/Marquesas","Pacific/Midway","Pacific/Nauru","Pacific/Niue","Pacific/Norfolk","Pacific/Noumea","Pacific/Pago_Pago","Pacific/Palau","Pacific/Pitcairn","Pacific/Pohnpei","Pacific/Ponape","Pacific/Port_Moresby","Pacific/Rarotonga","Pacific/Saipan","Pacific/Samoa","Pacific/Tahiti","Pacific/Tarawa","Pacific/Tongatapu","Pacific/Truk","Pacific/Wake","Pacific/Wallis","Pacific/Yap","Poland","Portugal","ROC","ROK","Singapore","Turkey","UCT","US/Alaska","US/Aleutian","US/Arizona","US/Central","US/East-Indiana","US/Eastern","US/Hawaii","US/Indiana-Starke","US/Michigan","US/Mountain","US/Pacific","US/Samoa","UTC","Universal","W-SU","WET","Zulu"}
 
 ENG = true
 
@@ -337,11 +337,7 @@ local function convert_momentjs()
     PSTname = "America/Los_Angeles" -- タイムゾーン名（必要に応じて動的に設定）
 
     if #timezone_transition < 2 then
-        if(#timezone_transition==1)then
-            PSTuntils[1] =timezone_transition[1] * 1000
-        else
-            PSTuntils[1] = math.huge
-        end
+        PSTuntils[1] = math.huge
         PSTabbrs[1] = timezone_abbr[1]
         PSToffsets[1] = timezone_offset[1] / 60 * -1
     else
@@ -394,14 +390,14 @@ local function read_tz(fd)
         local tzh_typecnt = assert(read_int32be(fd))
         local tzh_charcnt = assert(read_int32be(fd))
 
-        --
+        --[[
         obs.script_log(obs.LOG_INFO,
                        string.format("tzh_timecnt: %d", tzh_timecnt))
         obs.script_log(obs.LOG_INFO,
                        string.format("tzh_typecnt : %d", tzh_typecnt))
         obs.script_log(obs.LOG_INFO,
                        string.format("tzh_charcnt: %s", tzh_charcnt))
-        --]]
+                       ]]
 
         timezone_transition = {}
         timezone_offset = {}
@@ -444,14 +440,14 @@ local function read_tz(fd)
 
         -- デバッグ出力
         --[[
-        if tzh_timecnt >= 1 then
-            obs.script_log(obs.LOG_INFO, string.format("transition: %d",
-                                                       timezone_transition[1] or
+        if tzh_timecnt >= 2 then
+            obs.script_log(obs.LOG_INFO, string.format("transition[2]: %d",
+                                                       timezone_transition[2] or
                                                            0))
-            obs.script_log(obs.LOG_INFO, string.format("offset: %d",
-                                                       timezone_offset[1] or 0))
-            obs.script_log(obs.LOG_INFO, string.format("abbr: %s",
-                                                       timezone_abbr[1] or "N/A"))
+            obs.script_log(obs.LOG_INFO, string.format("offset[2]: %d",
+                                                       timezone_offset[2] or 0))
+            obs.script_log(obs.LOG_INFO, string.format("abbr[2]: %s",
+                                                       timezone_abbr[2] or "N/A"))
         end
         ]]
 
@@ -469,7 +465,7 @@ local function read_tz(fd)
 
         obs.script_log(obs.LOG_INFO, "TZif 32 passed")
 
-        -- 64bitDB 使えないので省略、まあ正のあたりだけならつかえる
+        -- 63bitDB 使えないので省略、まあ正のあたりだけならつかえる
         -- if version == "2" or version == "3" then
         -- end
 
@@ -534,7 +530,7 @@ local function get_timezone_offset(tzinfo, timestamp)
     return info.gmtoff, info.isdst, info.abbr
 end
 
-local function find_timezome_zoneinfo_path()
+local function find_dateutil_zoneinfo_path()
     -- Common locations for Python dateutil zoneinfo files
     local possible_paths = {
         -- Windows paths
@@ -556,9 +552,9 @@ end
 
 -- Function to load a timezone from dateutil zoneinfo
 local function load_timezone(timezone_name)
-    local zoneinfo_path = find_timezome_zoneinfo_path()
+    local zoneinfo_path = find_dateutil_zoneinfo_path()
     if not zoneinfo_path then
-        error("Could not find timezone zoneinfo directory")
+        error("Could not find dateutil zoneinfo directory")
         return nil
     end
 
@@ -963,36 +959,23 @@ local function get_weekday(year, month, day)
         month = month + 12
         year = year - 1
     end
-    local d = day
+    local k = day
     local m = month
-    local y = year
-    local f = (y + math.floor(y/4) - math.floor(y/100) + math.floor(y/400) + math.floor((13*m + 8)/5 + d)) % 7;
-    return f
+    local D = year % 100
+    local C = math.floor(year / 100)
+    local f = k + math.floor((13 * (m + 1)) / 5) + D + math.floor(D / 4) + math.floor(C / 4) - 2 * C
+    return f % 7 >= 0 and f % 7 or (f % 7 + 7)
 end
 
 --https://grok.com/chat/56eda762-0177-41eb-ad70-2d027bd15df4
--- フェアフィールドの定理を応用した年推定関数
-local function estimate_year(adjusted_time)
-    local avg_seconds_per_year = 31556952  -- 365.2425日 × 86400秒
-    local years_offset = math.floor(adjusted_time / avg_seconds_per_year)
-    return 1970 + years_offset -1
-end
-
--- 年のエポック秒を計算する補助関数
-local function get_year_epoch(year)
-    return preset_fairfield_dateutc(year, 1, 1)
-end
-
+-- タイムスタンプを分解
 function get_time_components(timestamp, offset_seconds)
-    if tonumber(timestamp) == nil or tonumber(offset_seconds) == nil then
+    if not timestamp or not offset_seconds then
         obs.script_log(obs.LOG_ERROR, "Invalid input")
         return nil
     end
     
-
-
-    -- タイムスタンプにオフセットを適用
-    local adjusted_time = timestamp 
+    local adjusted_time = timestamp   --+ offset_seconds
     local seconds_per_day = 86400
     local total_days = math.floor(adjusted_time / seconds_per_day)
     local remaining_seconds = adjusted_time % seconds_per_day
@@ -1003,56 +986,50 @@ function get_time_components(timestamp, offset_seconds)
         remaining_seconds = remaining_seconds + seconds_per_day
     end
     
-    -- 時間、分、秒を計算
     local hours = math.floor(remaining_seconds / 3600)
     local minutes = math.floor((remaining_seconds % 3600) / 60)
     local seconds = remaining_seconds % 60
     
-    -- 年の推定（365.2425日ベース）
-    local year = estimate_year(adjusted_time) 
-
-    -- 年の調整
-    while true do
-        local year_start = get_year_epoch(year)
-        local next_year_start = get_year_epoch(year + 1)
-        
-        if adjusted_time >= year_start and adjusted_time < next_year_start then
-            break
-        elseif adjusted_time < year_start then
+    local year = 1970
+    local days_left = total_days
+    
+    if adjusted_time < 0 then
+        -- 負のタイムスタンプ（1970年以前）
+        while days_left < 0 do
             year = year - 1
-        else
-            year = year + 1
+            local days_in_year = (year % 4 == 0 and (year % 100 ~= 0 or year % 400 == 0)) and 366 or 365
+            days_left = days_left + days_in_year
+        end
+    else
+        -- 正のタイムスタンプ（1970年以降）
+        while days_left >= 0 do
+            local days_in_year = (year % 4 == 0 and (year % 100 ~= 0 or year % 400 == 0)) and 366 or 365
+            if days_left >= days_in_year then
+                days_left = days_left - days_in_year
+                year = year + 1
+            else
+                break
+            end
         end
     end
-    
-    
-    -- 残り日数の計算
-    local days_left = math.floor((adjusted_time - get_year_epoch(year)) / seconds_per_day)
     
     -- 月と日を計算
     local days_in_month = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
     if year % 4 == 0 and (year % 100 ~= 0 or year % 400 == 0) then
-        days_in_month[2] = 29  -- 閏年対応
+        days_in_month[2] = 29
     end
     local month = 1
+    if days_left < 0 then
+        days_left = days_in_month[12] + days_left -- 12月からの補正
+        year = year - 1
+    end
     while days_left >= days_in_month[month] do
         days_left = days_left - days_in_month[month]
         month = month + 1
     end
     local day = days_left + 1
     
-    -- 曜日計算（仮に既存関数を利用）
     local wday = get_weekday(year, month, day)
-    --[[
-    obs.script_log(obs.LOG_INFO, "tm: " .. tostring(timestamp))
-    obs.script_log(obs.LOG_INFO, "year: " .. tostring(year))
-    obs.script_log(obs.LOG_INFO, "m: " .. tostring(month))
-    obs.script_log(obs.LOG_INFO, "d: " .. tostring(day))
-    obs.script_log(obs.LOG_INFO, "h: " .. tostring(hours))
-    obs.script_log(obs.LOG_INFO, "m: " .. tostring(minutes))
-    obs.script_log(obs.LOG_INFO, "s: " .. tostring(seconds))
-    obs.script_log(obs.LOG_INFO, "w: " .. tostring(wday))
-    ]]
     
     return {
         year = year,
@@ -1061,8 +1038,8 @@ function get_time_components(timestamp, offset_seconds)
         hour = hours,
         minute = minutes,
         second = seconds,
-        wday = wday+1,
-        offset = offset_seconds
+        wday = wday,
+        zone = offset_seconds
     }
 end
 
@@ -1070,11 +1047,12 @@ end
 function strftime(format, timestamp, offset_hours)
     local offset_seconds = offset_hours * 3600
     local components = get_time_components(timestamp, offset_seconds)
-    if components == nil then
+    if not components then
         return nil
     end
     
-    local weekdays = {"Sun","Mon", "Tue", "Wed", "Thu", "Fri","Sat"}
+    local weekdays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}
+    
     -- フォーマット置換
     local result = format
     result = result:gsub("%%Y", string.format("%04d", components.year))
@@ -1085,9 +1063,6 @@ function strftime(format, timestamp, offset_hours)
     result = result:gsub("%%S", string.format("%02d", components.second))
     result = result:gsub("%%zz", PSTabbrs[tz_idx])
     result = result:gsub("%%z", string.format("%+02d:%02d", offset_hours, 0))
-
-    --obs.script_log(obs.LOG_INFO, "ww: " .. tostring(weekdays[components.wday]))
-
     result = result:gsub("%%a", weekdays[components.wday])
     
     return result
@@ -1140,7 +1115,7 @@ function set_time_text()
     local time_textp = "!" .. string.gsub(time_textq, "%%zz", tz_st)
     time_textp = string.gsub(time_textp, "%%z", get_tzoffset(pst * 3600))
 
-    if (len>0) then
+    if (len > 0) then
         pst = get_pst(PSTuntils[len] / 1000)
         tz_st = PSTabbrs[len + 1]
         local time_textpp = "!" .. string.gsub(time_textq, "%%zz", tz_st)
@@ -1152,13 +1127,13 @@ function set_time_text()
         --[[
         obs.script_log(obs.LOG_INFO, "time_textpp: " .. tostring(time_textpp))
         obs.script_log(obs.LOG_INFO, "len: " .. tostring(len))
-        obs.script_log(obs.LOG_INFO, "PSTuntils[len]: " .. tostring(PSTuntils[len]))
+        obs.script_log(obs.LOG_INFO, "len: " .. tostring(PSTuntils[len]))
         obs.script_log(obs.LOG_INFO, "timestamp: " ..
                            tostring(timestamp))
         obs.script_log(obs.LOG_INFO, "pst: " .. tostring(pst))
         obs.script_log(obs.LOG_INFO, "tz_st: " .. tostring(tz_st))
         obs.script_log(obs.LOG_INFO, "date_str: " .. tostring(date_str))
-        --]]
+        ]]
 
         if date_str ~= nil and offset_str ~= nil then
             text = string.gsub(text, "%%EXP", date_str .. " " .. offset_str)
@@ -1167,33 +1142,13 @@ function set_time_text()
     local offset_hours = pst
     local format_str = "%Y-%m-%dT%H:%M:%S%z %a %zz"
     local result = strftime(format_str, timestamp, offset_hours)
-    
-    obs.script_log(obs.LOG_INFO, "result: " .. tostring(result))
-
+    --obs.script_log(obs.LOG_INFO, "result: " .. tostring(result))
             if result ~= nil then
             text = string.gsub(text, "%%EXP", result)
             else
             text = string.gsub(text, "%%EXP", "input:"..timestamp.." os.date not supported")  
-            end
         end
-    else    
-        if  PSTuntils[1] == math.huge or tonumber(PSTuntils[1]) == nil then
-        text = string.gsub(text, "%%EXP", PSTuntils[1])
-        else
-            pst = PSToffsets[1]
-            local timestamp = PSTuntils[1] / 1000 + pst * 3600
-            local offset_hours =pst
-             local format_str = "%Y-%m-%dT%H:%M:%S%z %a %zz"
-            local result = strftime(format_str, timestamp, offset_hours)
-
-            
-            obs.script_log(obs.LOG_INFO, "pst: " .. tostring(pst))
-            obs.script_log(obs.LOG_INFO, "tz_st: " .. tostring(timestamp))
-            obs.script_log(obs.LOG_INFO, "result: " .. tostring(result))
-            if result ~= nil then
-            text = string.gsub(text, "%%EXP", result)
-            end
-        end
+    end
     end
 
     text =
