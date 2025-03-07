@@ -520,7 +520,6 @@ local function read_tzfile(path)
     local fd = assert(io.open(path, "rb"))
     local tzinfo = read_tz(fd)
 
-    debugtxt4 = tzinfo
 
     error(tzinfo)
 
