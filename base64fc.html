@@ -13,27 +13,44 @@
 </head>
 
 <body>
-
   <fieldset>
-    <legend>base64おぷしょん,stylus/tampermonkey用css作成:</legend>
+    <legend>Base64おぷしょん, Stylus/Tampermonkey用CSS作成:</legend>
+    ※<a href="https://github.com/sokudon/stylus_custom_css">ブックマークレット 画像ローカル読み込み＋URL はぎっとはぶにあります_m()m_</a><br>
     <div>
-      <label for="add_bs"><input type="radio" name="bs_op" checked="checked" id="add_bs">CSSなし,base64のみ</label><br>
-      <label for="add_gemini_css"><input type="radio" name="bs_op" id="add_gemini_css">gemini_かすたむ_css_stylus</label><br>
-      <label for="add_claude_css"><input type="radio" name="bs_op" id="add_claude_css">claude_かすたむ_css_stylus</label><br>
-      <label for="add_grok_css"><input type="radio" name="bs_op" id="add_grok_css">grok_かすたむ_css_stylus</label><br>
-      <label for="add_gemini_css_tamper"><input type="radio" name="bs_op" id="add_gemini_css_tamper">gemini_かすたむ_css_tampermonkey</label><br>
-      <label for="add_claude_css_tamper"><input type="radio" name="bs_op" id="add_claude_css_tamper">claude_かすたむ_css_tampermonkey</label><br>
-      <label for="add_grok_css_tamper"><input type="radio" name="bs_op" id="add_grok_css_tamper">grok_かすたむ_css_tampermonkey</label><br>
-      <label for="bookmarklet_gemini"><input type="radio" name="bs_op" id="bookmarklet_gemini">gemini_かすたむ_css_ブックマークレット</label><br>
-      <label for="bookmarklet_claude"><input type="radio" name="bs_op" id="bookmarklet_claude">claude_かすたむ_css_ブックマークレット</label><br>
-      <label for="bookmarklet_grok"><input type="radio" name="bs_op" id="bookmarklet_grok">grok_かすたむ_css_ブックマークレット</label><br>
-</fieldset>
-<input class="btn btn-secondary" type="file" id="imageInput" accept="image/png, image/jpeg"><br>
+      <label for="output_type">出力形式:</label>
+      <select id="output_type" class="form-select w-auto d-inline-block">
+        <option value="base64_only">CSSなし, Base64のみ</option>
+        <option value="stylus">Stylus</option>
+        <option value="tampermonkey">Tampermonkey</option>
+        <option value="bookmarklet">ブックマークレット(Base64埋め込み)</option>
+      </select>
+    </div>
+    <div>
+    <label for="target_site">対象サイト:</label>
+    <select id="target_site" class="form-select w-auto d-inline-block">
+      <option value="none">なし</option>
+      <option value="chatgpt">ChatGPT</option>
+      <option value="claude">Claude</option>
+      <option value="copilot">Copilot</option>
+      <option value="gemini">Gemini</option>
+      <option value="grok">Grok</option>
+      <option value="lmsys">LMSYS</option>
+      <option value="perplex">Perplex</option>
+      <option value="xcom">X.com</option>
+      <option value="custom">汎用,bodyタグのみ(Base64埋め込み)</option>
+    </select>
+    </div>
+  </fieldset>
+  <input class="btn btn-secondary" type="file" id="imageInput" accept="image/png, image/jpeg"><br>
   <button class="btn btn-secondary" id="copyButton">コピー</button>
-
+ <!-- 
+  <button class="btn btn-secondary" onclick="makeplugin(); return false;">css_dl</button>
+  <button class="btn btn-secondary" onclick="makeplugintab(); return false;" id="css_install">css_install for
+    stylus</button>
+    -->
+    <span id="link"></span>
 
   <br>
-
   <br>
   <div id="result">
     <p>Base64 文字列:</p><textarea id="target" rows="5" cols="50"></textarea>

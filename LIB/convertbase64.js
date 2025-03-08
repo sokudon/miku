@@ -547,7 +547,7 @@ const css_body_chatgpt = `main {
       --background: url(`;
 
 const css_head_copilot = `@-moz-document url-prefix("https://copilot.microsoft.com/") {`;
-const css_body_copilot = `
+const css_body_copilot = String.raw`
 /* body に背景画像を設定 */
 body {
     background-size: cover !important;
@@ -653,6 +653,7 @@ code {}
 .dark\:bg-background-static-900:is([data-theme=dark] *),
 .bg-background-static-850 {
     background-color: rgba(0, 0, 0, 0.4) !important;
+}
 }
     body {  
     background: url(`;
