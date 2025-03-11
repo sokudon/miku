@@ -138,10 +138,13 @@ ENG = true
 
 -- timezoneのtzifバイナリがあるぱす、ぱいそんのdateutil とかcygwinとかもあるが（）
 timezone_tzif_path =
-    "C:\\Users\\imasp\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\"
--- windows_pytz_path =
---    "C:\\Users\\imasp\\AppData//Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pytz\\zoneinfo\\"
--- Windows paths
+    "C:\\Users\\{user}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\"
+-- windows_timzeon_path =
+-- "C:\\Users\\{user}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\"
+-- "C:\\Users\\{user}\\AppData//Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pytz\\zoneinfo\\"
+-- "C:\\Program Files\\LibreOffice\\program\\python-core-3.10.16\\lib\\site-packages\\pytz\\zoneinfo\\"
+-- "C:\\Program Files\\LibreOffice\\program\\python-core-3.10.16\\lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\dateutil-zoneinfo\\"
+-- "C:\\cygwin64\\usr\\share\\zoneinfo\\"
 -- os.getenv("APPDATA") .. "\\Python\\lib\\site-packages\\dateutil\\zoneinfo\\",  
 -- Unix-like paths
 -- "/usr/share/zoneinfo/"
@@ -275,50 +278,6 @@ end
 -- https://grok.com/chat/0f0a7888-c651-484a-90bd-0b76b7f8d1cb 
 -- https://grok.com/share/bGVnYWN5_4ba125df-818b-495f-a677-1a9f2fb271c5 
 
--- Only available in Lua 5.3+　＜-obsstuioのluagitは5.1らしいのでつかえない、pythonのすとらくちゃーににてる
--- luacheck: push std max
---[[
-if string.unpack then
-	-- Only available in Lua 5.3+
-	function read_int32be(fd)
-		local data, err = fd:read(4)
-		if data == nil then return nil, err end
-		return string.unpack(">i4", data)
-	end
-
-	function read_int64be(fd)
-		local data, err = fd:read(8)
-		if data == nil then return nil, err end
-		return string.unpack(">i8", data)
-	end
-else -- luacheck: pop
-	function read_int32be(fd)
-		local data, err = fd:read(4)
-		if data == nil then return nil, err end
-		local o1, o2, o3, o4 = data:byte(1, 4)
-
-		local unsigned = o4 + o3*2^8 + o2*2^16 + o1*2^24
-		if unsigned >= 2^31 then
-			return unsigned - 2^32
-		else
-			return unsigned
-		end
-	end
-
-	function read_int64be(fd)
-		local data, err = fd:read(8)
-		if data == nil then return nil, err end
-		local o1, o2, o3, o4, o5, o6, o7, o8 = data:byte(1, 8)
-
-		local unsigned = o8 + o7*2^8 + o6*2^16 + o5*2^24 + o4*2^32 + o3*2^40 + o2*2^48 + o1*2^56
-		if unsigned >= 2^63 then
-			return unsigned - 2^64
-		else
-			return unsigned
-		end
-	end
-end
-]]
 
 local function read_flags(fd, n)
     local data, err = fd:read(n)

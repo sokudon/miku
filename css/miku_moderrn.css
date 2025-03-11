@@ -1,0 +1,69 @@
+
+        body {
+            background-color: #ecf0f1;
+            color: #2c3e50;
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+            color: #2ecc71;
+        }
+        
+        .myText{
+            color: #2c3e50;
+            font-size: clamp(16px, 2.9vw, 32px);
+            font-family: Arial, sans-serif;
+        }
+
+        .section {
+            margin: 20px auto;
+            padding: 15px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #2ecc71;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #95a5a6;
+        }
+            /* カスタムボタンのスタイル */
+    .btn-magenta {
+      background-color: magenta;
+      color: white;
+      border: none;
+    }
+    .btn-magenta:hover {
+      background-color: #d400d4;
+    }
+
+    .btn-cyan {
+      background-color: cyan;
+      color: black;
+      border: none;
+    }
+    .btn-cyan:hover {
+      background-color: #00b7eb;
+    }
+
+    .btn-blight-purple {
+      background-color: #b300FF; /* ブライトパープル */
+      color: white;
+      border: none;
+    }
+    .btn-light-purple:hover {
+      background-color: #c48bcc;
+    }

@@ -6,33 +6,23 @@
 	<link href="./LIB/tbl.css" type="text/css" rel="stylesheet">
 	<link rel="stylesheet" href="./LIB/style.css" type="text/css" media="print, projection, screen">
 </head>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"
-	integrity="sha512-QoJS4DOhdmG8kbbHkxmB/rtPdN62cGWXAdAFWWJPvUFF1/zxcPSdAnn4HhYZSIlVoLVEJ0LesfNlusgm2bPfnA=="
-	crossorigin="anonymous" referrerpolicy="strict-origin-when-cross-origin"></script>
+<script src="https://momentjs.com/downloads/moment.js"></script>
+<script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone-with-data-10-year-range.min.js"
-	integrity="sha512-6DYTMNCdXkHwvEQgDFWUqhCUSL9f5hWlwOVLJH9gBeX0Vi5XnuvUH1UExpIKlBY0DNKFU7SAqBQ0u+JF2En3/A=="
-	crossorigin="anonymous" referrerpolicy="strict-origin-when-cross-origin"></script>
+	src="https://script.googleusercontent.com/macros/echo?user_content_key=neQsBAoUGLNwAMfi9tKMMQb7pL3eKZgieWw-KwkS615-QJvltxjgUGTIdzQ36Gfhc7hqJQ81GuwDhqmihtmGPO0FYr8o9ef4m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPO8A5WGmHEYvXG8Y1Tci8e6eyyj84BKpuUBxI6mD1fVD47JMB-rgusYZpTak_o22Q&lib=MLzsP3I93TuNl8NWIIyRnT4FpGDg2vV9V"></script>
+
 <script src="./LIB/jquery-latest.js" type="text/javascript"></script>
 <script src="./LIB/tz_japanese.js"></script>
 <script src="./LIB/sekai_miku_make_timer.js" type="text/javascript"></script>
 <script
 	src="https://script.google.com/macros/s/AKfycbyRHcIIZl1YC4ytmHPWS_3aPKoSMJUdSMiuBs_OvNdJJnQv4Z6UgnzMJCIME9N1ht4Dgg/exec"></script>
 
-<!--
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.46/moment-timezone.min.js" integrity="sha512-Ne/lsUAQFATS+KrR4oPYWUtbM3C0I7eIORtGaC+xOdO/V1g3rfSzUwjsLd9/MkFw6iEqafr78LwrK75iZc3Emw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-<script src="https://momentjs.com/downloads/moment.js"></script>
-<script src="https://momentjs.com/downloads/moment-timezone-with-data-10-year-range.js"></script>
-<script
-	src="https://script.googleusercontent.com/macros/echo?user_content_key=neQsBAoUGLNwAMfi9tKMMQb7pL3eKZgieWw-KwkS615-QJvltxjgUGTIdzQ36Gfhc7hqJQ81GuwDhqmihtmGPO0FYr8o9ef4m5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPO8A5WGmHEYvXG8Y1Tci8e6eyyj84BKpuUBxI6mD1fVD47JMB-rgusYZpTak_o22Q&lib=MLzsP3I93TuNl8NWIIyRnT4FpGDg2vV9V"></script>
--->
 
 <body>
-	<h1><span id="dere"></span>(終了)時刻世界時計  <a href="old_sekai_miku.html">旧版</a></h1>    
+	<h1><span id="dere"></span>(終了)時刻世界時計</h1>
 
 	<label for="OF"><input type="checkbox" checked="checked" value="NEW" id="OF"
-			onChange="ibetime();">ISO8601形式で表示<br></label> 
+			onChange="ibetime();">ISO8601形式で表示<br></label>
 	<div id="end"></div><br>
 
 	<span
