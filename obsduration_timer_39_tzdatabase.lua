@@ -16,7 +16,8 @@ OS時間:%N%n経過時間%K           %t日本時間:%JST  %n残り時間:%L    
 %N	現在の時間OS依存、時刻書式可能
 %UTC	現在の時間UTC設定、時刻書式可能
 %JST	日本時間、時刻書式可能
-%TZ	America/Los_AngelesTZ現在
+%TZ	America/Los_AngelesTZ現在 変えたらそのタイムゾーン
+%%TZN os.dateをつかわないで時刻表示　%Zが使える
 %I	イベント期間、経過残書式対応
 %T	タイトル名
 %K	経過時間、経過残書式対応
@@ -24,12 +25,12 @@ OS時間:%N%n経過時間%K           %t日本時間:%JST  %n残り時間:%L    
 %P	進捗%
 %Q	進捗バー
 
-%SS	America/Los_AngelesTZ開始
+%SS	America/Los_AngelesTZ開始　変えたらそのタイムゾーン
 %SJ	イベント開始日本時間
 %SU	イベント開始utcsetteing
 %S	イベント開始時間 OS依存
-
-%EE	America/Los_AngelesTZ終了
+　
+%EE	America/Los_AngelesTZ終了　変えたらそのタイムゾーン
 %EJ	イベント終了日本時間
 %SU	イベント開始utcsetteing
 %E	イベント終了時間 OS依存
@@ -72,7 +73,7 @@ OS時間:%N%n経過時間%K           %t日本時間:%JST  %n残り時間:%L    
 --%y two-digit year (98) [00-99] ２桁の年 
 --%y 年の最後の 2 つの数字 (00..99) 
 --%Y 年 (1970...) 
---%Z タイムゾーン (例 EDT)、あるいはタイムゾーンが決定できないならば無し 
+--%Z タイムゾーン (例 EDT)、あるいはタイムゾーンが決定できないならば無し 　　windowsでは%%TZNのみ対応
 --%z timezone,osdateのサマータイム有り 
 
 //経過残書式一覧
@@ -131,26 +132,206 @@ psten = 0
 tz_idx = 1
 tz_st = ""
 
---timezone_strings = {"America/Los_Angeles", "America/New_York","US/Mountain","US/Central","Asia/Seoul","Asia/Hong_Kong","Asia/Taipei","Asia/Tokyo","UTC"}
-timezone_strings ={"Africa/Abidjan","Africa/Accra","Africa/Addis_Ababa","Africa/Algiers","Africa/Asmara","Africa/Asmera","Africa/Bamako","Africa/Bangui","Africa/Banjul","Africa/Bissau","Africa/Blantyre","Africa/Brazzaville","Africa/Bujumbura","Africa/Cairo","Africa/Casablanca","Africa/Ceuta","Africa/Conakry","Africa/Dakar","Africa/Dar_es_Salaam","Africa/Djibouti","Africa/Douala","Africa/El_Aaiun","Africa/Freetown","Africa/Gaborone","Africa/Harare","Africa/Johannesburg","Africa/Juba","Africa/Kampala","Africa/Khartoum","Africa/Kigali","Africa/Kinshasa","Africa/Lagos","Africa/Libreville","Africa/Lome","Africa/Luanda","Africa/Lubumbashi","Africa/Lusaka","Africa/Malabo","Africa/Maputo","Africa/Maseru","Africa/Mbabane","Africa/Mogadishu","Africa/Monrovia","Africa/Nairobi","Africa/Ndjamena","Africa/Niamey","Africa/Nouakchott","Africa/Ouagadougou","Africa/Porto-Novo","Africa/Sao_Tome","Africa/Timbuktu","Africa/Tripoli","Africa/Tunis","Africa/Windhoek","America/Adak","America/Anchorage","America/Anguilla","America/Antigua","America/Araguaina","America/Argentina/Buenos_Aires","America/Argentina/Catamarca","America/Argentina/ComodRivadavia","America/Argentina/Cordoba","America/Argentina/Jujuy","America/Argentina/La_Rioja","America/Argentina/Mendoza","America/Argentina/Rio_Gallegos","America/Argentina/Salta","America/Argentina/San_Juan","America/Argentina/San_Luis","America/Argentina/Tucuman","America/Argentina/Ushuaia","America/Aruba","America/Asuncion","America/Atikokan","America/Atka","America/Bahia","America/Bahia_Banderas","America/Barbados","America/Belem","America/Belize","America/Blanc-Sablon","America/Boa_Vista","America/Bogota","America/Boise","America/Buenos_Aires","America/Cambridge_Bay","America/Campo_Grande","America/Cancun","America/Caracas","America/Catamarca","America/Cayenne","America/Cayman","America/Chicago","America/Chihuahua","America/Ciudad_Juarez","America/Coral_Harbour","America/Cordoba","America/Costa_Rica","America/Creston","America/Cuiaba","America/Curacao","America/Danmarkshavn","America/Dawson","America/Dawson_Creek","America/Denver","America/Detroit","America/Dominica","America/Edmonton","America/Eirunepe","America/El_Salvador","America/Ensenada","America/Fort_Nelson","America/Fort_Wayne","America/Fortaleza","America/Glace_Bay","America/Godthab","America/Goose_Bay","America/Grand_Turk","America/Grenada","America/Guadeloupe","America/Guatemala","America/Guayaquil","America/Guyana","America/Halifax","America/Havana","America/Hermosillo","America/Indiana/Indianapolis","America/Indiana/Knox","America/Indiana/Marengo","America/Indiana/Petersburg","America/Indiana/Tell_City","America/Indiana/Vevay","America/Indiana/Vincennes","America/Indiana/Winamac","America/Indianapolis","America/Inuvik","America/Iqaluit","America/Jamaica","America/Jujuy","America/Juneau","America/Kentucky/Louisville","America/Kentucky/Monticello","America/Knox_IN","America/Kralendijk","America/La_Paz","America/Lima","America/Los_Angeles","America/Louisville","America/Lower_Princes","America/Maceio","America/Managua","America/Manaus","America/Marigot","America/Martinique","America/Matamoros","America/Mazatlan","America/Mendoza","America/Menominee","America/Merida","America/Metlakatla","America/Mexico_City","America/Miquelon","America/Moncton","America/Monterrey","America/Montevideo","America/Montreal","America/Montserrat","America/Nassau","America/New_York","America/Nipigon","America/Nome","America/Noronha","America/North_Dakota/Beulah","America/North_Dakota/Center","America/North_Dakota/New_Salem","America/Nuuk","America/Ojinaga","America/Panama","America/Pangnirtung","America/Paramaribo","America/Phoenix","America/Port-au-Prince","America/Port_of_Spain","America/Porto_Acre","America/Porto_Velho","America/Puerto_Rico","America/Punta_Arenas","America/Rainy_River","America/Rankin_Inlet","America/Recife","America/Regina","America/Resolute","America/Rio_Branco","America/Rosario","America/Santa_Isabel","America/Santarem","America/Santiago","America/Santo_Domingo","America/Sao_Paulo","America/Scoresbysund","America/Shiprock","America/Sitka","America/St_Barthelemy","America/St_Johns","America/St_Kitts","America/St_Lucia","America/St_Thomas","America/St_Vincent","America/Swift_Current","America/Tegucigalpa","America/Thule","America/Thunder_Bay","America/Tijuana","America/Toronto","America/Tortola","America/Vancouver","America/Virgin","America/Whitehorse","America/Winnipeg","America/Yakutat","America/Yellowknife","Antarctica/Casey","Antarctica/Davis","Antarctica/DumontDUrville","Antarctica/Macquarie","Antarctica/Mawson","Antarctica/McMurdo","Antarctica/Palmer","Antarctica/Rothera","Antarctica/South_Pole","Antarctica/Syowa","Antarctica/Troll","Antarctica/Vostok","Arctic/Longyearbyen","Asia/Aden","Asia/Almaty","Asia/Amman","Asia/Anadyr","Asia/Aqtau","Asia/Aqtobe","Asia/Ashgabat","Asia/Ashkhabad","Asia/Atyrau","Asia/Baghdad","Asia/Bahrain","Asia/Baku","Asia/Bangkok","Asia/Barnaul","Asia/Beirut","Asia/Bishkek","Asia/Brunei","Asia/Calcutta","Asia/Chita","Asia/Choibalsan","Asia/Chongqing","Asia/Chungking","Asia/Colombo","Asia/Dacca","Asia/Damascus","Asia/Dhaka","Asia/Dili","Asia/Dubai","Asia/Dushanbe","Asia/Famagusta","Asia/Gaza","Asia/Hanoi","Asia/Harbin","Asia/Hebron","Asia/Ho_Chi_Minh","Asia/Hong_Kong","Asia/Hovd","Asia/Irkutsk","Asia/Istanbul","Asia/Jakarta","Asia/Jayapura","Asia/Jerusalem","Asia/Kabul","Asia/Kamchatka","Asia/Karachi","Asia/Kashgar","Asia/Kathmandu","Asia/Katmandu","Asia/Khandyga","Asia/Kolkata","Asia/Krasnoyarsk","Asia/Kuala_Lumpur","Asia/Kuching","Asia/Kuwait","Asia/Macao","Asia/Macau","Asia/Magadan","Asia/Makassar","Asia/Manila","Asia/Muscat","Asia/Nicosia","Asia/Novokuznetsk","Asia/Novosibirsk","Asia/Omsk","Asia/Oral","Asia/Phnom_Penh","Asia/Pontianak","Asia/Pyongyang","Asia/Qatar","Asia/Qostanay","Asia/Qyzylorda","Asia/Rangoon","Asia/Riyadh","Asia/Saigon","Asia/Sakhalin","Asia/Samarkand","Asia/Seoul","Asia/Shanghai","Asia/Singapore","Asia/Srednekolymsk","Asia/Taipei","Asia/Tashkent","Asia/Tbilisi","Asia/Tehran","Asia/Tel_Aviv","Asia/Thimbu","Asia/Thimphu","Asia/Tokyo","Asia/Tomsk","Asia/Ujung_Pandang","Asia/Ulaanbaatar","Asia/Ulan_Bator","Asia/Urumqi","Asia/Ust-Nera","Asia/Vientiane","Asia/Vladivostok","Asia/Yakutsk","Asia/Yangon","Asia/Yekaterinburg","Asia/Yerevan","Atlantic/Azores","Atlantic/Bermuda","Atlantic/Canary","Atlantic/Cape_Verde","Atlantic/Faeroe","Atlantic/Faroe","Atlantic/Jan_Mayen","Atlantic/Madeira","Atlantic/Reykjavik","Atlantic/South_Georgia","Atlantic/St_Helena","Atlantic/Stanley","Australia/ACT","Australia/Adelaide","Australia/Brisbane","Australia/Broken_Hill","Australia/Canberra","Australia/Currie","Australia/Darwin","Australia/Eucla","Australia/Hobart","Australia/LHI","Australia/Lindeman","Australia/Lord_Howe","Australia/Melbourne","Australia/NSW","Australia/North","Australia/Perth","Australia/Queensland","Australia/South","Australia/Sydney","Australia/Tasmania","Australia/Victoria","Australia/West","Australia/Yancowinna","Brazil/Acre","Brazil/DeNoronha","Brazil/East","Brazil/West","CET","CST6CDT","Canada/Atlantic","Canada/Central","Canada/Eastern","Canada/Mountain","Canada/Newfoundland","Canada/Pacific","Canada/Saskatchewan","Canada/Yukon","Chile/Continental","Chile/EasterIsland","Cuba","EET","EST","EST5EDT","Egypt","Eire","Etc/GMT","Etc/GMT+0","Etc/GMT+1","Etc/GMT+10","Etc/GMT+11","Etc/GMT+12","Etc/GMT+2","Etc/GMT+3","Etc/GMT+4","Etc/GMT+5","Etc/GMT+6","Etc/GMT+7","Etc/GMT+8","Etc/GMT+9","Etc/GMT-0","Etc/GMT-1","Etc/GMT-10","Etc/GMT-11","Etc/GMT-12","Etc/GMT-13","Etc/GMT-14","Etc/GMT-2","Etc/GMT-3","Etc/GMT-4","Etc/GMT-5","Etc/GMT-6","Etc/GMT-7","Etc/GMT-8","Etc/GMT-9","Etc/GMT0","Etc/Greenwich","Etc/UCT","Etc/UTC","Etc/Universal","Etc/Zulu","Europe/Amsterdam","Europe/Andorra","Europe/Astrakhan","Europe/Athens","Europe/Belfast","Europe/Belgrade","Europe/Berlin","Europe/Bratislava","Europe/Brussels","Europe/Bucharest","Europe/Budapest","Europe/Busingen","Europe/Chisinau","Europe/Copenhagen","Europe/Dublin","Europe/Gibraltar","Europe/Guernsey","Europe/Helsinki","Europe/Isle_of_Man","Europe/Istanbul","Europe/Jersey","Europe/Kaliningrad","Europe/Kiev","Europe/Kirov","Europe/Kyiv","Europe/Lisbon","Europe/Ljubljana","Europe/London","Europe/Luxembourg","Europe/Madrid","Europe/Malta","Europe/Mariehamn","Europe/Minsk","Europe/Monaco","Europe/Moscow","Europe/Nicosia","Europe/Oslo","Europe/Paris","Europe/Podgorica","Europe/Prague","Europe/Riga","Europe/Rome","Europe/Samara","Europe/San_Marino","Europe/Sarajevo","Europe/Saratov","Europe/Simferopol","Europe/Skopje","Europe/Sofia","Europe/Stockholm","Europe/Tallinn","Europe/Tirane","Europe/Tiraspol","Europe/Ulyanovsk","Europe/Uzhgorod","Europe/Vaduz","Europe/Vatican","Europe/Vienna","Europe/Vilnius","Europe/Volgograd","Europe/Warsaw","Europe/Zagreb","Europe/Zaporozhye","Europe/Zurich","Factory","GB","GB-Eire","GMT","GMT+0","GMT-0","GMT0","Greenwich","HST","Hongkong","Iceland","Indian/Antananarivo","Indian/Chagos","Indian/Christmas","Indian/Cocos","Indian/Comoro","Indian/Kerguelen","Indian/Mahe","Indian/Maldives","Indian/Mauritius","Indian/Mayotte","Indian/Reunion","Iran","Israel","Jamaica","Japan","Kwajalein","Libya","MET","MST","MST7MDT","Mexico/BajaNorte","Mexico/BajaSur","Mexico/General","NZ","NZ-CHAT","Navajo","PRC","PST8PDT","Pacific/Apia","Pacific/Auckland","Pacific/Bougainville","Pacific/Chatham","Pacific/Chuuk","Pacific/Easter","Pacific/Efate","Pacific/Enderbury","Pacific/Fakaofo","Pacific/Fiji","Pacific/Funafuti","Pacific/Galapagos","Pacific/Gambier","Pacific/Guadalcanal","Pacific/Guam","Pacific/Honolulu","Pacific/Johnston","Pacific/Kanton","Pacific/Kiritimati","Pacific/Kosrae","Pacific/Kwajalein","Pacific/Majuro","Pacific/Marquesas","Pacific/Midway","Pacific/Nauru","Pacific/Niue","Pacific/Norfolk","Pacific/Noumea","Pacific/Pago_Pago","Pacific/Palau","Pacific/Pitcairn","Pacific/Pohnpei","Pacific/Ponape","Pacific/Port_Moresby","Pacific/Rarotonga","Pacific/Saipan","Pacific/Samoa","Pacific/Tahiti","Pacific/Tarawa","Pacific/Tongatapu","Pacific/Truk","Pacific/Wake","Pacific/Wallis","Pacific/Yap","Poland","Portugal","ROC","ROK","Singapore","Turkey","UCT","US/Alaska","US/Aleutian","US/Arizona","US/Central","US/East-Indiana","US/Eastern","US/Hawaii","US/Indiana-Starke","US/Michigan","US/Mountain","US/Pacific","US/Samoa","UTC","Universal","W-SU","WET","Zulu"}
+-- os.date　にわたすとクラッシュする文字列
+format_string_avoid_crash = "%%[EJKLNOPQfikloqsvZ]" -- os.date %z Z works unix,but windows never work()
+osdate_avoid_crash = "%%[EJKLNOPQfikloqsvzZ]" -- os.date %z Z works unix,but windows never work()
+
+-- timezone_strings = {"America/Los_Angeles", "America/New_York","US/Mountain","US/Central","Asia/Seoul","Asia/Hong_Kong","Asia/Taipei","Asia/Tokyo","UTC"}
+timezone_strings = {
+    "Africa/Abidjan", "Africa/Accra", "Africa/Addis_Ababa", "Africa/Algiers",
+    "Africa/Asmara", "Africa/Asmera", "Africa/Bamako", "Africa/Bangui",
+    "Africa/Banjul", "Africa/Bissau", "Africa/Blantyre", "Africa/Brazzaville",
+    "Africa/Bujumbura", "Africa/Cairo", "Africa/Casablanca", "Africa/Ceuta",
+    "Africa/Conakry", "Africa/Dakar", "Africa/Dar_es_Salaam", "Africa/Djibouti",
+    "Africa/Douala", "Africa/El_Aaiun", "Africa/Freetown", "Africa/Gaborone",
+    "Africa/Harare", "Africa/Johannesburg", "Africa/Juba", "Africa/Kampala",
+    "Africa/Khartoum", "Africa/Kigali", "Africa/Kinshasa", "Africa/Lagos",
+    "Africa/Libreville", "Africa/Lome", "Africa/Luanda", "Africa/Lubumbashi",
+    "Africa/Lusaka", "Africa/Malabo", "Africa/Maputo", "Africa/Maseru",
+    "Africa/Mbabane", "Africa/Mogadishu", "Africa/Monrovia", "Africa/Nairobi",
+    "Africa/Ndjamena", "Africa/Niamey", "Africa/Nouakchott",
+    "Africa/Ouagadougou", "Africa/Porto-Novo", "Africa/Sao_Tome",
+    "Africa/Timbuktu", "Africa/Tripoli", "Africa/Tunis", "Africa/Windhoek",
+    "America/Adak", "America/Anchorage", "America/Anguilla", "America/Antigua",
+    "America/Araguaina", "America/Argentina/Buenos_Aires",
+    "America/Argentina/Catamarca", "America/Argentina/ComodRivadavia",
+    "America/Argentina/Cordoba", "America/Argentina/Jujuy",
+    "America/Argentina/La_Rioja", "America/Argentina/Mendoza",
+    "America/Argentina/Rio_Gallegos", "America/Argentina/Salta",
+    "America/Argentina/San_Juan", "America/Argentina/San_Luis",
+    "America/Argentina/Tucuman", "America/Argentina/Ushuaia", "America/Aruba",
+    "America/Asuncion", "America/Atikokan", "America/Atka", "America/Bahia",
+    "America/Bahia_Banderas", "America/Barbados", "America/Belem",
+    "America/Belize", "America/Blanc-Sablon", "America/Boa_Vista",
+    "America/Bogota", "America/Boise", "America/Buenos_Aires",
+    "America/Cambridge_Bay", "America/Campo_Grande", "America/Cancun",
+    "America/Caracas", "America/Catamarca", "America/Cayenne", "America/Cayman",
+    "America/Chicago", "America/Chihuahua", "America/Ciudad_Juarez",
+    "America/Coral_Harbour", "America/Cordoba", "America/Costa_Rica",
+    "America/Creston", "America/Cuiaba", "America/Curacao",
+    "America/Danmarkshavn", "America/Dawson", "America/Dawson_Creek",
+    "America/Denver", "America/Detroit", "America/Dominica", "America/Edmonton",
+    "America/Eirunepe", "America/El_Salvador", "America/Ensenada",
+    "America/Fort_Nelson", "America/Fort_Wayne", "America/Fortaleza",
+    "America/Glace_Bay", "America/Godthab", "America/Goose_Bay",
+    "America/Grand_Turk", "America/Grenada", "America/Guadeloupe",
+    "America/Guatemala", "America/Guayaquil", "America/Guyana",
+    "America/Halifax", "America/Havana", "America/Hermosillo",
+    "America/Indiana/Indianapolis", "America/Indiana/Knox",
+    "America/Indiana/Marengo", "America/Indiana/Petersburg",
+    "America/Indiana/Tell_City", "America/Indiana/Vevay",
+    "America/Indiana/Vincennes", "America/Indiana/Winamac",
+    "America/Indianapolis", "America/Inuvik", "America/Iqaluit",
+    "America/Jamaica", "America/Jujuy", "America/Juneau",
+    "America/Kentucky/Louisville", "America/Kentucky/Monticello",
+    "America/Knox_IN", "America/Kralendijk", "America/La_Paz", "America/Lima",
+    "America/Los_Angeles", "America/Louisville", "America/Lower_Princes",
+    "America/Maceio", "America/Managua", "America/Manaus", "America/Marigot",
+    "America/Martinique", "America/Matamoros", "America/Mazatlan",
+    "America/Mendoza", "America/Menominee", "America/Merida",
+    "America/Metlakatla", "America/Mexico_City", "America/Miquelon",
+    "America/Moncton", "America/Monterrey", "America/Montevideo",
+    "America/Montreal", "America/Montserrat", "America/Nassau",
+    "America/New_York", "America/Nipigon", "America/Nome", "America/Noronha",
+    "America/North_Dakota/Beulah", "America/North_Dakota/Center",
+    "America/North_Dakota/New_Salem", "America/Nuuk", "America/Ojinaga",
+    "America/Panama", "America/Pangnirtung", "America/Paramaribo",
+    "America/Phoenix", "America/Port-au-Prince", "America/Port_of_Spain",
+    "America/Porto_Acre", "America/Porto_Velho", "America/Puerto_Rico",
+    "America/Punta_Arenas", "America/Rainy_River", "America/Rankin_Inlet",
+    "America/Recife", "America/Regina", "America/Resolute",
+    "America/Rio_Branco", "America/Rosario", "America/Santa_Isabel",
+    "America/Santarem", "America/Santiago", "America/Santo_Domingo",
+    "America/Sao_Paulo", "America/Scoresbysund", "America/Shiprock",
+    "America/Sitka", "America/St_Barthelemy", "America/St_Johns",
+    "America/St_Kitts", "America/St_Lucia", "America/St_Thomas",
+    "America/St_Vincent", "America/Swift_Current", "America/Tegucigalpa",
+    "America/Thule", "America/Thunder_Bay", "America/Tijuana",
+    "America/Toronto", "America/Tortola", "America/Vancouver", "America/Virgin",
+    "America/Whitehorse", "America/Winnipeg", "America/Yakutat",
+    "America/Yellowknife", "Antarctica/Casey", "Antarctica/Davis",
+    "Antarctica/DumontDUrville", "Antarctica/Macquarie", "Antarctica/Mawson",
+    "Antarctica/McMurdo", "Antarctica/Palmer", "Antarctica/Rothera",
+    "Antarctica/South_Pole", "Antarctica/Syowa", "Antarctica/Troll",
+    "Antarctica/Vostok", "Arctic/Longyearbyen", "Asia/Aden", "Asia/Almaty",
+    "Asia/Amman", "Asia/Anadyr", "Asia/Aqtau", "Asia/Aqtobe", "Asia/Ashgabat",
+    "Asia/Ashkhabad", "Asia/Atyrau", "Asia/Baghdad", "Asia/Bahrain",
+    "Asia/Baku", "Asia/Bangkok", "Asia/Barnaul", "Asia/Beirut", "Asia/Bishkek",
+    "Asia/Brunei", "Asia/Calcutta", "Asia/Chita", "Asia/Choibalsan",
+    "Asia/Chongqing", "Asia/Chungking", "Asia/Colombo", "Asia/Dacca",
+    "Asia/Damascus", "Asia/Dhaka", "Asia/Dili", "Asia/Dubai", "Asia/Dushanbe",
+    "Asia/Famagusta", "Asia/Gaza", "Asia/Hanoi", "Asia/Harbin", "Asia/Hebron",
+    "Asia/Ho_Chi_Minh", "Asia/Hong_Kong", "Asia/Hovd", "Asia/Irkutsk",
+    "Asia/Istanbul", "Asia/Jakarta", "Asia/Jayapura", "Asia/Jerusalem",
+    "Asia/Kabul", "Asia/Kamchatka", "Asia/Karachi", "Asia/Kashgar",
+    "Asia/Kathmandu", "Asia/Katmandu", "Asia/Khandyga", "Asia/Kolkata",
+    "Asia/Krasnoyarsk", "Asia/Kuala_Lumpur", "Asia/Kuching", "Asia/Kuwait",
+    "Asia/Macao", "Asia/Macau", "Asia/Magadan", "Asia/Makassar", "Asia/Manila",
+    "Asia/Muscat", "Asia/Nicosia", "Asia/Novokuznetsk", "Asia/Novosibirsk",
+    "Asia/Omsk", "Asia/Oral", "Asia/Phnom_Penh", "Asia/Pontianak",
+    "Asia/Pyongyang", "Asia/Qatar", "Asia/Qostanay", "Asia/Qyzylorda",
+    "Asia/Rangoon", "Asia/Riyadh", "Asia/Saigon", "Asia/Sakhalin",
+    "Asia/Samarkand", "Asia/Seoul", "Asia/Shanghai", "Asia/Singapore",
+    "Asia/Srednekolymsk", "Asia/Taipei", "Asia/Tashkent", "Asia/Tbilisi",
+    "Asia/Tehran", "Asia/Tel_Aviv", "Asia/Thimbu", "Asia/Thimphu", "Asia/Tokyo",
+    "Asia/Tomsk", "Asia/Ujung_Pandang", "Asia/Ulaanbaatar", "Asia/Ulan_Bator",
+    "Asia/Urumqi", "Asia/Ust-Nera", "Asia/Vientiane", "Asia/Vladivostok",
+    "Asia/Yakutsk", "Asia/Yangon", "Asia/Yekaterinburg", "Asia/Yerevan",
+    "Atlantic/Azores", "Atlantic/Bermuda", "Atlantic/Canary",
+    "Atlantic/Cape_Verde", "Atlantic/Faeroe", "Atlantic/Faroe",
+    "Atlantic/Jan_Mayen", "Atlantic/Madeira", "Atlantic/Reykjavik",
+    "Atlantic/South_Georgia", "Atlantic/St_Helena", "Atlantic/Stanley",
+    "Australia/ACT", "Australia/Adelaide", "Australia/Brisbane",
+    "Australia/Broken_Hill", "Australia/Canberra", "Australia/Currie",
+    "Australia/Darwin", "Australia/Eucla", "Australia/Hobart", "Australia/LHI",
+    "Australia/Lindeman", "Australia/Lord_Howe", "Australia/Melbourne",
+    "Australia/NSW", "Australia/North", "Australia/Perth",
+    "Australia/Queensland", "Australia/South", "Australia/Sydney",
+    "Australia/Tasmania", "Australia/Victoria", "Australia/West",
+    "Australia/Yancowinna", "Brazil/Acre", "Brazil/DeNoronha", "Brazil/East",
+    "Brazil/West", "CET", "CST6CDT", "Canada/Atlantic", "Canada/Central",
+    "Canada/Eastern", "Canada/Mountain", "Canada/Newfoundland",
+    "Canada/Pacific", "Canada/Saskatchewan", "Canada/Yukon",
+    "Chile/Continental", "Chile/EasterIsland", "Cuba", "EET", "EST", "EST5EDT",
+    "Egypt", "Eire", "Etc/GMT", "Etc/GMT+0", "Etc/GMT+1", "Etc/GMT+10",
+    "Etc/GMT+11", "Etc/GMT+12", "Etc/GMT+2", "Etc/GMT+3", "Etc/GMT+4",
+    "Etc/GMT+5", "Etc/GMT+6", "Etc/GMT+7", "Etc/GMT+8", "Etc/GMT+9",
+    "Etc/GMT-0", "Etc/GMT-1", "Etc/GMT-10", "Etc/GMT-11", "Etc/GMT-12",
+    "Etc/GMT-13", "Etc/GMT-14", "Etc/GMT-2", "Etc/GMT-3", "Etc/GMT-4",
+    "Etc/GMT-5", "Etc/GMT-6", "Etc/GMT-7", "Etc/GMT-8", "Etc/GMT-9", "Etc/GMT0",
+    "Etc/Greenwich", "Etc/UCT", "Etc/UTC", "Etc/Universal", "Etc/Zulu",
+    "Europe/Amsterdam", "Europe/Andorra", "Europe/Astrakhan", "Europe/Athens",
+    "Europe/Belfast", "Europe/Belgrade", "Europe/Berlin", "Europe/Bratislava",
+    "Europe/Brussels", "Europe/Bucharest", "Europe/Budapest", "Europe/Busingen",
+    "Europe/Chisinau", "Europe/Copenhagen", "Europe/Dublin", "Europe/Gibraltar",
+    "Europe/Guernsey", "Europe/Helsinki", "Europe/Isle_of_Man",
+    "Europe/Istanbul", "Europe/Jersey", "Europe/Kaliningrad", "Europe/Kiev",
+    "Europe/Kirov", "Europe/Kyiv", "Europe/Lisbon", "Europe/Ljubljana",
+    "Europe/London", "Europe/Luxembourg", "Europe/Madrid", "Europe/Malta",
+    "Europe/Mariehamn", "Europe/Minsk", "Europe/Monaco", "Europe/Moscow",
+    "Europe/Nicosia", "Europe/Oslo", "Europe/Paris", "Europe/Podgorica",
+    "Europe/Prague", "Europe/Riga", "Europe/Rome", "Europe/Samara",
+    "Europe/San_Marino", "Europe/Sarajevo", "Europe/Saratov",
+    "Europe/Simferopol", "Europe/Skopje", "Europe/Sofia", "Europe/Stockholm",
+    "Europe/Tallinn", "Europe/Tirane", "Europe/Tiraspol", "Europe/Ulyanovsk",
+    "Europe/Uzhgorod", "Europe/Vaduz", "Europe/Vatican", "Europe/Vienna",
+    "Europe/Vilnius", "Europe/Volgograd", "Europe/Warsaw", "Europe/Zagreb",
+    "Europe/Zaporozhye", "Europe/Zurich", "Factory", "GB", "GB-Eire", "GMT",
+    "GMT+0", "GMT-0", "GMT0", "Greenwich", "HST", "Hongkong", "Iceland",
+    "Indian/Antananarivo", "Indian/Chagos", "Indian/Christmas", "Indian/Cocos",
+    "Indian/Comoro", "Indian/Kerguelen", "Indian/Mahe", "Indian/Maldives",
+    "Indian/Mauritius", "Indian/Mayotte", "Indian/Reunion", "Iran", "Israel",
+    "Jamaica", "Japan", "Kwajalein", "Libya", "MET", "MST", "MST7MDT",
+    "Mexico/BajaNorte", "Mexico/BajaSur", "Mexico/General", "NZ", "NZ-CHAT",
+    "Navajo", "PRC", "PST8PDT", "Pacific/Apia", "Pacific/Auckland",
+    "Pacific/Bougainville", "Pacific/Chatham", "Pacific/Chuuk",
+    "Pacific/Easter", "Pacific/Efate", "Pacific/Enderbury", "Pacific/Fakaofo",
+    "Pacific/Fiji", "Pacific/Funafuti", "Pacific/Galapagos", "Pacific/Gambier",
+    "Pacific/Guadalcanal", "Pacific/Guam", "Pacific/Honolulu",
+    "Pacific/Johnston", "Pacific/Kanton", "Pacific/Kiritimati",
+    "Pacific/Kosrae", "Pacific/Kwajalein", "Pacific/Majuro",
+    "Pacific/Marquesas", "Pacific/Midway", "Pacific/Nauru", "Pacific/Niue",
+    "Pacific/Norfolk", "Pacific/Noumea", "Pacific/Pago_Pago", "Pacific/Palau",
+    "Pacific/Pitcairn", "Pacific/Pohnpei", "Pacific/Ponape",
+    "Pacific/Port_Moresby", "Pacific/Rarotonga", "Pacific/Saipan",
+    "Pacific/Samoa", "Pacific/Tahiti", "Pacific/Tarawa", "Pacific/Tongatapu",
+    "Pacific/Truk", "Pacific/Wake", "Pacific/Wallis", "Pacific/Yap", "Poland",
+    "Portugal", "ROC", "ROK", "Singapore", "Turkey", "UCT", "US/Alaska",
+    "US/Aleutian", "US/Arizona", "US/Central", "US/East-Indiana", "US/Eastern",
+    "US/Hawaii", "US/Indiana-Starke", "US/Michigan", "US/Mountain",
+    "US/Pacific", "US/Samoa", "UTC", "Universal", "W-SU", "WET", "Zulu"
+}
 
 ENG = true
 
+timezone_tzif_path = ""
+
+local username = os.getenv("USERNAME")
+
 -- timezoneのtzifバイナリがあるぱす、ぱいそんのdateutil とかcygwinとかもあるが（）
-timezone_tzif_path =
-    "C:\\Users\\{user}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\"
--- windows_timzeon_path =
--- "C:\\Users\\{user}\\AppData\\Local\\Programs\\Python\\Python312\\Lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\"
--- "C:\\Users\\{user}\\AppData//Local\\Programs\\Python\\Python312\\Lib\\site-packages\\pytz\\zoneinfo\\"
--- "C:\\Program Files\\LibreOffice\\program\\python-core-3.10.16\\lib\\site-packages\\pytz\\zoneinfo\\"
--- "C:\\Program Files\\LibreOffice\\program\\python-core-3.10.16\\lib\\site-packages\\dateutil\\zoneinfo\\dateutil-zoneinfo.tar\\dateutil-zoneinfo\\"
--- "C:\\cygwin64\\usr\\share\\zoneinfo\\"
--- os.getenv("APPDATA") .. "\\Python\\lib\\site-packages\\dateutil\\zoneinfo\\",  
--- Unix-like paths
--- "/usr/share/zoneinfo/"
--- "/etc/localtime/"
--- "/usr/lib/python312/dist-packages/dateutil/zoneinfo/",
--- "/usr/local/lib/python312/dist-packages/dateutil/zoneinfo/",  ++ スクリプト実行場所もいけるぽい
+timezone_tzif_path_suggest_window = {
+    script_path() .. "zoneinfo/", -- script_path()はこのスクリプトの場所
+    -- windows_timzeon_path =  Windows PowerShellを起動します。 Get-ChildItem Env:
+    "C:/Users/" .. username ..
+        "/AppData/Local/Programs/Python/Python312/Lib/site-packages/dateutil/zoneinfo/dateutil-zoneinfo.tar/",
+    "C:/Users/" .. username ..
+        "/AppData//Local/Programs/Python/Python312/Lib/site-packages/pytz/zoneinfo/",
+    "C:/Program Files/LibreOffice/program/python-core-3.10.16/lib/site-packages/pytz/zoneinfo/",
+    "C:/Program Files/LibreOffice/program/python-core-3.10.16/lib/site-packages/dateutil/zoneinfo/dateutil-zoneinfo.tar/",
+    "C:/cygwin64/usr/share/zoneinfo/"
+}
+
+-- Unix-like paths //printenv または envコマンドで環境変数を確認
+timezone_tzif_path_suggest_unix = {
+    script_path() .. "zoneinfo/", -- script_path()はこのスクリプトの場所
+    "/usr/share/zoneinfo/", "/etc/localtime/",
+    "/usr/lib/python312/dist-packages/dateutil/zoneinfo/",
+    "/usr/local/lib/python312/dist-packages/dateutil/zoneinfo/",
+    "/usr/lib/libreoffice/program/python-core-3.10.16/lib/site-packages/pytz/zoneinfo/",
+    "/usr/lib/libreoffice/program/python-core-3.10.16/lib/site-packages/dateutil/zoneinfo/",
+    "/Applications/LibreOffice.app/Contents/Resources/python-core-3.10.16/lib/site-packages/pytz/zoneinfo/",
+    "/Applications/LibreOffice.app/Contents/Resources/python-core-3.10.16/lib/site-packages/dateutil/zoneinfo/dateutil-zoneinfo.tar/"
+}
 
 dateformat = {
     "%X %x", "%X", "%x", "%D %x", "%Y-%m-%dT%H:%M:%S%z (%a)",
@@ -243,6 +424,17 @@ mstz = {
 hotkey_id_reset = obs.OBS_INVALID_HOTKEY_ID
 hotkey_id_pause = obs.OBS_INVALID_HOTKEY_ID
 
+-- https://grok.com/chat/83e5b2cd-7bdc-4409-b1bb-ad88e3fa31ca
+function isWindows()
+    -- Windows特有の環境変数 "OS" をチェック
+    local osName = os.getenv("OS")
+    if osName and osName:lower():find("windows") then
+        return true
+    else
+        return false
+    end
+end
+
 -- https://claude.ai/chat/2766d911-6ecc-4ea2-8d87-caafc0e6c974
 -- Integrated TZIF Parser for OBS Lua Script
 -- Based on luatz tzfile.lua but without require statements
@@ -278,6 +470,50 @@ end
 -- https://grok.com/chat/0f0a7888-c651-484a-90bd-0b76b7f8d1cb 
 -- https://grok.com/share/bGVnYWN5_4ba125df-818b-495f-a677-1a9f2fb271c5 
 
+-- Only available in Lua 5.3+　＜-obsstuioのluagitは5.1らしいのでつかえない、pythonのすとらくちゃーににてる
+-- luacheck: push std max
+--[[
+if string.unpack then
+	-- Only available in Lua 5.3+
+	function read_int32be(fd)
+		local data, err = fd:read(4)
+		if data == nil then return nil, err end
+		return string.unpack(">i4", data)
+	end
+
+	function read_int64be(fd)
+		local data, err = fd:read(8)
+		if data == nil then return nil, err end
+		return string.unpack(">i8", data)
+	end
+else -- luacheck: pop
+	function read_int32be(fd)
+		local data, err = fd:read(4)
+		if data == nil then return nil, err end
+		local o1, o2, o3, o4 = data:byte(1, 4)
+
+		local unsigned = o4 + o3*2^8 + o2*2^16 + o1*2^24
+		if unsigned >= 2^31 then
+			return unsigned - 2^32
+		else
+			return unsigned
+		end
+	end
+
+	function read_int64be(fd)
+		local data, err = fd:read(8)
+		if data == nil then return nil, err end
+		local o1, o2, o3, o4, o5, o6, o7, o8 = data:byte(1, 8)
+
+		local unsigned = o8 + o7*2^8 + o6*2^16 + o5*2^24 + o4*2^32 + o3*2^40 + o2*2^48 + o1*2^56
+		if unsigned >= 2^63 then
+			return unsigned - 2^64
+		else
+			return unsigned
+		end
+	end
+end
+]]
 
 local function read_flags(fd, n)
     local data, err = fd:read(n)
@@ -296,8 +532,8 @@ local function convert_momentjs()
     PSTname = "America/Los_Angeles" -- タイムゾーン名（必要に応じて動的に設定）
 
     if #timezone_transition < 2 then
-        if(#timezone_transition==1)then
-            PSTuntils[1] =timezone_transition[1] * 1000
+        if (#timezone_transition == 1) then
+            PSTuntils[1] = timezone_transition[1] * 1000
         else
             PSTuntils[1] = math.huge
         end
@@ -338,7 +574,8 @@ local function convert_momentjs()
 end
 
 local fifteen_nulls = ("\0"):rep(15)
-local function read_tz(fd)
+local function read_tz(fd, file_seek)
+    assert(fd:seek("set", file_seek))
     assert(fd:read(4) == "TZif", "Invalid TZ file")
     local version = assert(fd:read(1))
     if version == "\0" or version == "2" or version == "3" then
@@ -360,7 +597,7 @@ local function read_tz(fd)
                        string.format("tzh_typecnt : %d", tzh_typecnt))
         obs.script_log(obs.LOG_INFO,
                        string.format("tzh_charcnt: %s", tzh_charcnt))
-        --]]
+        -- ]]
 
         timezone_transition = {}
         timezone_offset = {}
@@ -475,12 +712,94 @@ local function read_tz(fd)
     end
 end
 
+function android_tzreader(fd, filePath)
+
+    local target = {-1, -1} -- Lua uses 1-based indexing, but we'll keep -1 as per the original logic
+
+    local android_tzseek_text = timezone -- Simulated textbox input (android_tzseek.Text)
+
+    assert(fd:seek("set", 0))
+
+    -- Read the first 24 bytes (header)
+    local buffer = fd:read(12)
+    if not buffer or #buffer < 12 then
+        obs.script_log(obs.LOG_INFO, "File too short or read failed")
+        return target
+    end
+
+    local indexOffset = assert(read_int32be(fd))
+    local dataOffset = assert(read_int32be(fd))
+    local zonetabOffset = assert(read_int32be(fd))
+    obs.script_log(obs.LOG_INFO, "dataOffset: " ..dataOffset)
+    obs.script_log(obs.LOG_INFO, "zonetabOffset: " ..zonetabOffset)
+
+    local indexSize = dataOffset - indexOffset
+    local sectionCount = 0
+    local maxSections = math.floor(indexSize / 52)
+    local tzname = ""
+
+    -- Read 52-byte chunks
+    while true do
+        buffer = fd:read(40)
+        if not buffer or #buffer < 40 then break end
+        if sectionCount >= maxSections then break end
+
+        -- Extract timezone name (first 20 bytes, trim nulls)
+        tzname = string.sub(buffer, 1, 20):gsub("%z", "")
+
+        if tzname == "TZif2" then break end
+
+        -- Extract offset and length
+        local offset = assert(read_int32be(fd))
+        local tzLength = assert(read_int32be(fd))
+        fd:read(4)
+
+        -- Check if this is the target timezone
+        if tzname == android_tzseek_text then
+            target[1] = offset
+            target[2] = tzLength
+            obs.script_log(obs.LOG_INFO, "tzname: " .. tzname)
+            obs.script_log(obs.LOG_INFO, "target_offet: " ..target[1])
+            obs.script_log(obs.LOG_INFO, "size: " ..target[2])
+        end
+
+        sectionCount = sectionCount + 1
+    end
+
+    local Tzif_pos = sectionCount * 52 + 24
+
+    if target[2] > 0 then target[1] = target[1] + Tzif_pos end
+    return target
+end
+
+-- Assuming this is part of a larger function
+function process_tzdata(fd, tzdata)
+
+    -- Extract the header (first 4 bytes)
+    local header = fd:read(4)
+    local file_seek = 0
+
+    if header == "tzda" then
+        local target = android_tzreader(fd, tzdata) -- Call the previously converted function
+        if target[1] == -1 then
+            obs.script_log(obs.LOG_INFO, "android tzdata read failed")
+            return nil -- Exit the function if target[0] == -1
+        end
+
+        file_seek = target[1]
+        obs.script_log(obs.LOG_INFO,
+                       "android tzdata read success pos:" .. file_seek)
+    end
+
+    -- Return updated bs and header if needed (adjust based on your function's purpose)
+    return read_tz(fd, file_seek)
+end
+
 local function read_tzfile(path)
     local fd = assert(io.open(path, "rb"))
-    local tzinfo = read_tz(fd)
+    local tzinfo = process_tzdata(fd, path)
 
-
-    error(tzinfo)
+    obs.script_log(obs.LOG_INFO, tzinfo)
 
     fd:close()
     return tzinfo
@@ -493,12 +812,18 @@ local function get_timezone_offset(tzinfo, timestamp)
 end
 
 local function find_timezome_zoneinfo_path()
-    -- Common locations for Python dateutil zoneinfo files
-    local possible_paths = {
-        -- Windows paths
-        timezone_tzif_path, -- スクリプト実行場所
-        script_path() .. "/zoneinfo/"
-    }
+    local windows = isWindows()
+    local possible_paths = {}
+
+    if windows then
+        possible_paths = {
+            timezone_tzif_path, unpack(timezone_tzif_path_suggest_window)
+        }
+    else
+        possible_paths = {
+            timezone_tzif_path, unpack(timezone_tzif_path_suggest_unix)
+        }
+    end
 
     for _, path in ipairs(possible_paths) do
         local test_file = path .. "UTC"
@@ -506,6 +831,12 @@ local function find_timezome_zoneinfo_path()
         if f then
             f:close()
             return path
+        end 
+        test_file = path .. "tzdata"
+        local f = io.open(test_file, "rb")
+        if f then
+            f:close()
+            return path .. "tzdata"
         end
     end
 
@@ -520,10 +851,10 @@ local function load_timezone(timezone_name)
         return nil
     end
 
-    -- Convert timezone name format (e.g., "America/Los_Angeles" -> "America/Los_Angeles")
-    -- timezone_name = timezone_name:gsub("_", "/")
-
     local tzfile_path = zoneinfo_path .. timezone_name
+    if (zoneinfo_path:match("tzdata$")) then tzfile_path = zoneinfo_path end
+    obs.script_log(obs.LOG_INFO, tzfile_path)
+
     return read_tzfile(tzfile_path)
 end
 
@@ -924,56 +1255,54 @@ local function get_weekday(year, month, day)
     local d = day
     local m = month
     local y = year
-    local f = (y + math.floor(y/4) - math.floor(y/100) + math.floor(y/400) + math.floor((13*m + 8)/5 + d)) % 7;
+    local f =
+        (y + math.floor(y / 4) - math.floor(y / 100) + math.floor(y / 400) +
+            math.floor((13 * m + 8) / 5 + d)) % 7;
     return f
 end
 
---https://grok.com/chat/56eda762-0177-41eb-ad70-2d027bd15df4
+-- https://grok.com/chat/56eda762-0177-41eb-ad70-2d027bd15df4
 -- フェアフィールドの定理を応用した年推定関数
 local function estimate_year(adjusted_time)
-    local avg_seconds_per_year = 31556952  -- 365.2425日 × 86400秒
+    local avg_seconds_per_year = 31556952 -- 365.2425日 × 86400秒
     local years_offset = math.floor(adjusted_time / avg_seconds_per_year)
-    return 1970 + years_offset -1
+    return 1970 + years_offset - 1
 end
 
 -- 年のエポック秒を計算する補助関数
-local function get_year_epoch(year)
-    return preset_fairfield_dateutc(year, 1, 1)
-end
+local function get_year_epoch(year) return preset_fairfield_dateutc(year, 1, 1) end
 
 function get_time_components(timestamp, offset_seconds)
     if tonumber(timestamp) == nil or tonumber(offset_seconds) == nil then
         obs.script_log(obs.LOG_ERROR, "Invalid input")
         return nil
     end
-    
-
 
     -- タイムスタンプにオフセットを適用
-    local adjusted_time = timestamp 
+    local adjusted_time = timestamp
     local seconds_per_day = 86400
     local total_days = math.floor(adjusted_time / seconds_per_day)
     local remaining_seconds = adjusted_time % seconds_per_day
-    
+
     -- 負の残り秒を補正
     if remaining_seconds < 0 then
         total_days = total_days - 1
         remaining_seconds = remaining_seconds + seconds_per_day
     end
-    
+
     -- 時間、分、秒を計算
     local hours = math.floor(remaining_seconds / 3600)
     local minutes = math.floor((remaining_seconds % 3600) / 60)
     local seconds = remaining_seconds % 60
-    
+
     -- 年の推定（365.2425日ベース）
-    local year = estimate_year(adjusted_time) 
+    local year = estimate_year(adjusted_time)
 
     -- 年の調整
     while true do
         local year_start = get_year_epoch(year)
         local next_year_start = get_year_epoch(year + 1)
-        
+
         if adjusted_time >= year_start and adjusted_time < next_year_start then
             break
         elseif adjusted_time < year_start then
@@ -982,15 +1311,15 @@ function get_time_components(timestamp, offset_seconds)
             year = year + 1
         end
     end
-    
-    
+
     -- 残り日数の計算
-    local days_left = math.floor((adjusted_time - get_year_epoch(year)) / seconds_per_day)
-    
+    local days_left = math.floor((adjusted_time - get_year_epoch(year)) /
+                                     seconds_per_day)
+
     -- 月と日を計算
     local days_in_month = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
     if year % 4 == 0 and (year % 100 ~= 0 or year % 400 == 0) then
-        days_in_month[2] = 29  -- 閏年対応
+        days_in_month[2] = 29 -- 閏年対応
     end
     local month = 1
     while days_left >= days_in_month[month] do
@@ -998,7 +1327,7 @@ function get_time_components(timestamp, offset_seconds)
         month = month + 1
     end
     local day = days_left + 1
-    
+
     -- 曜日計算（仮に既存関数を利用）
     local wday = get_weekday(year, month, day)
     --[[
@@ -1011,7 +1340,7 @@ function get_time_components(timestamp, offset_seconds)
     obs.script_log(obs.LOG_INFO, "s: " .. tostring(seconds))
     obs.script_log(obs.LOG_INFO, "w: " .. tostring(wday))
     ]]
-    
+
     return {
         year = year,
         month = month,
@@ -1019,7 +1348,7 @@ function get_time_components(timestamp, offset_seconds)
         hour = hours,
         minute = minutes,
         second = seconds,
-        wday = wday+1,
+        wday = wday + 1,
         offset = offset_seconds
     }
 end
@@ -1028,27 +1357,45 @@ end
 function strftime(format, timestamp, offset_hours)
     local offset_seconds = offset_hours * 3600
     local components = get_time_components(timestamp, offset_seconds)
-    if components == nil then
-        return nil
-    end
-    
-    local weekdays = {"Sun","Mon", "Tue", "Wed", "Thu", "Fri","Sat"}
+    if components == nil then return nil end
+    local months = {
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct",
+        "Nov", "Dec"
+    }
+    local weekdays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"}
     -- フォーマット置換
     local result = format
     result = result:gsub("%%Y", string.format("%04d", components.year))
+    result = result:gsub("%%b", months[tonumber(components.month)])
     result = result:gsub("%%m", string.format("%02d", components.month))
     result = result:gsub("%%d", string.format("%02d", components.day))
     result = result:gsub("%%H", string.format("%02d", components.hour))
     result = result:gsub("%%M", string.format("%02d", components.minute))
     result = result:gsub("%%S", string.format("%02d", components.second))
+    result = result:gsub("%%Z", PSTabbrs[tz_idx])
     result = result:gsub("%%zz", PSTabbrs[tz_idx])
     result = result:gsub("%%z", string.format("%+02d:%02d", offset_hours, 0))
 
-    --obs.script_log(obs.LOG_INFO, "ww: " .. tostring(weekdays[components.wday]))
+    -- obs.script_log(obs.LOG_INFO, "ww: " .. tostring(weekdays[components.wday]))
 
     result = result:gsub("%%a", weekdays[components.wday])
-    
+
     return result
+end
+
+function tznow(format_str, utc_time)
+
+    local offset_hours = get_pst(utc_time * 1000)
+    local timestamp = utc_time + offset_hours * 3600
+
+    local result = strftime(format_str, timestamp, offset_hours)
+
+    if result ~= nil then
+        return result
+    else
+        return "Invaid Time"
+    end
+
 end
 
 function set_time_text()
@@ -1088,8 +1435,14 @@ function set_time_text()
     pst = get_pst(os.time() * 1000)
     tz_st = PSTabbrs[tz_idx]
 
-    local time_textq = string.gsub(time_text, "%%[EJKLNOPQfikloqsvZ]", "") -- フリーズ文字 %%[EJKLNOPQfikloqsvzZ]
-    text = string.gsub(text, "%%N", os.date(time_textq, os.time()))
+    --[[
+    obs.script_log(obs.LOG_INFO, "pst" .. pst)
+    obs.script_log(obs.LOG_INFO, "u" .. PSTuntils[tz_idx - 1])
+    obs.script_log(obs.LOG_INFO, "o" .. PSToffsets[tz_idx])
+    obs.script_log(obs.LOG_INFO, "a" .. PSTabbrs[tz_idx])
+    ]]
+
+    local time_textq = string.gsub(time_text, format_string_avoid_crash, "")
     local time_textj = "!" .. string.gsub(time_textq, "%%z", "+0900")
     local time_textu = "!" ..
                            string.gsub(time_textq, "%%z",
@@ -1098,14 +1451,27 @@ function set_time_text()
     local time_textp = "!" .. string.gsub(time_textq, "%%zz", tz_st)
     time_textp = string.gsub(time_textp, "%%z", get_tzoffset(pst * 3600))
 
-    if (len>0) then
+    local utc_time = os.time()
+    local negative_local = os.date(time_textq, utc_time) -- local negative not work
+    if (negative_local == nil) then
+        text = string.gsub(text, "%%N", "negative_local not supported:nil")
+    else
+        text = string.gsub(text, "%%N", negative_local)
+    end
+    text = string.gsub(text, "%%TZN", tznow(time_text, utc_time))
+    text = string.gsub(text, "%%TZ", os.date(time_textp, utc_time + pst * 3600))
+    text = string.gsub(text, "%%JST", os.date(time_textj, utc_time + 9 * 3600))
+    text =
+        string.gsub(text, "%%UTC", os.date(time_textu, utc_time + utc * 3600))
+
+    if (len > 0) then
         pst = get_pst(PSTuntils[len] / 1000)
         tz_st = PSTabbrs[len + 1]
         local time_textpp = "!" .. string.gsub(time_textq, "%%zz", tz_st)
         time_textpp = string.gsub(time_textpp, "%%z", get_tzoffset(pst * 3600))
         local timestamp = PSTuntils[len] / 1000 + pst * 3600
         local offset_str = get_tzoffset(pst * 3600)
-        local date_str = os.date(time_textpp, timestamp )
+        local date_str = os.date(time_textpp, timestamp)
         -- Debug logs
         --[[
         obs.script_log(obs.LOG_INFO, "time_textpp: " .. tostring(time_textpp))
@@ -1118,47 +1484,43 @@ function set_time_text()
         obs.script_log(obs.LOG_INFO, "date_str: " .. tostring(date_str))
         --]]
 
-        if date_str ~= nil and offset_str ~= nil then
+        if (true == false) then -- date_str ~= nil and offset_str ~= nil then  
             text = string.gsub(text, "%%EXP", date_str .. " " .. offset_str)
         else
 
-    local offset_hours = pst
-    local format_str = "%Y-%m-%dT%H:%M:%S%z %a %zz"
-    local result = strftime(format_str, timestamp, offset_hours)
-    
-    obs.script_log(obs.LOG_INFO, "result: " .. tostring(result))
+            local offset_hours = pst
+            local format_str = "%Y-%m-%dT%H:%M:%S%z %a %zz"
+            local result = strftime(format_str, timestamp, offset_hours)
+
+            -- obs.script_log(obs.LOG_INFO, "result: " .. tostring(result))
 
             if result ~= nil then
-            text = string.gsub(text, "%%EXP", result)
+                text = string.gsub(text, "%%EXP", result)
             else
-            text = string.gsub(text, "%%EXP", "input:"..timestamp.." os.date not supported")  
+                text = string.gsub(text, "%%EXP", "input:" .. timestamp ..
+                                       " os.date not supported")
             end
         end
-    else    
-        if  PSTuntils[1] == math.huge or tonumber(PSTuntils[1]) == nil then
-        text = string.gsub(text, "%%EXP", PSTuntils[1])
+    else
+        if PSTuntils[1] == math.huge or tonumber(PSTuntils[1]) == nil then
+            text = string.gsub(text, "%%EXP", PSTuntils[1])
         else
             pst = PSToffsets[1]
             local timestamp = PSTuntils[1] / 1000 + pst * 3600
-            local offset_hours =pst
-             local format_str = "%Y-%m-%dT%H:%M:%S%z %a %zz"
+            local offset_hours = pst
+            local format_str = "%Y-%m-%dT%H:%M:%S%z %a %zz"
             local result = strftime(format_str, timestamp, offset_hours)
-
-            
+            --[[
             obs.script_log(obs.LOG_INFO, "pst: " .. tostring(pst))
             obs.script_log(obs.LOG_INFO, "tz_st: " .. tostring(timestamp))
             obs.script_log(obs.LOG_INFO, "result: " .. tostring(result))
+            ]]
             if result ~= nil then
-            text = string.gsub(text, "%%EXP", result)
+                text = string.gsub(text, "%%EXP", result)
             end
         end
     end
 
-    text =
-        string.gsub(text, "%%TZ", os.date(time_textp, os.time() + pst * 3600))
-    text = string.gsub(text, "%%JST", os.date(time_textj, os.time() + 9 * 3600))
-    text = string.gsub(text, "%%UTC",
-                       os.date(time_textu, os.time() + utc * 3600))
     text = string.gsub(text, "%%I", ibetime)
     text = string.gsub(text, "%%T", title)
     text = string.gsub(text, "%%K", elaspted)
@@ -1213,7 +1575,7 @@ function set_time_text()
                            os.date(time_textq, parse_json_date_utc(finaltime)))
     end
 
-    text = string.gsub(text, "%%[EJKLNOPQfikloqsvzZ]", "") -- フリーズ文字 %%[EJKLNOPQfikloqsvZ]
+    text = string.gsub(text, osdate_avoid_crash, "") -- フリーズ文字 %%[EJKLNOPQfikloqsvZ]
 
     text = os.date(text)
 
@@ -1774,33 +2136,37 @@ function script_properties()
 
     -- タイムゾーン選択を追加
     local timezone_prop = obslua.obs_properties_add_list(props, "timezone",
-    "TIMEZONE",
-    obslua.OBS_COMBO_TYPE_EDITABLE,
-    obslua.OBS_COMBO_FORMAT_STRING)
+                                                         "TIMEZONE",
+                                                         obslua.OBS_COMBO_TYPE_EDITABLE,
+                                                         obslua.OBS_COMBO_FORMAT_STRING)
     for i = 1, #timezone_strings do
         obs.obs_property_list_add_string(timezone_prop,
-        timezone_strings[tonumber(i)],
-        timezone_strings[tonumber(i)])
+                                         timezone_strings[tonumber(i)],
+                                         timezone_strings[tonumber(i)])
     end
 
     obs.obs_property_set_modified_callback(p_mode, settings_modified)
     obs.obs_property_set_long_description(f_prop,
                                           "%d - days\n%hh - hours with leading zero (00..23)\n%h - hours (0..23)\n%HH - hours with leading zero (00..infinity)\n%H - hours (0..infinity)\n%mm - minutes with leading zero (00..59)\n%m - minutes (0..59)\n%MM - minutes with leading zero (00..infinity)\n%M - minutes (0..infinity)\n%ss - seconds with leading zero (00..59)\n%s - seconds (0..59)\n%SS - seconds with leading zero (00..infinity)\n%S - seconds (0..infinity)\n%t - tenths")
-    local p = obs.obs_properties_add_list(props, "source", "TEXT(GDI+)",
+
+    local p = obs.obs_properties_add_list(props, "source", "Text Source",
                                           obs.OBS_COMBO_TYPE_EDITABLE,
                                           obs.OBS_COMBO_FORMAT_STRING)
+    obs.obs_property_list_add_string(p, "[No text source]", "[No text source]")
 
     local sources = obs.obs_enum_sources()
+
     if sources ~= nil then
         for _, source in ipairs(sources) do
-            source_id = obs.obs_source_get_id(source)
+            name = obs.obs_source_get_name(source)
+            source_id = obs.obs_source_get_unversioned_id(source)
             if source_id == "text_gdiplus" or source_id == "text_ft2_source" then
-                local name = obs.obs_source_get_name(source)
+                name = obs.obs_source_get_name(source)
                 obs.obs_property_list_add_string(p, name, name)
             end
         end
+        obs.source_list_release(sources)
     end
-    obs.source_list_release(sources)
 
     local p_title_text
     local p_start_text
@@ -1883,6 +2249,29 @@ function script_properties()
                                                        "Reset",
                                                        reset_button_clicked)
 
+    local tzpath_prop = obslua.obs_properties_add_list(props, "tzpath",
+                                                       "tzpath",
+                                                       obslua.OBS_COMBO_TYPE_EDITABLE,
+                                                       obslua.OBS_COMBO_FORMAT_STRING)
+    if (isWindows()) then
+        for i = 1, #timezone_tzif_path_suggest_window do
+            obs.obs_property_list_add_string(tzpath_prop,
+                                             timezone_tzif_path_suggest_window[tonumber(
+                                                 i)],
+                                             timezone_tzif_path_suggest_window[tonumber(
+                                                 i)])
+        end
+    else
+
+        for i = 1, #timezone_tzif_path_suggest_unix do
+            obs.obs_property_list_add_string(tzpath_prop,
+                                             timezone_tzif_path_suggest_unix[tonumber(
+                                                 i)],
+                                             timezone_tzif_path_suggest_unix[tonumber(
+                                                 i)])
+        end
+    end
+
     obs.obs_property_set_visible(p_time_text, true)
     obs.obs_property_set_visible(p_stop_text, true)
     obs.obs_property_set_visible(p_start_text, true)
@@ -1892,9 +2281,6 @@ function script_properties()
     obs.obs_property_set_visible(button_pause, true)
     obs.obs_property_set_visible(button_reset, true)
     obs.obs_property_set_visible(p_a_mode, true)
-
-   
-    
 
     return props
 end
@@ -1972,6 +2358,7 @@ function script_update(settings)
     time_text = cut_string(obs.obs_data_get_string(settings, "time_text"), 100)
     obsbar = obs.obs_data_get_int(settings, "bar")
     timezone = obs.obs_data_get_string(settings, "timezone")
+    timezone_tzif_path = obs.obs_data_get_string(settings, "tzpath")
 
     if (timezone ~= nil) then load_timezone(timezone) end
 
@@ -1999,6 +2386,7 @@ function script_defaults(settings)
     obs.obs_data_set_default_string(settings, "end_text", "THE EVENT HAS ENDED")
     obs.obs_data_set_default_double(settings, "bar", 2)
     obs.obs_data_set_default_string(settings, "timezone", "America/Los_Angeles")
+    obs.obs_data_set_default_string(settings, "tzpath", timezone_tzif_path)
 
 end
 
