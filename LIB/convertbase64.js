@@ -3,13 +3,13 @@
 const copyButton = document.getElementById('copyButton');
 
 copyButton.addEventListener('click', () => {
-  navigator.clipboard.writeText(result)
-    .then(() => {
-      alert('コピーしました！');
-    })
-    .catch(err => {
-      console.error('コピーに失敗しました: ', err);
-    });
+    navigator.clipboard.writeText(result)
+        .then(() => {
+            alert('コピーしました！');
+        })
+        .catch(err => {
+            console.error('コピーに失敗しました: ', err);
+        });
 });
 
 
@@ -548,114 +548,229 @@ const css_body_chatgpt = `main {
 
 const css_head_copilot = `@-moz-document url-prefix("https://copilot.microsoft.com/") {`;
 const css_body_copilot = String.raw`
-/* body に背景画像を設定 */
-body {
-    background-size: cover !important;
-    background-position: top center !important; /* center でやや上*/
-    background-color: transparent !important;
-
-    font-family: Ginto, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
-    color: color: #50e7d87a !important;
-}
-
-/* main とその子要素の背景を半透明に */
-main {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    /* 半透明白 */
-}
-
-/* 背景グラデーションや単色を半透明に */
-.absolute.size-full,
-.bg-gradient-chat-light,
-.dark\:bg-midnight-850,
-.dark\:bg-none {
-    background: rgba(255, 255, 255, 0.1) !important;
-    /* 半透明白 */
-}
-
-/* チャットメッセージの背景を半透明に */
-.bg-spot-peach-300\/50,
-/* ユーザーメッセージ */
-.dark\:bg-midnight-750/* Copilot メッセージ */
-{
-    background-color: rgba(255, 192, 203, 0.3) !important;
-    /* 半透明ピンク */
-}
-
-/* 入力エリアのコンテナを半透明に */
-.relative.overflow-hidden.backdrop-blur-2xl {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    /* 半透明白 */
-    backdrop-filter: blur(10px) !important;
-    /* ブラー効果を維持 */
-}
-
-.relative.overflow-hidden.backdrop-blur-2xl::before,
-.relative.overflow-hidden.backdrop-blur-2xl::after {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    /* 半透明に */
-    opacity: 0.5 !important;
-    /* 透過度調整 */
-}
-
-/* その他の背景要素を半透明に */
-.bg-white\/90,
-.dark\:bg-midnight-900\/80,
-.bg-white\/70,
-.dark\:bg-slate-450\/30,
-.bg-transparent,
-.shadow-composer-input {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-    /* 半透明白 */
-}
-
-/* ボタンやアイコンの背景を半透明に */
-button.bg-white\/70,
-button.dark\:bg-slate-450\/30,
-button.bg-transparent {
-    background-color: rgba(255, 255, 255, 0.2) !important;
-}
-
-/* 入力テキストエリアを半透明に */
-textarea#userInput {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-}
-
-/* テキストの視認性を向上 */
-.text-foreground-800,
-.text-black,
-.dark\:text-white,
-.font-ligatures-none {
-    color: #ffffff !important;
-    /* 白に変更 */
-    /*text-shadow: 0 0 4px rgba(0, 0, 0, 0.5) !important;*/
-    /* 影で視認性確保 */
-}
-
-/* 背景画像の透過度調整（視認性向上） */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, .74) !important;
-    /* 背景を40%暗く */
-    z-index: -1;
-}
-
-/*コード内*/
-span {}
-p {}
-code {}
-
-.dark\:bg-background-static-900:is([data-theme=dark] *),
-.bg-background-static-850 {
-    background-color: rgba(0, 0, 0, 0.4) !important;
-}
-}
-    body {  
+  #app {
+        background-size: cover !important;
+        background-position: top center !important;
+        background-color: transparent !important;
+        /* 念のため透明に */
+        position: relative;
+        /* ::before の基準にする */
+        z-index: 0;
+        /* ::before より手前に */
+    }
+    
+    /* 背景画像の透過度調整（視認性向上） */
+    #app::before {
+        content: "";
+        position: fixed;
+        /* 画面全体に固定 */
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6) !important;
+        /* 好みに合わせて透過度を調整 (0.6 = 60%の黒) */
+        z-index: -1;
+        /* 背景画像より後ろに配置 */
+        pointer-events: none;
+        /* クリック操作を妨げない */
+    }
+    
+    /* body のデフォルト背景を削除 */
+    body {
+        background: none !important;
+        /* 元のフォント指定は維持 */
+        font-family: Ginto, ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", Segoe UI Symbol, "Noto Color Emoji";
+    }
+    
+    /* main や他の主要コンテナ要素の背景を透明に */
+    main,
+    .absolute.size-full,
+    .bg-sidebar-light,
+    /* サイドバー ライトモード */
+    .dark\:bg-sidebar-dark,
+    /* サイドバー ダークモード */
+    .bg-stone-150,
+    /* 基本背景色 ライトモード */
+    .dark\:bg-midnight-850,
+    /* 基本背景色 ダークモード */
+    .bg-gradient-chat-light,
+    /* チャット背景グラデーション ライト */
+    .dark\:bg-gradient-chat-dark,
+    /* チャット背景グラデーション ダーク */
+    .dark\:bg-none {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+    
+    /* チャットメッセージの背景を半透明に (色は元のCSSを参考に調整) */
+    .bg-spot-peach-300\/50,
+    /* ユーザーメッセージ ライト */
+    .dark\:bg-midnight-750/* Copilot メッセージ ダーク */
+    {
+        background-color: rgba(255, 192, 203, 0.5) !important;
+        /* 半透明ピンク (透過度を調整) */
+    }
+    
+    /* コードブロックの背景 */
+    .dark\:bg-background-static-900:is([data-theme=dark] *),
+    .bg-background-static-850 {
+        background-color: rgba(0, 0, 0, 0.6) !important;
+        /* 半透明黒 */
+    }
+    
+    /* 入力エリアのコンテナを半透明に */
+    .relative.overflow-hidden.backdrop-blur-2xl {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        /* 半透明白 (透過度を調整) */
+        backdrop-filter: blur(10px) !important;
+    }
+    
+    /* 入力エリアの疑似要素の背景を削除 */
+    .relative.overflow-hidden.backdrop-blur-2xl::before,
+    .relative.overflow-hidden.backdrop-blur-2xl::after {
+        background: none !important;
+    }
+    
+    /* 入力テキストエリア */
+    textarea#userInput {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: #ffffff !important;
+        /* テキスト色を白に */
+    }
+    textarea#userInput::placeholder {
+        color: rgba(255, 255, 255, 0.7) !important;
+        /* プレースホルダーの色 */
+    }
+    
+    /* その他のUI要素の背景を調整 */
+    .bg-white\/90,
+    .dark\:bg-midnight-900\/80,
+    .bg-white\/70,
+    .dark\:bg-slate-450\/30,
+    .bg-transparent,
+    .shadow-composer-input {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        /* 半透明白 */
+    }
+    
+    /* ボタン類の背景 */
+    button.bg-white\/70,
+    button.dark\:bg-slate-450\/30,
+    button.bg-transparent,
+    .hover\:bg-black\/5:hover,
+    .active\:bg-black\/3:active,
+    .dark\:hover\:bg-white\/8:hover,
+    .dark\:active\:bg-white\/5:active {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    button.hover\:bg-white:hover {
+        /* ホバー時の白背景ボタン */
+        background-color: rgba(255, 255, 255, 0.3) !important;
+    }
+    
+    
+    /* テキストの視認性を向上 */
+    .text-foreground-800,
+    .text-black,
+    .dark\:text-white,
+    .font-ligatures-none,
+    p,
+    /* 段落テキスト */
+    h2,
+    /* 見出し */
+    h3,
+    h4,
+    div[data-content="user-message"] div,
+    /* ユーザーメッセージテキスト */
+    div[data-content="ai-message"] div/* AIメッセージテキスト */
+    {
+        color: #ffffff !important;
+        /* 白に変更 */
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.7) !important;
+        /* 影で視認性確保 */
+    }
+    
+    /* 特定の要素の色調整 (必要に応じて追加・変更) */
+    /* 引用元ボタンの数字 */
+    .flex.items-center.justify-center.rounded-md.bg-spot-peach-300\/60,
+    .dark\:bg-slate-700 {
+        color: #111 !important;
+        /* 暗い色に変更 */
+        text-shadow: none !important;
+    }
+    .flex.items-center.justify-center.rounded-md.bg-spot-peach-300\/60:hover,
+    .dark\:bg-slate-700:hover {
+        color: #000 !important;
+    }
+    
+    /* 引用元ボタンのテキスト部分 */
+    a.text-xs span:last-child {
+        color: #fff !important;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.7) !important;
+    }
+    a.text-xs:hover span:last-child {
+        color: #eee !important;
+    }
+    
+    
+    /* サイドバーのテキストなど */
+    .text-foreground-650,
+    /* 日付など */
+    .text-2xs-strong/* 会話リストの日付区分など */
+    {
+        color: rgba(255, 255, 255, 0.8) !important;
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.6) !important;
+    }
+    
+    /* 会話リストの選択中アイテム */
+    .max-h-12.cursor-pointer.bg-black\/5,
+    .dark\:max-h-12.cursor-pointer.dark\:bg-white\/8 {
+        background-color: rgba(255, 255, 255, 0.2) !important;
+    }
+    
+    /* ボタン内のアイコンの色 */
+    button svg path {
+        fill: #ffffff !important;
+        /* アイコンを白に */
+    }
+    
+    /* リンクの色 */
+    a {
+        color: #a8dff5 !important;
+        /* やや明るい水色 */
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.7) !important;
+    }
+    a:hover {
+        color: #c0e8ff !important;
+        text-decoration: underline;
+    }
+    
+    /* コードブロック内のテキスト色 */
+    code,
+    code span {
+        color: inherit !important;
+        /* 親要素のスタイルを継承（白＋影） */
+        text-shadow: 0 0 4px rgba(0, 0, 0, 0.7) !important;
+    }
+    
+    /* 特定のシンタックスハイライトの色を調整 (必要な場合) */
+    code .hljs-string,
+    code .hljs-meta-string {
+        color: #90EE90 !important;
+        /* 文字列をライトグリーンに */
+    }
+    code .hljs-keyword,
+    code .hljs-built_in {
+        color: #ADD8E6 !important;
+        /* キーワードをライトブルーに */
+    }
+    code .hljs-comment {
+        color: #B0B0B0 !important;
+        /* コメントをグレーに */
+        font-style: italic;
+    }
+    #app {  
     background: url(`;
 
 const css_head_lmsys = `@-moz-document url-prefix("https://lmarena.ai/") {`;
@@ -792,23 +907,117 @@ const css_body_perplex = `
 
 const css_head_xcom = `@-moz-document domain("x.com") {`;
 const css_body_xcom = `
+/* メニュー全体（「リスト」「プレミアム」～「設定とプライバシー」）を透過 */
+div[role="menu"],
+div[role="menu"] .css-175oi2r,
+div[role="menu"] .r-14lw9ot,
+div[role="menu"] div,
+div[role="menu"] a {
+    background-color: rgba(224, 110, 175, .24) !important;
+}
+
+/* メニュー内の個々のリンクやアイテムを透過 */
+div[role="menu"] a[href*="lists"],
+div[role="menu"] a[href*="premium"],
+div[role="menu"] a[href*="bookmarks"],
+div[role="menu"] a[href*="monetization"],
+div[role="menu"] a[href*="verified-orgs"],
+div[role="menu"] a[href*="ads"],
+div[role="menu"] a[href*="jobs"],
+div[role="menu"] a[href*="spaces"],
+div[role="menu"] a[href*="settings"] {
+    background-color: rgba(209, 156, 233, 0) !important;
+}
+
+/* 設定ページ全体を透過 */
+div[data-testid="primaryColumn"],
+div[data-testid="primaryColumn"] .r-14lw9ot,
+div[data-testid="primaryColumn"] section,
+div[data-testid="primaryColumn"] div,
+div[data-testid="primaryColumn"] .css-175oi2r {
+
+    background-color: rgba(255, 255, 255, 0) !important;
+}
+
+
+div[data-testid="primaryColumn"] .css-175oi2r[role="main"] {
+
+    background-color: rgba(231, 114, 199, 0) !important;
+}
+
+/* 設定ページの白い背景を強制的に透過 */
+.r-14lw9ot {
+    background-color: rgba(220, 50, 220, 0) !important;
+}
+
+/* メニューやポップアップの背景を透過（冗長性を確保） */
+div[data-testid="SheetDialog"],
+div[aria-label="設定"],
+div[aria-label="もっと見る"],
+div[data-testid="sidebarColumn"] .css-175oi2r[role="menu"] {
+    background-color: rgba(228, 38, 123, .37) !important;
+}
+
+/* ツイート入力エリアのカスタマイズ */
+div[data-testid="tweetTextarea_0"] {
+    background-color: rgba(209, 70, 171, 0.4) !important;
+    /* 薄いピンク紫（透過度を少し高めに） */
+    border: 1px solid rgba(255, 255, 255, 0.5) !important;
+    /* 白い枠線を追加 */
+    border-radius: 10px !important;
+    /* 角を丸く */
+    padding: 10px !important;
+    /* 内側の余白 */
+    color: #ffffff !important;
+    /* 文字色を白に */
+}
+
+/* 入力エリアのプレースホルダーテキスト */
+div[data-testid="tweetTextarea_0"]::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+    /* プレースホルダーを薄白に */
+}
+
+/* 「ポストする」ボタンのカスタマイズ */
+div[data-testid="tweetButtonInline"],
+div[data-testid="tweetButton"] {
+    background-color: rgba(209, 70, 171, 0.6) !important;
+    /* ボタンを薄いピンク紫に */
+    border-radius: 20px !important;
+    /* 丸みを強く */
+    color: #ffffff !important;
+    /* 文字色を白に */
+    padding: 8px 16px !important;
+    /* ボタンのサイズ調整 */
+    transition: background-color 0.3s ease !important;
+    /* ホバー時のアニメーション */
+}
+
+/* ボタンのホバー時 */
+div[data-testid="tweetButtonInline"]:hover,
+div[data-testid="tweetButton"]:hover {
+    background-color: rgba(237, 99, 175, .83) !important;
+    /* ホバーで濃く */
+}
+
+/* 周囲のコンテナ（必要に応じて調整） */
+div[data-testid="tweetTextarea_0"] .css-175oi2r,
+div[data-testid="tweetButtonInline"] .css-175oi2r {
+    background-color: rgba(0, 0, 0, 0) !important;
+    /* コンテナは完全透過 */
+}
+
+main {
+    /*メインフローのみ色を変える*/
+    background-color: rgba(209, 70, 171, .75) !important;
+}
+/* bodyの背景を維持 */
 body {
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
     background-color: transparent !important;
-}
-.r-kemksi,
-.r-175oi2r,
-.r-yfoy6g {
-    background-color: rgba(0, 0, 0, 0.7) !important;
-    /* コンテンツの背景を半透明に */
-}
-    body {
-    /* https://pbs.twimg.com/media/GkgI9OtXAAI7t97?format=jpg&name=medium  grok 公式ブラックホール*/
-    /* https://pbs.twimg.com/media/GkpcJ9CbkAQ0G5_?format=jpg&name=900x900  grok 公式白い方*/
-    /* https://pbs.twimg.com/media/GlVJnvZa0AAjO3x?format=jpg&name=900x900 謎こ*/
     background-image: url(`;
 
 const css_head_gemini = `@-moz-document domain("gemini.google.com") { `;
@@ -1047,264 +1256,264 @@ const outputTypeSelect = document.getElementById('output_type');
 const targetSiteSelect = document.getElementById('target_site');
 
 imageInput.addEventListener('change', (event) => {
-  const file = event.target.files[0];
-  meta = meta.replace("0.1.0", getCurrentDateTime());
-  if (file) {
-    const reader = new FileReader();
+    const file = event.target.files[0];
+    meta = meta.replace("0.1.0", getCurrentDateTime());
+    if (file) {
+        const reader = new FileReader();
 
-    reader.onload = (e) => {
-      const base64String = e.target.result;
-      const imageType = file.type; // "image/png" or "image/jpeg"
+        reader.onload = (e) => {
+            const base64String = e.target.result;
+            const imageType = file.type; // "image/png" or "image/jpeg"
 
-      result = `${base64String}`;
-      const outputType = outputTypeSelect.value;
-      const targetSite = targetSiteSelect.value;
+            result = `${base64String}`;
+            const outputType = outputTypeSelect.value;
+            const targetSite = targetSiteSelect.value;
 
-      const today = new Date();
-      const formattedDate = today.getFullYear() + '-' +
-        String(today.getMonth() + 1).padStart(2, '0') + '-' +
-        String(today.getDate()).padStart(2, '0');
-
-
-      // 出力形式に応じた処理
-      if (outputType === "base64_only") {
-        result = base64String;
-      } else if (outputType === "stylus") {
-        meta = meta.replace(/{datenow}/gm, formattedDate);
-        meta = meta.replace(/{targetSite}/gm, targetSite);
-        if (targetSite === "gemini") {
-          result = meta + css_head_gemini + css_body_gemini + result + foot_body + foot_stylus;
-        } else if (targetSite === "claude") {
-          result = meta + css_head_claude + css_body_claude + result + foot_body + foot_stylus;
-        } else if (targetSite === "grok") {
-          result = meta + css_head_grok + css_body_grok + result + foot_body + foot_stylus;
-        } else if (targetSite === "chatgpt") {
-          result = meta + css_head_chatgpt + css_body_chatgpt + result + foot_body + foot_stylus;
-        } else if (targetSite === "copilot") {
-          result = meta + css_head_copilot + css_body_copilot + result + foot_body + foot_stylus;
-        } else if (targetSite === "lmsys") {
-          result = meta + css_head_lmsys + css_body_lmsys + result + foot_body + foot_stylus;
-        } else if (targetSite === "perplex") {
-          result = meta + css_head_perplex + css_body_perplex + result + foot_body + foot_stylus;
-        } else if (targetSite === "xcom") {
-          result = meta + css_head_xcom + css_body_xcom + result + foot_body + foot_stylus;
-        }
-        else {
-          result = meta + css_head_custom + css_body_custom + result + foot_body + foot_stylus;
-        }
-        output = targetSite + "_custom.user.css";
-      } else if (outputType === "tampermonkey") {
-        //tamper_gemini = tamper_gemini.replace(/{targetSite}/gm, targetSite);
-        if (targetSite === "gemini") {
-          tamper_gemini = tamper_gemini.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_gemini.user.js";
-          result = tamper_gemini + css_body_gemini + result + foot_body + foot_tamper;
-        } else if (targetSite === "claude") {
-          tamper_claude = tamper_claude.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_claude.user.js";
-          result = tamper_claude + css_body_claude + result + foot_body + foot_tamper;
-        } else if (targetSite === "grok") {
-          tamper_grok = tamper_grok.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_grok.user.js";
-          result = tamper_grok + css_body_grok + result + foot_body + foot_tamper;
-        } else if (targetSite === "chatgpt") {
-          tamper_chatgpt = tamper_chatgpt.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_chatgpt.user.js";
-          result = tamper_chatgpt + css_body_chatgpt + result + foot_body + foot_tamper;
-        } else if (targetSite === "copilot") {
-          tamper_copilot = tamper_copilot.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_copilot.user.js";
-          result = tamper_copilot + css_body_copilot + result + foot_body + foot_tamper;
-        } else if (targetSite === "lmsys") {
-          tamper_lmsys = tamper_lmsys.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_lmsys.user.js";
-          result = tamper_lmsys + css_body_lmsys + result + foot_body + foot_tamper;
-        } else if (targetSite === "perplex") {
-          tamper_perplex = tamper_perplex.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_perplex.user.js";
-          result = tamper_perplex + css_body_perplex + result + foot_body + foot_tamper;
-        } else if (targetSite === "xcom") {
-          tamper_xcom = tamper_xcom.replace(/{datenow}/gm, formattedDate);
-          output = "tamper_xcom.user.js";
-          result = tamper_xcom + css_body_xcom + result + foot_body + foot_tamper;
-        } else {
-          tamper_custom = tamper_custom.replace(/{datenow}/gm, formattedDate);
-          output = "custom.user.js";
-          result = tamper_custom + css_body_custom + result + foot_body + foot_tamper;
-        }
-      } else if (outputType === "bookmarklet") {
-        if (targetSite === "gemini") {
-          output = "bookmarklet_gemini.txt";
-          result = bookmarklet_head + css_body_gemini + result + foot_body + bookmarklet_foot;
-        } else if (targetSite === "claude") {
-          output = "bookmarklet_claude.txt";
-          result = bookmarklet_head + css_body_claude + result + foot_body + bookmarklet_foot;
-        } else if (targetSite === "grok") {
-          output = "bookmarklet_grok.txt";
-          result = bookmarklet_head + css_body_grok + result + foot_body + bookmarklet_foot;
-        } else if (targetSite === "chatgpt") {
-          output = "bookmarklet_chatgpt.txt";
-          result = bookmarklet_head + css_body_chatgpt + result + foot_body + bookmarklet_foot;
-        } else if (targetSite === "lmsys") {
-          output = "bookmarklet_lmsys.txt";
-          result = bookmarklet_head + css_body_lmsys + result + foot_body + bookmarklet_foot;
-        } else if (targetSite === "perplex") {
-          output = "bookmarklet_perplex.txt";
-          result = bookmarklet_head + css_body_perplex + result + foot_body + bookmarklet_foot;
-        } else if (targetSite === "xcom") {
-          output = "bookmarklet_xcom.txt";
-          result = bookmarklet_head + css_body_xcom + result + foot_body + bookmarklet_foot;
-        } else {
-          output = "bookmarklet_custom.txt";
-          result = bookmarklet_head + css_body_custom + result + foot_body + bookmarklet_foot;
-        }
-      }
+            const today = new Date();
+            const formattedDate = today.getFullYear() + '-' +
+                String(today.getMonth() + 1).padStart(2, '0') + '-' +
+                String(today.getDate()).padStart(2, '0');
 
 
-      resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea id="target" rows="5" cols="50">` + result + `</textarea>`;
-      console.log("Base64 文字列:", base64String);
+            // 出力形式に応じた処理
+            if (outputType === "base64_only") {
+                result = base64String;
+            } else if (outputType === "stylus") {
+                meta = meta.replace(/{datenow}/gm, formattedDate);
+                meta = meta.replace(/{targetSite}/gm, targetSite);
+                if (targetSite === "gemini") {
+                    result = meta + css_head_gemini + css_body_gemini + result + foot_body + foot_stylus;
+                } else if (targetSite === "claude") {
+                    result = meta + css_head_claude + css_body_claude + result + foot_body + foot_stylus;
+                } else if (targetSite === "grok") {
+                    result = meta + css_head_grok + css_body_grok + result + foot_body + foot_stylus;
+                } else if (targetSite === "chatgpt") {
+                    result = meta + css_head_chatgpt + css_body_chatgpt + result + foot_body + foot_stylus;
+                } else if (targetSite === "copilot") {
+                    result = meta + css_head_copilot + css_body_copilot + result + foot_body + foot_stylus;
+                } else if (targetSite === "lmsys") {
+                    result = meta + css_head_lmsys + css_body_lmsys + result + foot_body + foot_stylus;
+                } else if (targetSite === "perplex") {
+                    result = meta + css_head_perplex + css_body_perplex + result + foot_body + foot_stylus;
+                } else if (targetSite === "xcom") {
+                    result = meta + css_head_xcom + css_body_xcom + result + foot_body + foot_stylus;
+                }
+                else {
+                    result = meta + css_head_custom + css_body_custom + result + foot_body + foot_stylus;
+                }
+                output = targetSite + "_custom.user.css";
+            } else if (outputType === "tampermonkey") {
+                //tamper_gemini = tamper_gemini.replace(/{targetSite}/gm, targetSite);
+                if (targetSite === "gemini") {
+                    tamper_gemini = tamper_gemini.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_gemini.user.js";
+                    result = tamper_gemini + css_body_gemini + result + foot_body + foot_tamper;
+                } else if (targetSite === "claude") {
+                    tamper_claude = tamper_claude.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_claude.user.js";
+                    result = tamper_claude + css_body_claude + result + foot_body + foot_tamper;
+                } else if (targetSite === "grok") {
+                    tamper_grok = tamper_grok.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_grok.user.js";
+                    result = tamper_grok + css_body_grok + result + foot_body + foot_tamper;
+                } else if (targetSite === "chatgpt") {
+                    tamper_chatgpt = tamper_chatgpt.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_chatgpt.user.js";
+                    result = tamper_chatgpt + css_body_chatgpt + result + foot_body + foot_tamper;
+                } else if (targetSite === "copilot") {
+                    tamper_copilot = tamper_copilot.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_copilot.user.js";
+                    result = tamper_copilot + css_body_copilot + result + foot_body + foot_tamper;
+                } else if (targetSite === "lmsys") {
+                    tamper_lmsys = tamper_lmsys.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_lmsys.user.js";
+                    result = tamper_lmsys + css_body_lmsys + result + foot_body + foot_tamper;
+                } else if (targetSite === "perplex") {
+                    tamper_perplex = tamper_perplex.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_perplex.user.js";
+                    result = tamper_perplex + css_body_perplex + result + foot_body + foot_tamper;
+                } else if (targetSite === "xcom") {
+                    tamper_xcom = tamper_xcom.replace(/{datenow}/gm, formattedDate);
+                    output = "tamper_xcom.user.js";
+                    result = tamper_xcom + css_body_xcom + result + foot_body + foot_tamper;
+                } else {
+                    tamper_custom = tamper_custom.replace(/{datenow}/gm, formattedDate);
+                    output = "custom.user.js";
+                    result = tamper_custom + css_body_custom + result + foot_body + foot_tamper;
+                }
+            } else if (outputType === "bookmarklet") {
+                if (targetSite === "gemini") {
+                    output = "bookmarklet_gemini.txt";
+                    result = bookmarklet_head + css_body_gemini + result + foot_body + bookmarklet_foot;
+                } else if (targetSite === "claude") {
+                    output = "bookmarklet_claude.txt";
+                    result = bookmarklet_head + css_body_claude + result + foot_body + bookmarklet_foot;
+                } else if (targetSite === "grok") {
+                    output = "bookmarklet_grok.txt";
+                    result = bookmarklet_head + css_body_grok + result + foot_body + bookmarklet_foot;
+                } else if (targetSite === "chatgpt") {
+                    output = "bookmarklet_chatgpt.txt";
+                    result = bookmarklet_head + css_body_chatgpt + result + foot_body + bookmarklet_foot;
+                } else if (targetSite === "lmsys") {
+                    output = "bookmarklet_lmsys.txt";
+                    result = bookmarklet_head + css_body_lmsys + result + foot_body + bookmarklet_foot;
+                } else if (targetSite === "perplex") {
+                    output = "bookmarklet_perplex.txt";
+                    result = bookmarklet_head + css_body_perplex + result + foot_body + bookmarklet_foot;
+                } else if (targetSite === "xcom") {
+                    output = "bookmarklet_xcom.txt";
+                    result = bookmarklet_head + css_body_xcom + result + foot_body + bookmarklet_foot;
+                } else {
+                    output = "bookmarklet_custom.txt";
+                    result = bookmarklet_head + css_body_custom + result + foot_body + bookmarklet_foot;
+                }
+            }
 
-      const img = document.createElement('img');
-      img.src = base64String;
-      resultDiv.appendChild(img);
-    };
 
-    reader.readAsDataURL(file);
-  }
+            resultDiv.innerHTML = `<p>Base64 文字列:</p><textarea id="target" rows="5" cols="50">` + result + `</textarea>`;
+            console.log("Base64 文字列:", base64String);
+
+            const img = document.createElement('img');
+            img.src = base64String;
+            resultDiv.appendChild(img);
+        };
+
+        reader.readAsDataURL(file);
+    }
 });
 
 // 既存の他の関数（copyButtonイベントリスナーなど）はそのまま
 
 var share_url = {
-  "bsk": "https://bsky.app/intent/compose?text=TXT",
-  "tw": "http://twitter.com/share?text=TXT"
+    "bsk": "https://bsky.app/intent/compose?text=TXT",
+    "tw": "http://twitter.com/share?text=TXT"
 }
 
 
 //Twitterボタン
 function toshare(sns) {
-  var urls = "";
-  var urlmaster = document.location.href;
-  var base_url = share_url[sns];
-  var tag = "\r\n#base64　#gemini #claude #grok #stylus #user.css #custom_bg #tampermonkey #user.js";
+    var urls = "";
+    var urlmaster = document.location.href;
+    var base_url = share_url[sns];
+    var tag = "\r\n#base64　#gemini #claude #grok #stylus #user.css #custom_bg #tampermonkey #user.js";
 
-  s = `chrome/edge/firefoxのstylus/tamperjsで背景色画像を変更したよ() `;
-  s = s.replace(/<br>/gm, "\r\n");
-  s = s.replace(/<.*?>/gm, "");
-  s = s.replace(/\r\n\r\n/gm, "\r\n");
+    s = `chrome/edge/firefoxのstylus/tamperjsで背景色画像を変更したよ() `;
+    s = s.replace(/<br>/gm, "\r\n");
+    s = s.replace(/<.*?>/gm, "");
+    s = s.replace(/\r\n\r\n/gm, "\r\n");
 
-  s = s + tag + "\r\n " + urlmaster;
-  s = encodeURIComponent(s);
-  urls = base_url.replace("TXT", s);
-  window.open(urls, "_blank", "width=600,height=300");
+    s = s + tag + "\r\n " + urlmaster;
+    s = encodeURIComponent(s);
+    urls = base_url.replace("TXT", s);
+    window.open(urls, "_blank", "width=600,height=300");
 }
 
 function makeplugin() {
-  const base64Data = result; // Base64データ
-  downloadBase64(base64Data, output);
+    const base64Data = result; // Base64データ
+    downloadBase64(base64Data, output);
 }
 
 function makeplugintab() {
-  const base64Data = result; // Base64データ
-  installStylus(base64Data);
+    const base64Data = result; // Base64データ
+    installStylus(base64Data);
 }
 
 function getBrowser() {
-  const userAgent = navigator.userAgent;
-  if (userAgent.includes('Firefox')) {
-    return 'Firefox';
-  } else if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) {
-    return 'Chrome';
-  }
-  else if (userAgent.includes('Edg')) {
-    return 'Edg';
-  } else {
-    return 'Other';
-  }
+    const userAgent = navigator.userAgent;
+    if (userAgent.includes('Firefox')) {
+        return 'Firefox';
+    } else if (userAgent.includes('Chrome') && !userAgent.includes('Edg')) {
+        return 'Chrome';
+    }
+    else if (userAgent.includes('Edg')) {
+        return 'Edg';
+    } else {
+        return 'Other';
+    }
 }
 
 function installStylus(cssContent) {
-  const blob = new Blob([cssContent], { type: 'text/css' });
-  const updateUrl = URL.createObjectURL(blob);
-  const stylusInstallUrl_chrome =
-    `chrome-extension://clngdbkpkpeebahjckkjfobafhncgmne/install-usercss.html?updateUrl=${encodeURIComponent(updateUrl)}`;
-  const browser = getBrowser();
-  console.log('Your browser is:', browser);
+    const blob = new Blob([cssContent], { type: 'text/css' });
+    const updateUrl = URL.createObjectURL(blob);
+    const stylusInstallUrl_chrome =
+        `chrome-extension://clngdbkpkpeebahjckkjfobafhncgmne/install-usercss.html?updateUrl=${encodeURIComponent(updateUrl)}`;
+    const browser = getBrowser();
+    console.log('Your browser is:', browser);
 
-  if (browser === 'Firefox') {
-    uploadCssAndInstall(cssContent);
+    if (browser === 'Firefox') {
+        uploadCssAndInstall(cssContent);
 
 
-  } else if (browser === 'Chrome' || browser === 'Edg') {
-    window.open(stylusInstallUrl_chrome, '_blank');
-  } else {
-    alert('This is not a supported browser.');
-  }
+    } else if (browser === 'Chrome' || browser === 'Edg') {
+        window.open(stylusInstallUrl_chrome, '_blank');
+    } else {
+        alert('This is not a supported browser.');
+    }
 }
 
 function uploadCssAndInstall(cssContent) {
-  // FormDataオブジェクトの作成
-  const formData = new FormData();
-  formData.append('css_content', cssContent);
+    // FormDataオブジェクトの作成
+    const formData = new FormData();
+    formData.append('css_content', cssContent);
 
-  // PHPファイルにPOSTリクエストを送信
-  fetch('write_css.php', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => response.text())
-    .then(result => {
-      console.log(result);
+    // PHPファイルにPOSTリクエストを送信
+    fetch('write_css.php', {
+        method: 'POST',
+        body: formData
     })
-    .catch(error => {
-      console.error('エラー:', error);
-    });
+        .then(response => response.text())
+        .then(result => {
+            console.log(result);
+        })
+        .catch(error => {
+            console.error('エラー:', error);
+        });
 
-  const updateUrl = 'https://ss1.xrea.com/sokudon.s17.xrea.com/temp/temp.user.css';
-  const stylusInstallUrl =
-    `moz-extension://ac62add4-a6db-4b47-92d1-786e2e8ad477/install-usercss.html?updateUrl=${encodeURIComponent(updateUrl)}`;
-  setTimeout(() => {
-  }, 500); // 100ミリ秒待機
-  document.getElementById("link").innerHTML = '<a href="' + updateUrl + '">firefox用</a>';
+    const updateUrl = 'https://ss1.xrea.com/sokudon.s17.xrea.com/temp/temp.user.css';
+    const stylusInstallUrl =
+        `moz-extension://ac62add4-a6db-4b47-92d1-786e2e8ad477/install-usercss.html?updateUrl=${encodeURIComponent(updateUrl)}`;
+    setTimeout(() => {
+    }, 500); // 100ミリ秒待機
+    document.getElementById("link").innerHTML = '<a href="' + updateUrl + '">firefox用</a>';
 }
 
 function downloadBase64(base64Data, fileName) {
-  const formData = new FormData();
-  formData.append('base64Data', base64Data);
-  formData.append('fileName', fileName);
+    const formData = new FormData();
+    formData.append('base64Data', base64Data);
+    formData.append('fileName', fileName);
 
-  fetch('downloadraw.php', {
-    method: 'POST',
-    body: formData
-  })
-    .then(response => {
-      if (response.ok) {
-        return response.blob();
-      } else {
-        throw new Error('Failed to download the file.');
-      }
+    fetch('downloadraw.php', {
+        method: 'POST',
+        body: formData
     })
-    .then(blob => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = fileName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+        .then(response => {
+            if (response.ok) {
+                return response.blob();
+            } else {
+                throw new Error('Failed to download the file.');
+            }
+        })
+        .then(blob => {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
 }
 
 
 function getCurrentDateTime() {
-  const now = new Date();
-  return now.getFullYear() +
-    String(now.getMonth() + 1).padStart(2, '0') +
-    String(now.getDate()).padStart(2, '0') +
-    String(now.getHours()).padStart(2, '0') +
-    String(now.getMinutes()).padStart(2, '0');
+    const now = new Date();
+    return now.getFullYear() +
+        String(now.getMonth() + 1).padStart(2, '0') +
+        String(now.getDate()).padStart(2, '0') +
+        String(now.getHours()).padStart(2, '0') +
+        String(now.getMinutes()).padStart(2, '0');
 }
