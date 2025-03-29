@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OBS Lua 高機能イベントタイマー スクリプト ドキュメント</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        ul {
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        strong {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>OBS Lua 高機能イベントタイマー スクリプト ドキュメント</h1>
+
+    <p>このLuaスクリプトは、OBS
+        Studioのテキストソースを使用して、イベントの開始/終了時刻に基づいた高度なタイマー機能を提供します。経過時間、残り時間、イベント期間、進捗率、現在時刻（ローカル、UTC、JST、指定タイムゾーン）などを柔軟な書式で表示できます。
+    </p>
+
+    <p><strong>元となったスクリプト/参考情報:</strong></p>
+    <ul>
+        <li><strong>オリジナルタイマー:</strong> <a href="https://obsproject.com/forum/resources/advanced-timer.637/"
+                target="_blank" rel="noopener noreferrer">Advanced Timer by universal_quantifier</a></li>
+        <li><strong>JSONパーサー参考:</strong> <a href="https://gist.github.com/zwh8800/9b0442efadc97408ffff248bc8573064"
+                target="_blank" rel="noopener noreferrer">gist by zwh8800</a></li>
+        <li><strong>旧版 (残り時間のみ):</strong> <a
+                href="https://raw.githubusercontent.com/sokudon/deresute/2c8516d114a6500b0ad4e91d31a776f5b5d48891/OBSdere.lua"
+                target="_blank" rel="noopener noreferrer">sokudon/deresute/OBSdere.lua (旧コミット)</a></li>
+        <li><strong>パラメータWiki (参考):</strong> <a
+                href="https://github.com/sokudon/deresute/wiki/OBS-EVENT-DURATION-TIMER(luascript)" target="_blank"
+                rel="noopener noreferrer">sokudon/deresute Wiki</a></li>
+        <li><strong>タイムゾーンデータ概念:</strong> Moment Timezone (特にAmerica/Los_Angelesのデータ構造を参考に実装)</li>
+        <li><strong>TZIFパーサー概念:</strong> luatz (requireを使用しない形に改造して統合)</li>
+    </ul>
+
+    <h2>主な機能</h2>
+    <ul>
+        <li>イベントの開始時刻と終了時刻に基づくタイマー表示。</li>
+        <li>経過時間、残り時間、イベント期間の表示（カスタム書式対応）。</li>
+        <li>イベント進捗率（パーセント）と進捗バーの表示。</li>
+        <li>現在時刻の表示（OS依存ローカル、UTC、JST、指定IANAタイムゾーン）。</li>
+        <li>開始/終了時刻の表示（OS依存ローカル、UTC、JST、指定IANAタイムゾーン）。</li>
+        <li>豊富な日時・期間フォーマット指定子。</li>
+        <li>多様な日時入力形式に対応 (ISO 8601、YYYY/MM/DD HH:MM TZ、RFC 2822、Unixタイムスタンプ、ローカル時刻など)。</li>
+        <li>IANAタイムゾーン名によるタイムゾーン指定とTZ Database (zoneinfo/tzdata) ファイルの自動検索・読み込み。</li>
+        <li>POSIX TZ文字列によるフォールバック（TZ Databaseファイルが見つからない場合や将来の時刻）。</li>
+        <li>OBSの配信/録画開始・停止イベントとの連携（モードによる）。</li>
+        <li>タイマーリセット、一時停止/再開のホットキー対応。</li>
+        <li>テキストソースへの自動更新。</li>
+    </ul>
+
+    <h2>インストール方法</h2>
+    <ol>
+        <li>OBS Studioを開きます。</li>
+        <li>メニューから <code>ツール</code> > <code>スクリプト</code> を選択します。</li>
+        <li><code>スクリプト</code> タブの左下にある <code>+</code> ボタンをクリックします。</li>
+        <li>ダウンロードした <code>.lua</code> ファイルを選択して追加します。</li>
+        <li>スクリプトがリストに追加され、右側に設定項目が表示されます。</li>
+    </ol>
+
+    <h2>設定項目 (スクリプトUI)</h2>
+    <p>スクリプトを選択すると、以下の設定項目が表示されます。</p>
+    <ul>
+        <li><strong>Mode:</strong> タイマーの動作モード（現在は<code>Countdown</code>固定の可能性あり、元のスクリプトには他のモードも存在）。</li>
+        <li><strong>WorldTime UTC+-?? (UTC):</strong> UTCからのオフセットを指定する古い方法（主に表示用、タイムゾーン指定が優先される）。</li>
+        <li><strong>TIMEZONE:</strong> タイマー計算や表示に使用するIANAタイムゾーン名（例: <code>America/Los_Angeles</code>,
+            <code>Asia/Tokyo</code>, <code>UTC</code>）。リストから選択または直接入力。</li>
+        <li><strong>Text Source:</strong> タイマーのテキストを表示するOBS内のテキストソース（GDI+ または Freetype 2）を選択します。</li>
+        <li><strong>EVENT NAME (Title Text):</strong> イベントのタイトル (<code>%T</code> で使用)。</li>
+        <li><strong>START (Start Text):</strong> イベントの開始日時。ISO 8601形式 (<code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> や
+            <code>YYYY-MM-DDTHH:MM:SSZ</code>) を推奨。他の形式も解釈可能（後述）。</li>
+        <li><strong>END (Stop Text):</strong> イベントの終了日時。同上。</li>
+        <li><strong>ELASPED/LEFT format (Format):</strong> 経過時間 (<code>%K</code>)、残り時間 (<code>%L</code>)、イベント期間
+            (<code>%I</code>) を表示する際の書式（後述の「期間/間隔 書式」参照）。</li>
+        <li><strong>TIME parameter (Para Text):</strong> テキストソースに最終的に表示する内容のテンプレート。利用可能なプレースホルダ（後述）を組み合わせて記述します。</li>
+        <li><strong>TIME format (Time Text):</strong> <code>%N</code>, <code>%UTC</code>, <code>%JST</code>,
+            <code>%TZ</code>, <code>%S</code>, <code>%E</code>, <code>%SJ</code>, <code>%EJ</code> などで日時を表示する際の書式（後述の「日時
+            書式」参照）。</li>
+        <li><strong>STOP text (End Text):</strong> イベント終了後に残り時間 (<code>%L</code>) の代わりに表示するテキスト（空欄の場合は期間0を表示）。</li>
+        <li><strong>PROGRESSBAR (Bar):</strong> 進捗バー (<code>%Q</code>) の解像度（100をここで指定した値で割った段階数で表示。例: 2なら50段階）。</li>
+        <li><strong>Activation mode (a_mode):</strong> タイマーをいつアクティブにするか（Global:常に、Start timer on
+            activation:ソース表示時に開始/リセット）。</li>
+        <li><strong>Start/Pause Button:</strong> スクリプトUIからタイマーを開始/一時停止します。</li>
+        <li><strong>Reset Button:</strong> スクリプトUIからタイマーをリセットします。</li>
+        <li><strong>tzpath:</strong> TZ Database (zoneinfo/tzdata)
+            ファイルが格納されているディレクトリのパス。通常は自動検出されますが、必要に応じて手動で指定できます。リストから候補を選択または直接入力。</li>
+    </ul>
+
+    <h2>プレースホルダ (TIME parameterで使用)</h2>
+
+    <h3>一般</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>プレースホルダ</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>%T</code></td>
+                <td>イベント名・タイトル (<code>EVENT NAME</code>設定)</td>
+            </tr>
+            <tr>
+                <td><code>%P</code></td>
+                <td>イベント進捗率 (%) (小数点以下2桁)</td>
+            </tr>
+            <tr>
+                <td><code>%Q</code></td>
+                <td>イベント進捗バー (<code>[===>_____]</code>形式)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>日時表示</h3>
+    <p><code>TIME format</code> 設定で指定した書式に従って表示されます。</p>
+    <table>
+        <thead>
+            <tr>
+                <th>プレースホルダ</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>%N</code></td>
+                <td>現在時刻 (OS依存のローカル時刻)</td>
+            </tr>
+            <tr>
+                <td><code>%UTC</code></td>
+                <td>現在時刻 (UTC)</td>
+            </tr>
+            <tr>
+                <td><code>%JST</code></td>
+                <td>現在時刻 (日本標準時 JST, UTC+9)</td>
+            </tr>
+            <tr>
+                <td><code>%TZ</code></td>
+                <td>現在時刻 (設定された<code>TIMEZONE</code>の時刻)</td>
+            </tr>
+            <tr>
+                <td><code>%TZN</code></td>
+                <td>現在時刻 (設定された<code>TIMEZONE</code>の時刻、<code>os.date</code>非依存実装)</td>
+            </tr>
+            <tr>
+                <td><code>%S</code></td>
+                <td>イベント開始時刻 (OS依存のローカル時刻)</td>
+            </tr>
+            <tr>
+                <td><code>%E</code></td>
+                <td>イベント終了時刻 (OS依存のローカル時刻)</td>
+            </tr>
+            <tr>
+                <td><code>%SU</code></td>
+                <td>イベント開始時刻 (UTC)</td>
+            </tr>
+            <tr>
+                <td><code>%EU</code></td>
+                <td>イベント終了時刻 (UTC)</td>
+            </tr>
+            <tr>
+                <td><code>%SJ</code></td>
+                <td>イベント開始時刻 (日本標準時 JST)</td>
+            </tr>
+            <tr>
+                <td><code>%EJ</code></td>
+                <td>イベント終了時刻 (日本標準時 JST)</td>
+            </tr>
+            <tr>
+                <td><code>%SS</code></td>
+                <td>イベント開始時刻 (設定された<code>TIMEZONE</code>の時刻)</td>
+            </tr>
+            <tr>
+                <td><code>%EE</code></td>
+                <td>イベント終了時刻 (設定された<code>TIMEZONE</code>の時刻)</td>
+            </tr>
+            <tr>
+                <td><code>%EXP</code></td>
+                <td>TZ Databaseの有効期限 (存在する場合、<code>TIMEZONE</code>での時刻表示)</td>
+            </tr>
+            <tr>
+                <td><code>%%</code></td>
+                <td><code>%</code> 文字自体</td>
+            </tr>
+            <tr>
+                <td><code>%n</code></td>
+                <td>改行</td>
+            </tr>
+            <tr>
+                <td><code>%t</code></td>
+                <td>水平タブ</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3>日時 書式 (<code>TIME format</code> 設定で使用。<code>os.date</code>準拠 + カスタム)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>書式</th>
+                <th>説明</th>
+                <th>例 (Asia/Tokyo)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>%Y</code></td>
+                <td>年 (4桁)</td>
+                <td><code>2025</code></td>
+            </tr>
+            <tr>
+                <td><code>%m</code></td>
+                <td>月 (01-12)</td>
+                <td><code>03</code></td>
+            </tr>
+            <tr>
+                <td><code>%d</code></td>
+                <td>日 (01-31)</td>
+                <td><code>29</code></td>
+            </tr>
+            <tr>
+                <td><code>%H</code></td>
+                <td>時 (24時間形式, 00-23)</td>
+                <td><code>14</code></td>
+            </tr>
+            <tr>
+                <td><code>%M</code></td>
+                <td>分 (00-59)</td>
+                <td><code>33</code></td>
+            </tr>
+            <tr>
+                <td><code>%S</code></td>
+                <td>秒 (00-59)</td>
+                <td><code>09</code></td>
+            </tr>
+            <tr>
+                <td><code>%a</code></td>
+                <td>曜日 (省略形)</td>
+                <td><code>Sat</code></td>
+            </tr>
+            <tr>
+                <td><code>%A</code></td>
+                <td>曜日 (完全形)</td>
+                <td><code>Saturday</code></td>
+            </tr>
+            <tr>
+                <td><code>%b</code></td>
+                <td>月 (省略形)</td>
+                <td><code>Mar</code></td>
+            </tr>
+            <tr>
+                <td><code>%B</code></td>
+                <td>月 (完全形)</td>
+                <td><code>March</code></td>
+            </tr>
+            <tr>
+                <td><code>%z</code></td>
+                <td>タイムゾーンオフセット (+HHMM または -HHMM形式)</td>
+                <td><code>+0900</code></td>
+            </tr>
+            <tr>
+                <td><code>%Z</code></td>
+                <td>タイムゾーン略称 (例: <code>PST</code>, <code>JST</code>, <code>UTC</code>) ※<code>%TZN</code>専用実装</td>
+                <td><code>JST</code></td>
+            </tr>
+            <tr>
+                <td><code>%c</code></td>
+                <td>ロケール依存の日時表現</td>
+                <td><code>Sat Mar 29 14:33:09 2025</code></td>
+            </tr>
+            <tr>
+                <td><code>%x</code></td>
+                <td>ロケール依存の日付表現</td>
+                <td><code>03/29/25</code></td>
+            </tr>
+            <tr>
+                <td><code>%X</code></td>
+                <td>ロケール依存の時刻表現</td>
+                <td><code>14:33:09</code></td>
+            </tr>
+            <tr>
+                <td><code>%Y-%m-%dT%H:%M:%S%z (%a)</code></td>
+                <td>ISO 8601風のカスタム書式例</td>
+                <td><code>2025-03-29T14:33:09+0900 (Sat)</code></td>
+            </tr>
+            <tr>
+                <td><em>(その他 <code>os.date</code> の書式指定子)</em></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>注意:</strong> Windows環境では <code>os.date</code> の <code>%Z</code>, <code>%z</code>
+        の挙動に制限があるため、<code>%TZ</code>, <code>%TZN</code>, <code>%SS</code>, <code>%EE</code>
+        など、スクリプト内部でタイムゾーン処理を行うプレースホルダの使用が推奨されます。<code>%TZN</code> は <code>os.date</code>
+        を使わずにタイムゾーン略称(%Z)とオフセット(%z)を含む書式を処理します。</p>
+
+    <h3>期間/間隔 書式 (<code>ELASPED/LEFT format</code> 設定で使用)</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>書式</th>
+                <th>説明</th>
+                <th>例</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>%d</code></td>
+                <td>日数 (切り捨て)</td>
+                <td><code>3</code> (3日と5時間の場合)</td>
+            </tr>
+            <tr>
+                <td><code>%H</code></td>
+                <td>総時間数 (切り捨て)</td>
+                <td><code>77</code> (3日と5時間の場合)</td>
+            </tr>
+            <tr>
+                <td><code>%M</code></td>
+                <td>総分数 (切り捨て)</td>
+                <td><code>4620</code></td>
+            </tr>
+            <tr>
+                <td><code>%S</code></td>
+                <td>総秒数 (切り捨て)</td>
+                <td><code>277200</code></td>
+            </tr>
+            <tr>
+                <td><code>%h</code></td>
+                <td>時間 (24時間以内、切り捨て)</td>
+                <td><code>5</code> (3日と5時間の場合)</td>
+            </tr>
+            <tr>
+                <td><code>%m</code></td>
+                <td>分 (60分以内、切り捨て)</td>
+                <td><code>15</code></td>
+            </tr>
+            <tr>
+                <td><code>%s</code></td>
+                <td>秒 (60秒以内、切り捨て)</td>
+                <td><code>30</code></td>
+            </tr>
+            <tr>
+                <td><code>%t</code></td>
+                <td>ミリ秒 (1/10秒)</td>
+                <td><code>5</code> (3.5秒の場合)</td>
+            </tr>
+            <tr>
+                <td><code>%hh</code></td>
+                <td>時間 (24時間以内、2桁ゼロ埋め)</td>
+                <td><code>05</code></td>
+            </tr>
+            <tr>
+                <td><code>%mm</code></td>
+                <td>分 (60分以内、2桁ゼロ埋め)</td>
+                <td><code>15</code></td>
+            </tr>
+            <tr>
+                <td><code>%ss</code></td>
+                <td>秒 (60秒以内、2桁ゼロ埋め)</td>
+                <td><code>30</code></td>
+            </tr>
+            <tr>
+                <td><code>%HH</code></td>
+                <td>総時間数 (2桁ゼロ埋め)</td>
+                <td><code>77</code></td>
+            </tr>
+            <tr>
+                <td><code>%MM</code></td>
+                <td>総分数 (2桁ゼロ埋め)</td>
+                <td><code>4620</code></td>
+            </tr>
+            <tr>
+                <td><code>%SS</code></td>
+                <td>総秒数 (2桁ゼロ埋め)</td>
+                <td><code>277200</code></td>
+            </tr>
+            <tr>
+                <td><code>%ds</code></td>
+                <td>総日数 (小数点以下3桁)</td>
+                <td><code>3.208</code></td>
+            </tr>
+            <tr>
+                <td><code>%hs</code></td>
+                <td>総時間数 (小数点以下3桁)</td>
+                <td><code>77.000</code></td>
+            </tr>
+            <tr>
+                <td><code>%ms</code></td>
+                <td>総分数 (小数点以下3桁)</td>
+                <td><code>4620.000</code></td>
+            </tr>
+        </tbody>
+    </table>
+    <p><strong>書式例:</strong> <code>%d日 %hh:%mm:%ss</code> -> <code>3日 05:15:30</code></p>
+
+    <h2>日時入力形式 (START/END)</h2>
+    <p>以下の形式での日時入力を解釈しようと試みます。</p>
+    <ul>
+        <li><strong>ISO 8601 (推奨):</strong>
+            <ul>
+                <li><code>YYYY-MM-DDTHH:MM:SS+HH:MM</code> (例: <code>2025-03-29T15:00:00+09:00</code>)</li>
+                <li><code>YYYY-MM-DDTHH:MM:SSZ</code> (例: <code>2025-03-29T06:00:00Z</code>) (UTC)</li>
+                <li><code>YYYY-MM-DDTHH:MM</code> (秒、オフセットは補完)</li>
+            </ul>
+        </li>
+        <li><strong>Unixタイムスタンプ:</strong>
+            <ul>
+                <li><code>1743212400</code> (秒)</li>
+            </ul>
+        </li>
+        <li><strong>RFC 2822風:</strong>
+            <ul>
+                <li><code>DD Mon YYYY HH:MM:SS TZ</code> (例: <code>29 Mar 2025 15:00:00 JST</code>)</li>
+                <li><code>DD Mon YYYY HH:MM TZ</code> (例: <code>29 Mar 2025 15:00 PST</code>)</li>
+                <li><code>DD Mon YYYY HH TZ</code> (例: <code>29 Mar 2025 15 +0900</code>)</li>
+                <li><code>DD Mon YYYY TZ</code> (例: <code>29 Mar 2025 UTC</code>)</li>
+            </ul>
+        </li>
+        <li><strong>区切り文字違い/ローカル:</strong>
+            <ul>
+                <li><code>YYYY/MM/DD HH:MM TZ</code> (例: <code>2025/03/29 15:00:00 JST</code>)</li>
+                <li><code>YYYY-MM-DD HH:MM TZ</code> (例: <code>2025-03-29 15:00:00 PST</code>)</li>
+                <li><code>YYYY/MM/DD HH:MM:SS</code> (ローカル時刻として解釈)</li>
+                <li><code>YYYY-MM-DD HH:MM</code> (ローカル時刻として解釈)</li>
+                <li><code>YYYY-MM-DD HH</code> (ローカル時刻として解釈)</li>
+                <li><code>YYYY-MM-DD</code> (ローカル時刻の0時として解釈)</li>
+            </ul>
+        </li>
+    </ul>
+    <p><strong>タイムゾーン指定子 (TZ):</strong></p>
+    <ul>
+        <li><code>+HHMM</code> or <code>-HHMM</code> (例: <code>+0900</code>, <code>-0800</code>)</li>
+        <li><code>Z</code> (UTC)
+        </li>
+        <li><code>useTZ</code>, <code>TZ</code>, <code>LA</code> (内部で使用): 設定された<code>TIMEZONE</code>
+            (<code>America/Los_Angeles</code>など) として解釈するための特殊な指示子。入力例: <code>2025-03-10 03:00 useTZ</code></li>
+        <li>タイムゾーン略称 (例: <code>JST</code>, <code>PST</code>, <code>PDT</code>, <code>UTC</code>, <code>GMT</code>) -
+            スクリプト内部のテーブルまたはTZ Databaseの情報に基づいて解釈されます。</li>
+        <table>
+            <tr>
+                <td>ACDT</td>
+                <td> +1030</td>
+            </tr>
+            <tr>
+                <td>ACST</td>
+                <td> +0930</td>
+            </tr>
+            <tr>
+                <td>AEDT</td>
+                <td> +1100</td>
+            </tr>
+            <tr>
+                <td>AEST</td>
+                <td> +1000</td>
+            </tr>
+            <tr>
+                <td>AFT</td>
+                <td> +0430</td>
+            </tr>
+            <tr>
+                <td>AKDT</td>
+                <td> -0800</td>
+            </tr>
+            <tr>
+                <td>AKST</td>
+                <td> -0900</td>
+            </tr>
+            <tr>
+                <td>ART</td>
+                <td> -0300</td>
+            </tr>
+            <tr>
+                <td>AWDT</td>
+                <td> +0900</td>
+            </tr>
+            <tr>
+                <td>AWST</td>
+                <td> +0800</td>
+            </tr>
+            <tr>
+                <td>BDT</td>
+                <td> +0600</td>
+            </tr>
+            <tr>
+                <td>BNT</td>
+                <td> +0800</td>
+            </tr>
+            <tr>
+                <td>BOT</td>
+                <td> -0400</td>
+            </tr>
+            <tr>
+                <td>BRT</td>
+                <td> -0300</td>
+            </tr>
+            <tr>
+                <td>BST</td>
+                <td> +0100</td>
+            </tr>
+            <tr>
+                <td>BTT</td>
+                <td> +0600</td>
+            </tr>
+            <tr>
+                <td>CAT</td>
+                <td> +0200</td>
+            </tr>
+            <tr>
+                <td>CCT</td>
+                <td> +0630</td>
+            </tr>
+            <tr>
+                <td>cDT</td>
+                <td> -0400</td>
+            </tr>
+            <tr>
+                <td>CDT</td>
+                <td> -0500</td>
+            </tr>
+            <tr>
+                <td>CEST</td>
+                <td> +0200</td>
+            </tr>
+            <tr>
+                <td>CET</td>
+                <td> +0100</td>
+            </tr>
+            <tr>
+                <td>CLST</td>
+                <td> -0300</td>
+            </tr>
+            <tr>
+                <td>CLT</td>
+                <td> -0400</td>
+            </tr>
+            <tr>
+                <td>COT</td>
+                <td> -0500</td>
+            </tr>
+            <tr>
+                <td>cst</td>
+                <td> +0800</td>
+            </tr>
+            <tr>
+                <td>cST</td>
+                <td> -0500</td>
+            </tr>
+            <tr>
+                <td>CST</td>
+                <td> -0600</td>
+            </tr>
+            <tr>
+                <td>ChST</td>
+                <td> +1000</td>
+            </tr>
+            <tr>
+                <td>EAT</td>
+                <td> +0300</td>
+            </tr>
+            <tr>
+                <td>ECT</td>
+                <td> -0500</td>
+            </tr>
+            <tr>
+                <td>EDT</td>
+                <td> -0400</td>
+            </tr>
+            <tr>
+                <td>EEST</td>
+                <td> +0300</td>
+            </tr>
+            <tr>
+                <td>EET</td>
+                <td> +0200</td>
+            </tr>
+            <tr>
+                <td>EST</td>
+                <td> -0500</td>
+            </tr>
+            <tr>
+                <td>FJST</td>
+                <td> +1300</td>
+            </tr>
+            <tr>
+                <td>FJT</td>
+                <td> +1200</td>
+            </tr>
+            <tr>
+                <td>GMT</td>
+                <td> +0000</td>
+            </tr>
+            <tr>
+                <td>GST</td>
+                <td> +0400</td>
+            </tr>
+            <tr>
+                <td>HKT</td>
+                <td> +0800</td>
+            </tr>
+            <tr>
+                <td>HST</td>
+                <td> -1000</td>
+            </tr>
+            <tr>
+                <td>ICT</td>
+                <td> +0700</td>
+            </tr>
+            <tr>
+                <td>IDT</td>
+                <td> +0300</td>
+            </tr>
+            <tr>
+                <td>iST</td>
+                <td> +0200</td>
+            </tr>
+            <tr>
+                <td>IST</td>
+                <td> +0530</td>
+            </tr>
+            <tr>
+                <td>IRDT</td>
+                <td> +0430</td>
+            </tr>
+            <tr>
+                <td>IRST</td>
+                <td> +0330</td>
+            </tr>
+            <tr>
+                <td>JST</td>
+                <td> +0900</td>
+            </tr>
+            <tr>
+                <td>KST</td>
+                <td> +0900</td>
+            </tr>
+            <tr>
+                <td>MDT</td>
+                <td> -0600</td>
+            </tr>
+            <tr>
+                <td>MMT</td>
+                <td> +0630</td>
+            </tr>
+            <tr>
+                <td>MST</td>
+                <td> -0700</td>
+            </tr>
+            <tr>
+                <td>MYT</td>
+                <td> +0800</td>
+            </tr>
+            <tr>
+                <td>NPT</td>
+                <td> +0545</td>
+            </tr>
+            <tr>
+                <td>NZDT</td>
+                <td> +1300</td>
+            </tr>
+            <tr>
+                <td>NZST</td>
+                <td> +1200</td>
+            </tr>
+            <tr>
+                <td>PDT</td>
+                <td> -0700</td>
+            </tr>
+            <tr>
+                <td>PET</td>
+                <td> -0500</td>
+            </tr>
+            <tr>
+                <td>PHT</td>
+                <td> +0800</td>
+            </tr>
+            <tr>
+                <td>PKT</td>
+                <td> +0500</td>
+            </tr>
+            <tr>
+                <td>PST</td>
+                <td> -0800</td>
+            </tr>
+            <tr>
+                <td>PWT</td>
+                <td> +0900</td>
+            </tr>
+            <tr>
+                <td>SST</td>
+                <td> -1100</td>
+            </tr>
+            <tr>
+                <td>UT</td>
+                <td> +0000</td>
+            </tr>
+            <tr>
+                <td>UTC</td>
+                <td> +0000</td>
+            </tr>
+            <tr>
+                <td>UYT</td>
+                <td> -0300</td>
+            </tr>
+            <tr>
+                <td>WAT</td>
+                <td> +0100</td>
+            </tr>
+            <tr>
+                <td>WEST</td>
+                <td> +0100</td>
+            </tr>
+            <tr>
+                <td>WET</td>
+                <td> +0000</td>
+            </tr>
+            <tr>
+                <td>WIB</td>
+                <td> +0700</td>
+            </tr>
+            <tr>
+                <td>WIT</td>
+                <td> +0900</td>
+            </tr>
+            <tr>
+                <td>WITA</td>
+                <td> +0800</td>
+            </tr>
+        </table>
+    </ul>
+    <p><strong>注意:</strong> タイムゾーン指定がない場合は、OSのローカルタイムゾーンとして解釈される可能性があります。曖昧さを避けるため、ISO 8601形式でのUTCオフセット指定
+        (<code>+HH:MM</code> or <code>Z</code>) または、信頼できるタイムゾーン略称 (<code>JST</code>, <code>PST</code>/<code>PDT</code>)
+        の使用を推奨します。IANA名 (<code>Asia/Tokyo</code>) を直接入力する形式は現在サポートされていないようです。代わりに<code>TIMEZONE</code>設定を使用してください。</p>
+
+    <h2>タイムゾーン処理詳細</h2>
+    <ul>
+        <li><strong>TZ Database (zoneinfo/tzdata):</strong> スクリプトは一般的なパス (Windows/Unix) を検索し、<code>zoneinfo</code>
+            ディレクトリまたは <code>tzdata</code>
+            ファイルを見つけようとします。見つかった場合、指定された<code>TIMEZONE</code>のTZIFバイナリファイルを解析し、正確なUTCオフセットと夏時間(DST)の遷移情報を使用します。<code>tzpath</code>設定でパスを手動指定することも可能です。
+        </li>
+        <li><strong>POSIX TZ 文字列:</strong> TZ Databaseファイルが利用できない場合や、ファイルの有効期限を超える将来の日時については、TZIFファイル内に含まれるPOSIX
+            TZ文字列（例: <code>PST8PDT,M3.2.0,M11.1.0</code>）に基づいてオフセットとDSTを計算しようと試みます。</li>
+        <li><strong>Moment Timezone データ:</strong> スクリプト内部に <code>America/Los_Angeles</code> の過去～未来約10年分のタイムゾーン遷移情報
+            (UTCオフセット、略称、遷移時刻) がMoment Timezoneのデータ形式に似た形でハードコードされており、TZ
+            Databaseが見つからない場合のフォールバックや、特定のタイムゾーン処理に使用されることがあります。</li>
+    </ul>
+
+    <h2>ホットキー</h2>
+    <p>OBSの <code>設定</code> > <code>ホットキー</code> で、以下の操作にホットキーを割り当てることができます。</p>
+    <ul>
+        <li><strong>Reset Timer:</strong> タイマーを初期状態（カウントダウンなら設定された残り時間、カウントアップなら0）にリセットします。</li>
+        <li><strong>Start/Stop Timer:</strong> タイマーを開始または一時停止/再開します。</li>
+    </ul>
+
+    <h2>注意事項</h2>
+    <ul>
+        <li><strong>テキストソース:</strong> 設定で指定したテキストソースが存在しない場合、更新は行われません。</li>
+        <li><strong>日付/時刻のパース:</strong> 多様な形式に対応しようとしていますが、予期しない形式や曖昧な入力では正しく解釈できない場合があります。ISO 8601形式が最も安全です。</li>
+        <li><strong>タイムゾーンファイル:</strong> 正確なタイムゾーン処理のためには、システムのどこかに <code>zoneinfo</code> または <code>tzdata</code>
+            ファイルが存在することが望ましいです。PythonやCygwin、WSLなどをインストールしている場合、それらのパスから自動検出されることがあります。</li>
+        <li><strong>パフォーマンス:</strong> 頻繁なテキスト更新はOBSのパフォーマンスに影響を与える可能性があります。</li>
+        <li><strong>Windowsの <code>os.date</code> 制限:</strong>
+            Windowsの標準Lua実装では、<code>os.date</code>関数でのタイムゾーン名(<code>%Z</code>)や一部のオフセット形式(<code>%z</code>)の扱いに制限があります。スクリプトはこの制限を回避するためにカスタムのタイムゾーン処理を行っています。
+        </li>
+    </ul>
+
+</body>
+
+</html>
