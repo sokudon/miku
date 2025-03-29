@@ -1304,7 +1304,7 @@ function getOffsetForLocalDateWithPosixTZ(localDate, posixTZ)
                 -- obs.script_log(obs.LOG_DEBUG,"dt >= dstStart or dt < dstEnd")
                 return parsedTZ.dstOffset, parsedTZ.dstAbbr
             end
-            obs.script_log(obs.LOG_DEBUG, "dt stdOffset")
+           -- obs.script_log(obs.LOG_DEBUG, "dt stdOffset")
         else
             if dt >= dstStart and dt < dstEnd then
                 return parsedTZ.dstOffset, parsedTZ.dstAbbr
