@@ -276,7 +276,7 @@ function get_count() {
 	var tzs = moment(ibekaishi).tz(tzst).format("z");
 	var tze = moment(ibeowari).tz(tzst).format("z");
 
-	st = "<tr><th>OSたいむ</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
+	st = "<tr><th>OSたいむ</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>中国版</th><th>北米版</th></tr>";
 	st = st.replace("日本版", moment(ts).format() + "～" + moment(tt).format());
 
 	worldtimer[0][1] = ts;
@@ -290,6 +290,8 @@ function get_count() {
 	var ken = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
 	var hst = moment(kst).add("h", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
 	var hen = moment(ken).add("h", 1).format("YYYY-MM-DD[T]HH:mm:ss+09:00");
+	var cst = null;
+	var cen = null;
 	var gst = moment(ts).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
 	var gen = moment(tt).utc().add("h", 9).add("y", 1).format("YYYY-MM-DD HH:mm:ss");
 
@@ -317,6 +319,8 @@ function get_count() {
 			ken = isPatchJson(patchJson.columns.ken,ken);
 			hst = isPatchJson(patchJson.columns.hst,hst);
 			hen = isPatchJson(patchJson.columns.hen,hen);
+			cst = isPatchJson(patchJson.columns.cst,cst);
+			cen = isPatchJson(patchJson.columns.cen,cen);
 			gst = isPatchJson(patchJson.columns.gst,gst);
 			gen = isPatchJson(patchJson.columns.gen,gen);
 		}
@@ -334,30 +338,33 @@ function get_count() {
 
 	st = st.replace("韓国版", moment(kst).format() + "～" + moment(ken).format());
 	st = st.replace("香港版", moment(kst).add("h", 1).format() + "～" + moment(ken).add("h", 1).format());
+	st = st.replace("中国版", moment(cst).format() + "～" + moment(cen).format());
 	st = st.replace("北米版", moment(moment.tz(gst, tzPST)).local().format() + "～" + moment(moment.tz(gen, tzPST)).local().format());
 
 	//+"M$時間\t"
 	//+moment.utc(ibekaishi).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\t"
 	//+moment.utc(ibeowari).add("Hours",tzadd).format().replace("Z","+"+tzm[0] +":"+tzm[1])+"\r\n"
-	stm = "<tr><th>M$時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
+	stm = "<tr><th>M$時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>中国版</th>北米版</th></tr>";
 	stm = stm.replace("日本版", moment.utc(tsbk).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(tt).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
 
 	stm = stm.replace("韓国版", moment.utc(kst).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(ken).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
 	stm = stm.replace("香港版", moment.utc(kst).add("h", 1 + tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(ken).add("h", 1 + tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
+	stm = stm.replace("中国版", moment.utc(cst).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(cen).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
 	stm = stm.replace("北米版", moment.utc(moment.tz(gst, tzPST)).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]) + "～" + moment.utc(moment.tz(gen, tzPST)).add("Hours", tzadd).format().replace("Z", "+" + tzm[0] + ":" + tzm[1]));
 
 	stm = stm.replace(/\+\-/gm, "-");
 
 
 
-	stt = "<tr><th>もーめんとTZ時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th></tr>";
+	stt = "<tr><th>もーめんとTZ時間</th><th>日本版</th><th>韓国版</th><th>香港版</th><th>中国版</th><th>北米版</th></tr>";
 	stt = stt.replace("日本版", moment(ts).tz(tzst).format() + "～" + moment(tt).tz(tzst).format());
 
 	stt = stt.replace("韓国版", moment(kst).tz(tzst).format() + "～" + moment(ken).tz(tzst).format());
 	stt = stt.replace("香港版", moment(kst).add("h", 1).tz(tzst).format() + "～" + moment(ken).add("h", 1).tz(tzst).format());
+	stt = stt.replace("中国版", moment(cst).tz(tzst).format() + "～" + moment(cen).tz(tzst).format());
 	stt = stt.replace("北米版", moment(moment.tz(gst, tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)") + "～" + moment(moment.tz(gen, tzPST)).tz(tzst).format("YYYY-MM-DD[T]HH:mm:ssZ(z)"));
 
-	var header = "<th></th><th>日本版</th><th>韓国版</th><th>香港版</th><th>北米版</th>";
+	var header = "<th></th><th>日本版</th><th>韓国版</th><th>香港版</th><th>中国版</th><th>北米版</th>";
 	var st = "<table id=\"sampleTable\" class=\"tablesorter\">" + "<thead><tr>" + header + "</tr></thead><tbody>" + st + stm + stt + "</tbody></table>";
 
 	//画面出力
